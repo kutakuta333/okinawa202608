@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沖縄家族旅行プラン 2026.8.22-24</title>
+<style>
+  :root {
+    --ocean: #0099cc;
+    --ocean-dark: #006699;
+    --ocean-light: #e6f4fa;
+    --sand: #fdf6e3;
+    --sun: #ff9933;
+    --coral: #ff6b6b;
+    --leaf: #2da866;
+    --ink: #1a2b3c;
+    --gray: #607080;
+    --border: #d9e2ec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.75;
+    color: var(--ink);
+    background: linear-gradient(180deg, #e6f4fa 0%, #fdf6e3 100%);
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+  header.hero {
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-dark) 100%);
+    color: white;
+    padding: 36px 28px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 102, 153, 0.2);
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::before {
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+  header.hero h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+  }
+  header.hero .sub {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  .family-card {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-size: 14px;
+  }
+  h2 {
+    font-size: 22px;
+    border-left: 6px solid var(--ocean);
+    padding: 4px 0 4px 14px;
+    margin: 40px 0 18px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ocean-dark);
+    margin: 24px 0 10px;
+  }
+  .day-tag {
+    display: inline-block;
+    background: var(--ocean);
+    color: white;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .summary-table th {
+    background: var(--ocean-dark);
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .summary-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    vertical-align: top;
+  }
+  .summary-table tr:last-child td { border-bottom: none; }
+
+  /* ----- Course Cards ----- */
+  .course {
+    background: white;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--ocean);
+    page-break-inside: avoid;
+  }
+  .course.course-A { border-top-color: #5e9ee5; }
+  .course.course-B { border-top-color: var(--leaf); }
+  .course.course-C { border-top-color: var(--ocean); }
+  .course.course-D { border-top-color: var(--sun); }
+  .course.course-E { border-top-color: var(--coral); }
+  .course-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .course-badge {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    background: var(--ocean);
+    border-radius: 50%;
+    width: 44px; height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .course-A .course-badge { background: #5e9ee5; }
+  .course-B .course-badge { background: var(--leaf); }
+  .course-C .course-badge { background: var(--ocean); }
+  .course-D .course-badge { background: var(--sun); }
+  .course-E .course-badge { background: var(--coral); }
+  .course-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .course-sub {
+    color: var(--gray);
+    font-size: 13px;
+    margin-left: 8px;
+  }
+  .course-tag {
+    display: inline-block;
+    background: var(--ocean-light);
+    color: var(--ocean-dark);
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  .tag-visited { background: #fff3cd; color: #856404; }
+  .tag-new { background: #d4edda; color: #155724; }
+  .tag-recommend { background: var(--coral); color: white; }
+  .course-pitch {
+    background: var(--ocean-light);
+    border-left: 4px solid var(--ocean);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    margin: 10px 0 16px;
+  }
+  .course-D .course-pitch { background: #fff4e1; border-left-color: var(--sun); }
+  .course-E .course-pitch { background: #ffe9e9; border-left-color: var(--coral); }
+  .course-B .course-pitch { background: #e6f5ed; border-left-color: var(--leaf); }
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 14px;
+    font-size: 13.5px;
+  }
+  .schedule-table th, .schedule-table td {
+    padding: 8px 10px;
+    border-bottom: 1px dashed var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  .schedule-table th {
+    background: #f5f9fc;
+    color: var(--ocean-dark);
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .schedule-table td:first-child {
+    width: 80px;
+    font-weight: 600;
+    color: var(--ocean-dark);
+    white-space: nowrap;
+  }
+  .schedule-table td:last-child {
+    width: 70px;
+    color: var(--gray);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .notes {
+    font-size: 13px;
+    color: var(--gray);
+    padding: 10px 14px;
+    background: #fafbfc;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .notes b { color: var(--ink); }
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .pros, .cons {
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .pros {
+    background: #e6f5ed;
+    border-left: 3px solid var(--leaf);
+  }
+  .cons {
+    background: #fdecea;
+    border-left: 3px solid var(--coral);
+  }
+  .pros b { color: var(--leaf); }
+  .cons b { color: var(--coral); }
+
+  /* ----- Day1 confirmed ----- */
+  .confirmed {
+    background: linear-gradient(135deg, #e6f5ed 0%, #f5f9fc 100%);
+    border: 2px solid var(--leaf);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 24px;
+  }
+  .confirmed-badge {
+    display: inline-block;
+    background: var(--leaf);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  /* ----- Checklist ----- */
+  .checklist {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
+  .checklist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+    column-gap: 30px;
+  }
+  .checklist li {
+    padding: 4px 0 4px 24px;
+    position: relative;
+    font-size: 14px;
+    break-inside: avoid;
+  }
+  .checklist li::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    color: var(--ocean);
+    font-size: 16px;
+  }
+
+  /* ----- Footer ----- */
+  footer {
+    text-align: center;
+    color: var(--gray);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  footer a {
+    color: var(--ocean-dark);
+    text-decoration: none;
+  }
+
+  /* ----- Responsive ----- */
+  @media (max-width: 640px) {
+    .pros-cons { grid-template-columns: 1fr; }
+    .checklist ul { columns: 1; }
+    header.hero h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    .course-title { font-size: 17px; }
+  }
+  @media print {
+    body { background: white; }
+    .course, .confirmed, .checklist { box-shadow: none; border: 1px solid var(--border); }
+    header.hero { background: var(--ocean-dark) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <div class="sub">家族旅行プラン</div>
+    <h1>沖縄 家族旅行プラン<br>2026年8月22日(土) - 24日(月)</h1>
+    <div class="family-card">
+      <div><b>👨</b> 夫(私) 38歳</div>
+      <div><b>👩</b> 妻 37歳</div>
+      <div><b>👦</b> 長男 8歳</div>
+      <div><b>🧒</b> 次男 4歳</div>
+    </div>
+  </header>
+
+  <!-- ========== OVERVIEW ========== -->
+  <h2>📋 旅程概要</h2>
+  <table class="summary-table">
+    <tr>
+      <th>日付</th>
+      <th>移動・スケジュール</th>
+      <th>宿泊</th>
+    </tr>
+    <tr>
+      <td><b>1日目<br>8/22 (土)</b></td>
+      <td>
+        中部空港 08:20 → 那覇空港 10:35 (NH303)<br>
+        貸切バスで観光（<b>Aプラン: DMMかりゆし水族館</b>）<br>
+        ホテルチェックイン → 18:00 BBQディナー (ヤンバルクッチーナ)
+      </td>
+      <td rowspan="2">ザ・ビーチタワー沖縄<br>(北谷町)</td>
+    </tr>
+    <tr>
+      <td><b>2日目<br>8/23 (日)</b></td>
+      <td>
+        朝食後、<b>レンタカー(ノアクラス)で終日自由行動</b>
+      </td>
+    </tr>
+    <tr>
+      <td><b>3日目<br>8/24 (月)</b></td>
+      <td>
+        ホテルで朝食 → 各自チェックアウト → <b>貸切バスで那覇空港へ</b><br>
+        那覇空港 14:40 → 中部空港 16:50 (NH306)
+      </td>
+      <td>—</td>
+    </tr>
+  </table>
+
+  <!-- ========== HOTEL ========== -->
+  <h2>🏨 宿泊先: ザ・ビーチタワー沖縄</h2>
+  <div class="confirmed" style="border-color: var(--ocean); background: linear-gradient(135deg, #e6f4fa 0%, #fdf6e3 100%);">
+    <p style="margin-top:0;font-size:14px;">
+      アメリカンビレッジ隣接、東シナ海を望む高層リゾートホテル（共立リゾート系列・全280室）。
+      <b>併設の温泉&プール「ちゅらーゆ」</b>と<b>キッズバイキング</b>が子連れに大人気。
+    </p>
+
+    <h3 style="margin-top:14px;">👨‍👩‍👦‍👦 子連れの楽しみ方おすすめ</h3>
+    <table class="schedule-table">
+      <tr><th>場所・サービス</th><th>内容</th><th>子連れポイント</th></tr>
+      <tr>
+        <td><b>天然温泉&プール「ちゅらーゆ」</b></td>
+        <td>沖縄初の温水プール+温泉融合施設。屋内外プール、東シナ海ビューの露天風呂</td>
+        <td>浅瀬プール<b>水深80cm</b>で4歳の次男も安心。夕日を見ながら入浴可</td>
+      </tr>
+      <tr>
+        <td><b>キッズバイキング(朝食)</b></td>
+        <td>常時10種類前後のキッズメニュー、カウンターが低く子供が自分で取れる</td>
+        <td>3日目朝食はここでゆっくり。家族の自由時間を確保しやすい</td>
+      </tr>
+      <tr>
+        <td><b>プライベートビーチ(目の前)</b></td>
+        <td>ホテル前に東シナ海が広がるサンセットビーチ</td>
+        <td>夕日を見ながら波打ち際で水遊び。BBQ前後にもおすすめ</td>
+      </tr>
+      <tr>
+        <td><b>アメリカンビレッジ(徒歩圏)</b></td>
+        <td>カラフルな観覧車・グルメ・雑貨街。海沿いの「ミハマシャトルカート」は<b>12歳以下無料</b></td>
+        <td>夜のライトアップが特に綺麗。1日目BBQ後の散歩や、自由時間に最適</td>
+      </tr>
+      <tr>
+        <td><b>無料貸出グッズ</b></td>
+        <td>ベビーカー、ベッドガード、補助便座、パジャマ等。フロント横でおむつ・離乳食も無料配布</td>
+        <td>荷物を減らせる。必要なものはフロントで確認を</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top:14px;">💡 過ごし方のコツ</h3>
+    <ul style="font-size:14px;margin:0 0 10px;padding-left:20px;">
+      <li><b>1日目チェックイン後〜BBQまで</b>: 移動疲れがあるので「ちゅらーゆ」で温泉&プール。子供のテンションを発散させてからBBQへ。</li>
+      <li><b>2日目朝</b>: 早朝サンセットビーチで朝散歩(意外と人が少なく快適)。日中は外出。<b>夜は「ちゅらーゆ」でリフレッシュ</b>して翌日に備える。</li>
+      <li><b>3日目朝</b>: 朝食をゆっくり→各自チェックアウト→<b>出発までの待ち時間はアメリカンビレッジで小さなお土産探し</b>or プールで遊び納め。</li>
+    </ul>
+
+    <div class="notes">
+      <b>🔗 公式サイト</b>: <a href="https://dormy-hotels.com/resort/hotels/okinawa/" target="_blank">ザ・ビーチタワー沖縄 (共立リゾート)</a><br>
+      <b>♨ 温泉&プール詳細</b>: <a href="https://dormy-hotels.com/resort/hotels/okinawa/spa/" target="_blank">天然温泉&プール「ちゅらーゆ」</a><br>
+      <b>📍 住所</b>: 沖縄県中頭郡北谷町字美浜8-6
+    </div>
+  </div>
+
+  <!-- ========== DAY 1 ========== -->
+  <h2><span class="day-tag">1日目</span>8/22(土) — 確定プラン</h2>
+  <div class="confirmed">
+    <span class="confirmed-badge">✓ 決定</span>
+    <h3 style="margin-top:8px;">Aプラン: DMMかりゆし水族館</h3>
+    <p>最新の映像演出と動物ふれあい体験が充実。<b>コツメカワウソとの握手・ナマケモノ・フクロウのふれあい広場</b>など、特に4歳児の食いつき抜群。空港から近いので午前便の到着後にスムーズに合流できる。</p>
+    <div class="notes">
+      <b>📍 場所</b>: 豊見城市 イーアス豊崎内<br>
+      <b>⏱ 滞在目安</b>: 1〜1.5時間<br>
+      <b>🔗 公式</b>: <a href="https://kariyushi-aquarium.com/" target="_blank">kariyushi-aquarium.com</a>
+    </div>
+  </div>
+
+  <!-- ========== DAY 2 ========== -->
+  <h2><span class="day-tag">2日目</span>8/23(日) — レンタカー自由行動・5コース提案</h2>
+  <p style="font-size:14px; color:var(--gray);">
+    ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅰、初めての体験を重視するなら 🅱〜🅴 から選択。<br>
+    ★ 北谷起点で、家族4人ノアクラスなので移動快適。8月は猛暑+熱中症対策必須。
+  </p>
+
+  <!-- COURSE A: 王道北部 -->
+  <div class="course course-A">
+    <div class="course-head">
+      <span class="course-badge">A</span>
+      <h3 class="course-title" style="margin:0;">王道・北部1日コース</h3>
+      <span class="course-tag tag-visited">★再訪</span>
+    </div>
+    <div class="course-pitch">
+      <b>「やっぱり美ら海をもう一度」派へ。</b>長男も成長し前回より深く楽しめるはず。次男にとっては<b>初の美ら海</b>。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>8:30</td><td>ホテル出発（北谷）</td><td>—</td></tr>
+      <tr><td>10:00</td><td><b>ナゴパイナップルパーク</b><br><span style="color:var(--gray);font-size:12px;">自動運転カート、恐竜ゾーン、ほぼ屋根付きで猛暑回避◎</span></td><td>1〜1.5h</td></tr>
+      <tr><td>11:30</td><td><b>古宇利島ドライブ＆ランチ</b><br><span style="color:var(--gray);font-size:12px;">古宇利大橋・ハートロック・浅瀬の水遊び</span></td><td>1.5h</td></tr>
+      <tr><td>14:00</td><td><b>沖縄美ら海水族館</b><br><span style="color:var(--gray);font-size:12px;">ジンベエザメ、イルカショー、6歳未満無料</span></td><td>3h</td></tr>
+      <tr><td>17:00</td><td>名護で夕食 → 19:00頃ホテル</td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br>定番王道。長男が成長後どう楽しむかも見どころ。次男は初体験で大興奮間違いなし。</div>
+      <div class="cons"><b>👎 デメリット</b><br>北谷⇔本部の片道75km・1時間15〜25分。<b>運転時間が長く4歳児への負担大</b>。再訪コンテンツのため新鮮味は限定的。</div>
+    </div>
+    <div class="notes">
+      <b>🔗 公式</b>: <a href="https://churaumi.okinawa/" target="_blank">美ら海水族館</a> ／ <a href="https://www.nagopine.com/" target="_blank">ナゴパイナップルパーク</a>
+    </div>
+  </div>
+
+  <!-- COURSE B: 中部ゆったり -->
+  <div class="course course-B">
+    <div class="course-head">
+      <span class="course-badge">B</span>
+      <h3 class="course-title" style="margin:0;">中部ゆったり自然体験コース</h3>
+      <span class="course-tag tag-recommend">◎一押し</span>
+    </div>
+    <div class="course-pitch">
+      <b>移動が少なく、自然と動物にじっくり触れる</b>。4歳児に最も優しく、8歳の好奇心も満たせるバランス型。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>9:00</td><td>ホテル出発</td><td>—</td></tr>
+      <tr><td>9:40</td><td><b>ビオスの丘（うるま市）</b><br><span style="color:var(--gray);font-size:12px;">水牛車、湖上カヌー・舟、ヤギ/アグー、木のアスレチック、ブランコ</span></td><td>2.5h</td></tr>
+      <tr><td>12:30</td><td>うるま市・読谷エリアでランチ</td><td>1h</td></tr>
+      <tr><td>14:00</td><td><b>沖縄こどもの国（沖縄市）</b><br><span style="color:var(--gray);font-size:12px;">動物園+ワンダーミュージアム+SL+スプラッシュパーク(水深20cm)</span></td><td>2.5h</td></tr>
+      <tr><td>17:00</td><td>ホテル戻り → アメリカンビレッジで夕涼み</td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br>移動約40分以内で完結。屋根/木陰多く猛暑日も安心。動物・水遊び・乗り物が全部入り。</div>
+      <div class="cons"><b>👎 デメリット</b><br>絶景系の派手さは少ない。SNS映え要素は控えめ。</div>
+    </div>
+    <div class="notes">
+      <b>🔗 参考</b>: <a href="https://iko-yo.net/facilities/2217" target="_blank">ビオスの丘</a> ／ <a href="https://tempa.jpn.com/travspot8/" target="_blank">沖縄こどもの国</a>
+    </div>
+  </div>
+
+  <!-- COURSE C: 海体験 -->
+  <div class="course course-C">
+    <div class="course-head">
+      <span class="course-badge">C</span>
+      <h3 class="course-title" style="margin:0;">マリン体験コース</h3>
+    </div>
+    <div class="course-pitch">
+      <b>「沖縄に来たんだから海に潜らせたい」派へ。</b>8月は海水温・透明度ともにベストシーズン。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>9:00</td><td><b>シーパーク北谷でグラスボート</b><br><span style="color:var(--gray);font-size:12px;">ホテル徒歩圏。普段着OK、4歳未満も乗船可能</span></td><td>1.5h</td></tr>
+      <tr><td>11:00</td><td>ホテル戻り→着替え→恩納村へ移動</td><td>—</td></tr>
+      <tr><td>12:00</td><td>恩納村でランチ</td><td>1h</td></tr>
+      <tr><td>13:30</td><td><b>青の洞窟シュノーケル（4歳〜OK貸切ツアー）</b><br><span style="color:var(--gray);font-size:12px;">浮き輪・ライフジャケット装着、エサやり体験付き</span></td><td>2.5h</td></tr>
+      <tr><td>17:00</td><td>ホテル戻り <b>サンセットビーチで夕日</b></td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br>沖縄ならではのマリン体験。お兄ちゃんはシュノーケルにハマる可能性大。「夏休みの作文」ネタになる。</div>
+      <div class="cons"><b>👎 デメリット</b><br>4歳児にはやや疲れる。当日キャンセル不可ツアー多く、<b>事前予約必須</b>。日焼け・体力消耗対策を入念に。</div>
+    </div>
+    <div class="notes">
+      <b>🔗 参考</b>: <a href="https://goo-chatan.com/?dir=info&page=churaumiline" target="_blank">シーパーク北谷</a> ／ <a href="https://bluecave-core.com/1802/" target="_blank">青の洞窟 4歳〜ツアー</a>
+    </div>
+  </div>
+
+  <!-- COURSE D: 南部探検（新規） -->
+  <div class="course course-D">
+    <div class="course-head">
+      <span class="course-badge">D</span>
+      <h3 class="course-title" style="margin:0;">南部・沖縄文化テーマパークコース</h3>
+      <span class="course-tag tag-new">NEW</span>
+    </div>
+    <div class="course-pitch">
+      <b>沖縄文化に丸ごと触れる</b>1日。鍾乳洞・ハブ・エイサーショー・天ぷら・夕日と、4歳でも飽きない盛りだくさん。北部に行かない分、運転負担も中程度。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>9:00</td><td>ホテル出発（北谷）</td><td>—</td></tr>
+      <tr><td>10:00</td><td><b>おきなわワールド（南城市）</b><br><span style="color:var(--gray);font-size:12px;">玉泉洞(全長5km級鍾乳洞)、スーパーエイサーショー、ハブ博物公園、琉球王国城下町、シーサー色付け体験(60分・1,800円)</span></td><td>3〜4h</td></tr>
+      <tr><td>14:00</td><td><b>奥武島で天ぷらランチ</b><br><span style="color:var(--gray);font-size:12px;">島の名物「もずく天ぷら」「イカ天」を青空の下で。猫好きの長男に◎</span></td><td>1h</td></tr>
+      <tr><td>15:30</td><td><b>知念岬公園 / ニライカナイ橋 展望台</b><br><span style="color:var(--gray);font-size:12px;">エメラルドグリーンの絶景。写真スポット</span></td><td>30分</td></tr>
+      <tr><td>16:30</td><td><b>瀬長島ウミカジテラス</b><br><span style="color:var(--gray);font-size:12px;">那覇空港横の海辺ショッピング街。飛行機が頭上を飛ぶ絶景。夕食もここで</span></td><td>2h</td></tr>
+      <tr><td>19:00</td><td>ホテル戻り</td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br>1日で <b>鍾乳洞・動物・伝統芸能・絶景・グルメ・夕日</b> を全部体験。<b>シーサー色付け（4歳〜OK）</b>はお土産にもなる。屋内多く猛暑にも強い。</div>
+      <div class="cons"><b>👎 デメリット</b><br>欲張り型なので時間管理が要。ハブショーは音や見た目で4歳児が驚く可能性あり（避けて通ることも可）。</div>
+    </div>
+    <div class="notes">
+      <b>📍 北谷からおきなわワールドまで</b>: 約50分（高速利用）<br>
+      <b>🔗 参考</b>: <a href="https://www.okinawastory.jp/spot/1055" target="_blank">おきなわワールド</a> ／ <a href="https://www.ryukyumura.co.jp/facilities/memorysisa/" target="_blank">シーサー色付け体験</a>
+    </div>
+  </div>
+
+  <!-- COURSE E: 海中道路（新規） -->
+  <div class="course course-E">
+    <div class="course-head">
+      <span class="course-badge">E</span>
+      <h3 class="course-title" style="margin:0;">海中道路・離島めぐりドライブコース</h3>
+      <span class="course-tag tag-new">NEW</span>
+    </div>
+    <div class="course-pitch">
+      <b>ノアクラスならではのドライブ満喫コース。</b>海の上を走る4.75kmの海中道路で4つの離島へ。遠浅で穏やかなビーチは小さい子にも安心。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>9:00</td><td>ホテル出発（北谷）</td><td>—</td></tr>
+      <tr><td>9:50</td><td><b>海中道路「あやはし館」</b><br><span style="color:var(--gray);font-size:12px;">海の駅、休憩・トイレ。海の上を走る道路の絶景</span></td><td>30分</td></tr>
+      <tr><td>10:30</td><td><b>浜比嘉島</b> をドライブ<br><span style="color:var(--gray);font-size:12px;">琉球創世神話の島、シルミチュー・アマミチュー</span></td><td>30分</td></tr>
+      <tr><td>11:30</td><td><b>伊計ビーチ（伊計島）</b><br><span style="color:var(--gray);font-size:12px;">遠浅で穏やか、レンタル充実、家族向け天然ビーチ。ランチも島内で</span></td><td>2.5h</td></tr>
+      <tr><td>14:30</td><td><b>ぬちまーす観光製塩ファクトリー（宮城島）</b><br><span style="color:var(--gray);font-size:12px;">工場無料見学、塩ソフトクリーム、絶景「果報(かふう)バンタ」</span></td><td>1h</td></tr>
+      <tr><td>16:00</td><td>うるま市内でショッピング or 早めに帰路</td><td>—</td></tr>
+      <tr><td>17:30</td><td>ホテル戻り</td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br>北谷から約50分で到着。<b>「海の上を走る」体験</b>は子供大興奮。ビーチは遠浅で4歳児も安心。観光客密度が低く混雑回避◎。</div>
+      <div class="cons"><b>👎 デメリット</b><br>離島部はトイレ・コンビニが限定的。<b>水着・タオル・浮き輪は車に積んで出発</b>。猛暑日はビーチでの日陰確保が必須。</div>
+    </div>
+    <div class="notes">
+      <b>📍 北谷から海中道路入口まで</b>: 約50分<br>
+      <b>🔗 参考</b>: <a href="https://www.okinawaclip.com/post/uruma-recommend/" target="_blank">海中道路と4離島ガイド</a> ／ <a href="https://rurubu.jp/andmore/spot/80042947" target="_blank">ぬちまーす製塩</a>
+    </div>
+  </div>
+
+  <!-- ========== DAY 3 ========== -->
+  <h2><span class="day-tag">3日目</span>8/24(月) — 出発日</h2>
+  <div class="confirmed" style="border-color: var(--ocean);">
+    <h3 style="margin-top:0;">🚌 当日の流れ（確定）</h3>
+    <table class="schedule-table">
+      <tr><th>時刻目安</th><th>内容</th><th>備考</th></tr>
+      <tr><td>〜09:30</td><td><b>ホテルで朝食</b>（キッズバイキング）</td><td>子供と一緒にゆっくり</td></tr>
+      <tr><td>〜10:30</td><td><b>各自チェックアウト</b></td><td>荷物はフロント預けOK</td></tr>
+      <tr><td>チェックアウト後〜出発まで</td><td>自由時間（下記おすすめ参照）</td><td>暑さ対策・水分補給</td></tr>
+      <tr><td>集合時刻</td><td><b>貸切バスで那覇空港へ</b></td><td>添乗員の案内に従う</td></tr>
+      <tr><td>14:40</td><td>那覇空港発 (NH306)</td><td>2時間10分</td></tr>
+      <tr><td>16:50</td><td>中部国際空港着 → 解散</td><td>—</td></tr>
+    </table>
+
+    <h3>☀️ チェックアウト後〜バス出発までの過ごし方</h3>
+    <ul style="font-size:14px;margin:0;padding-left:20px;">
+      <li><b>朝のアメリカンビレッジ散歩</b> — ホテル隣接。朝の比較的涼しい時間帯にお土産購入を済ませる。</li>
+      <li><b>サンセットビーチ・北谷公園で最後の水遊び</b> — 着替え一式は手荷物に分けておくと便利。</li>
+      <li><b>ホテルのプール「ちゅらーゆ」で最終遊泳</b> — チェックアウト後も利用可能か事前にフロントで確認推奨。</li>
+      <li><b>カフェでひと休み</b> — アメリカンビレッジ内のカフェで涼みつつ集合時刻を待つ。</li>
+    </ul>
+  </div>
+
+  <!-- ========== CHECKLIST ========== -->
+  <h2>🎒 持ち物チェックリスト（8月沖縄・子連れ）</h2>
+  <div class="checklist">
+    <h3 style="margin-top:0;">必須</h3>
+    <ul>
+      <li>水着 ×4人分</li>
+      <li>ラッシュガード（特に子供）</li>
+      <li>ビーチサンダル ×4</li>
+      <li>バスタオル・大判タオル</li>
+      <li>日焼け止め（ウォータープルーフ）</li>
+      <li>帽子・サングラス</li>
+      <li>虫よけスプレー</li>
+      <li>ジップロック（濡れ物用）</li>
+      <li>チャイルドシート予約確認 ×2</li>
+      <li>健康保険証コピー</li>
+    </ul>
+    <h3>あると便利</h3>
+    <ul>
+      <li>水中マスク（長男用、シュノーケル）</li>
+      <li>浮き輪・アームヘルパー（次男用）</li>
+      <li>車内おやつ・飲み物クーラー</li>
+      <li>酔い止め（次男・長距離対策）</li>
+      <li>タブレット＋イヤホン（車内エンタメ）</li>
+      <li>冷却タオル・ハンディファン</li>
+      <li>絆創膏・常備薬</li>
+      <li>ゴーグル ×2</li>
+      <li>サンダル洗い用ナイロン袋</li>
+      <li>レジ袋（濡れた水着）</li>
+    </ul>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    Created 2026-05-15<br>
+    宿泊: ザ・ビーチタワー沖縄 ｜ 航空: 全日空 NH303 / NH306 ｜ 2日目レンタカー: ノアクラス
+  </footer>
+
+</div>
+</body>
+</html>
