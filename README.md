@@ -2,7 +2,7 @@
 
 2026年8月22日(土)〜24日(月) の家族旅行用プラン。
 
-🌐 公開URL: https://randx71.github.io/okinawa2026/
+🌐 公開URL: https://kutakuta333.github.io/okinawa202608/
 
 ## 内容
 
