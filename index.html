@@ -310,13 +310,147 @@
     text-decoration: none;
   }
 
+  /* ----- Season Badges ----- */
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 12px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge-cool { background: #d4e8ff; color: #1e4a8c; }
+  .badge-mild { background: #fff3cd; color: #856404; }
+  .badge-hot { background: #ffd5d5; color: #a02020; }
+  .badge-empty { background: #d4edda; color: #155724; }
+  .badge-normal { background: #e2e8f0; color: #4a5568; }
+  .badge-crowd { background: #f8d7da; color: #721c24; }
+  .badge-hit { background: linear-gradient(135deg, #ff9933, #ff6b6b); color: white; }
+
+  /* Season callout */
+  .season-callout {
+    background: linear-gradient(135deg, #fff7e6 0%, #ffe6f0 100%);
+    border: 2px solid var(--sun);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 16px 0 24px;
+  }
+  .season-callout h3 {
+    margin: 0 0 10px;
+    color: #c63;
+    font-size: 17px;
+  }
+  .season-callout .principle {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-left: 4px solid var(--sun);
+    font-size: 14px;
+  }
+  .season-callout .principle b { color: var(--sun); }
+
   /* ----- Responsive ----- */
   @media (max-width: 640px) {
-    .pros-cons { grid-template-columns: 1fr; }
+    .container { padding: 14px 10px 60px; }
+
+    /* Hero */
+    header.hero { padding: 22px 16px; }
+    header.hero h1 { font-size: 19px; line-height: 1.5; }
+    header.hero .sub { font-size: 12px; }
+    .family-card { font-size: 13px; gap: 6px 14px; padding: 10px 12px; }
+
+    /* Headings */
+    h2 { font-size: 16px; margin: 28px 0 14px; padding: 3px 0 3px 10px; border-left-width: 4px; }
+    h3 { font-size: 15px; margin: 18px 0 8px; }
+
+    /* Tables: stack rows as cards on mobile */
+    .summary-table, .schedule-table {
+      box-shadow: none;
+      background: transparent;
+      border-radius: 0;
+    }
+    .summary-table tr:first-child,
+    .schedule-table tr:first-child {
+      display: none; /* hide header row (th only) */
+    }
+    .summary-table, .summary-table tbody, .summary-table tr,
+    .schedule-table, .schedule-table tbody, .schedule-table tr {
+      display: block;
+      width: 100%;
+    }
+    .summary-table td, .schedule-table td {
+      display: block;
+      width: 100% !important;
+      padding: 6px 10px !important;
+      border-bottom: none !important;
+      font-size: 13.5px;
+      white-space: normal !important;
+    }
+    .summary-table tr, .schedule-table tr {
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      padding: 6px 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .summary-table td:first-child,
+    .schedule-table td:first-child {
+      font-weight: 700;
+      color: var(--ocean-dark);
+      border-bottom: 1px dashed var(--border) !important;
+      margin-bottom: 4px;
+      padding-bottom: 6px !important;
+      font-size: 14px;
+    }
+    .schedule-table td:last-child:not(:first-child) {
+      font-size: 12px;
+      color: var(--gray);
+      text-align: right;
+      font-style: italic;
+    }
+    .schedule-table td:last-child:not(:first-child):empty,
+    .schedule-table td:last-child:not(:first-child):not(:nth-child(3)) { display: none; }
+
+    /* Course cards */
+    .course { padding: 16px 14px; }
+    .course-title { font-size: 16px; line-height: 1.4; }
+    .course-head { gap: 8px; }
+    .course-badge { width: 38px; height: 38px; font-size: 18px; }
+    .course-tag { font-size: 11px; padding: 1px 8px; }
+    .course-pitch { font-size: 13px; padding: 8px 12px; }
+
+    /* Notes */
+    .notes { font-size: 12.5px; padding: 8px 10px; line-height: 1.6; }
+
+    /* Pros/Cons */
+    .pros-cons { grid-template-columns: 1fr; gap: 8px; }
+    .pros, .cons { font-size: 12.5px; padding: 8px 10px; }
+
+    /* Confirmed (hotel) section */
+    .confirmed { padding: 16px 14px; }
+
+    /* Checklist */
+    .checklist { padding: 16px 14px; }
     .checklist ul { columns: 1; }
-    header.hero h1 { font-size: 22px; }
-    h2 { font-size: 18px; }
-    .course-title { font-size: 17px; }
+    .checklist li { font-size: 13.5px; }
+
+    /* Season callout */
+    .season-callout { padding: 14px 14px; }
+    .season-callout h3 { font-size: 15px; }
+    .season-callout .principle { font-size: 13px; padding: 8px 10px; }
+
+    /* Badges stay readable */
+    .badge { font-size: 11px; padding: 2px 8px; }
   }
   @media print {
     body { background: white; }
@@ -439,11 +573,31 @@
   </div>
 
   <!-- ========== DAY 2 ========== -->
-  <h2><span class="day-tag">2日目</span>8/23(日) — レンタカー自由行動・5コース提案</h2>
+  <h2><span class="day-tag">2日目</span>8/23(日) — レンタカー自由行動・6コース提案</h2>
   <p style="font-size:14px; color:var(--gray);">
-    ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅰、初めての体験を重視するなら 🅱〜🅴 から選択。<br>
-    ★ 北谷起点で、家族4人ノアクラスなので移動快適。8月は猛暑+熱中症対策必須。
+    ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅰、初めての体験を重視するなら 🅱〜🅵 から選択。<br>
+    ★ 北谷起点で、家族4人ノアクラスなので移動快適。
   </p>
+
+  <!-- HI-SEASON / HEAT STRATEGY -->
+  <div class="season-callout">
+    <h3>🌡️ ハイシーズン × 猛暑 攻略の3原則</h3>
+    <p style="font-size:13px; margin:0 0 10px; color:#665;">
+      8/23はお盆明け直後でハイシーズン真っ只中。「暑さが苦手な家族」「混雑を避けたい家族」向けに、3つの原則でコースを評価しています。
+    </p>
+    <div class="principle">
+      <b>① 早朝 or 夕方を狙う</b> — 観光地は8:30開館直後が圧倒的に空いていて涼しい。屋外スポットは <b>10時前 or 16時以降</b>に絞り、10〜15時は屋内/木陰で過ごすのが正解。
+    </div>
+    <div class="principle">
+      <b>② 天然クーラーを活用</b> — 鍾乳洞(年中21℃)、博物館・美術館、ショッピングモール、木陰の多い植物園は<b>外気より5〜10℃涼しい</b>。猛暑日は屋内比率を上げる。
+    </div>
+    <div class="principle">
+      <b>③ 王道ルートを避ける</b> — 美ら海・古宇利島・青の洞窟は<b>大渋滞+待ち時間</b>。海中道路・南部・うるま方面・モール系は穴場で家族向け。
+    </div>
+    <p style="font-size:12.5px; margin:10px 0 0; color:#665;">
+      ★ 各コースに <span class="badge badge-cool">🌡️涼しい</span> <span class="badge badge-empty">👥空いてる</span> <span class="badge badge-hit">◎一押し</span> などのバッジを付けています。
+    </p>
+  </div>
 
   <!-- COURSE A: 王道北部 -->
   <div class="course course-A">
@@ -452,22 +606,33 @@
       <h3 class="course-title" style="margin:0;">王道・北部1日コース</h3>
       <span class="course-tag tag-visited">★再訪</span>
     </div>
+    <div class="badge-row">
+      <span class="badge badge-hot">☀️ 暑い</span>
+      <span class="badge badge-crowd">👥👥👥 大混雑</span>
+    </div>
     <div class="course-pitch">
-      <b>「やっぱり美ら海をもう一度」派へ。</b>長男も成長し前回より深く楽しめるはず。次男にとっては<b>初の美ら海</b>。
+      <b>「やっぱり美ら海をもう一度」派へ。</b>長男も成長し前回より深く楽しめるはず。次男にとっては<b>初の美ら海</b>。<br>
+      <span style="color:#a02020;">⚠️ ハイシーズン×猛暑の観点では一番ハードなコース。</span>
     </div>
     <table class="schedule-table">
       <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
-      <tr><td>8:30</td><td>ホテル出発（北谷）</td><td>—</td></tr>
-      <tr><td>10:00</td><td><b>ナゴパイナップルパーク</b><br><span style="color:var(--gray);font-size:12px;">自動運転カート、恐竜ゾーン、ほぼ屋根付きで猛暑回避◎</span></td><td>1〜1.5h</td></tr>
-      <tr><td>11:30</td><td><b>古宇利島ドライブ＆ランチ</b><br><span style="color:var(--gray);font-size:12px;">古宇利大橋・ハートロック・浅瀬の水遊び</span></td><td>1.5h</td></tr>
-      <tr><td>14:00</td><td><b>沖縄美ら海水族館</b><br><span style="color:var(--gray);font-size:12px;">ジンベエザメ、イルカショー、6歳未満無料</span></td><td>3h</td></tr>
-      <tr><td>17:00</td><td>名護で夕食 → 19:00頃ホテル</td><td>—</td></tr>
+      <tr><td>7:30</td><td><b>早めにホテル出発</b>（混雑前に北部入り）</td><td>—</td></tr>
+      <tr><td>9:00</td><td><b>ナゴパイナップルパーク</b><br><span style="color:var(--gray);font-size:12px;">自動運転カート、恐竜ゾーン、ほぼ屋根付きで猛暑回避◎</span></td><td>1.5h</td></tr>
+      <tr><td>10:30</td><td><b>古宇利島ドライブ＆早めランチ</b><br><span style="color:var(--gray);font-size:12px;">古宇利大橋・ハートロックは午前に。水遊びは木陰で短時間</span></td><td>1.5h</td></tr>
+      <tr><td>12:30</td><td><b>沖縄美ら海水族館</b>(屋内冷房・滞在長め)<br><span style="color:var(--gray);font-size:12px;">炎天下を避けるため昼イチ入館。15時以降は人波がさらに増す</span></td><td>3h</td></tr>
+      <tr><td>16:00</td><td>名護で夕食 → 18:30頃ホテル</td><td>—</td></tr>
     </table>
     <div class="pros-cons">
-      <div class="pros"><b>👍 メリット</b><br>定番王道。長男が成長後どう楽しむかも見どころ。次男は初体験で大興奮間違いなし。</div>
-      <div class="cons"><b>👎 デメリット</b><br>北谷⇔本部の片道75km・1時間15〜25分。<b>運転時間が長く4歳児への負担大</b>。再訪コンテンツのため新鮮味は限定的。</div>
+      <div class="pros"><b>👍 メリット</b><br>定番王道。長男が成長後どう楽しむかも見どころ。次男は初体験で大興奮。水族館内は涼しい。</div>
+      <div class="cons"><b>👎 デメリット</b><br>片道75km・1時間15〜25分の長距離運転。<b>古宇利島は炎天下で逃げ場少なめ</b>。8月の美ら海は<b>入館待ち30分以上+館内も大混雑</b>。再訪のため新鮮味は限定的。</div>
     </div>
     <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li>美ら海は<b>8:30開館直後</b>か<b>16時以降の夕方割引</b>(入館料3割引)が空く狙い目。今回は早朝便でないので前者は難しいが、夕方狙いなら順序を入れ替えるのもアリ。</li>
+        <li>古宇利島は午前のうちに済ませ、昼の暑さは美ら海(屋内冷房)で逃げ切る。</li>
+        <li>名護に「ひがし食堂」「鮮味食感」など昼ランチ穴場あり。</li>
+      </ul>
       <b>🔗 公式</b>: <a href="https://churaumi.okinawa/" target="_blank">美ら海水族館</a> ／ <a href="https://www.nagopine.com/" target="_blank">ナゴパイナップルパーク</a>
     </div>
   </div>
@@ -479,8 +644,13 @@
       <h3 class="course-title" style="margin:0;">中部ゆったり自然体験コース</h3>
       <span class="course-tag tag-recommend">◎一押し</span>
     </div>
+    <div class="badge-row">
+      <span class="badge badge-mild">🌤️ 木陰+屋内多め</span>
+      <span class="badge badge-normal">👥👥 普通</span>
+      <span class="badge badge-hit">◎ 暑さ・混雑バランス◎</span>
+    </div>
     <div class="course-pitch">
-      <b>移動が少なく、自然と動物にじっくり触れる</b>。4歳児に最も優しく、8歳の好奇心も満たせるバランス型。
+      <b>移動が少なく、自然と動物にじっくり触れる</b>。4歳児に最も優しく、8歳の好奇心も満たせるバランス型。<b>ビオスの丘は木陰の植物園、こどもの国はワンダーミュージアム屋内</b>で猛暑回避もしやすい。
     </div>
     <table class="schedule-table">
       <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
@@ -491,10 +661,16 @@
       <tr><td>17:00</td><td>ホテル戻り → アメリカンビレッジで夕涼み</td><td>—</td></tr>
     </table>
     <div class="pros-cons">
-      <div class="pros"><b>👍 メリット</b><br>移動約40分以内で完結。屋根/木陰多く猛暑日も安心。動物・水遊び・乗り物が全部入り。</div>
+      <div class="pros"><b>👍 メリット</b><br>移動約40分以内で完結。木陰・屋内多く猛暑日も安心。動物・水遊び・乗り物が全部入り。観光客が極端に集中しないので<b>待ち時間が短い</b>。</div>
       <div class="cons"><b>👎 デメリット</b><br>絶景系の派手さは少ない。SNS映え要素は控えめ。</div>
     </div>
     <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li><b>ビオスの丘は9時開園と同時に入って湖水観賞舟へ</b>。朝のうちに屋外を回り、暑くなる前にカフェ休憩。</li>
+        <li>こどもの国の<b>スプラッシュパーク(5〜10月)</b>は午後の暑い時間帯に最適。水深20cmで4歳でも安心。猛暑時はワンダーミュージアム(屋内)へ。</li>
+        <li>ランチは読谷の「都屋漁港」海鮮ランチや、北谷に戻ってBLUE SEAL ICE PARKでひと休みも。</li>
+      </ul>
       <b>🔗 参考</b>: <a href="https://iko-yo.net/facilities/2217" target="_blank">ビオスの丘</a> ／ <a href="https://www.okzm.jp/" target="_blank">沖縄こどもの国</a>
     </div>
   </div>
@@ -505,8 +681,13 @@
       <span class="course-badge">C</span>
       <h3 class="course-title" style="margin:0;">マリン体験コース</h3>
     </div>
+    <div class="badge-row">
+      <span class="badge badge-hot">☀️ 強烈な日差し</span>
+      <span class="badge badge-crowd">👥👥👥 青の洞窟は大混雑</span>
+    </div>
     <div class="course-pitch">
-      <b>「沖縄に来たんだから海に潜らせたい」派へ。</b>8月は海水温・透明度ともにベストシーズン。
+      <b>「沖縄に来たんだから海に潜らせたい」派へ。</b>8月は海水温・透明度ともにベストシーズン。<br>
+      <span style="color:#a02020;">⚠️ 直射日光に長時間さらされるため、暑さに弱い家族には注意。</span>
     </div>
     <table class="schedule-table">
       <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
@@ -517,10 +698,16 @@
       <tr><td>17:00</td><td>ホテル戻り <b>サンセットビーチで夕日</b></td><td>—</td></tr>
     </table>
     <div class="pros-cons">
-      <div class="pros"><b>👍 メリット</b><br>沖縄ならではのマリン体験。お兄ちゃんはシュノーケルにハマる可能性大。「夏休みの作文」ネタになる。</div>
-      <div class="cons"><b>👎 デメリット</b><br>4歳児にはやや疲れる。当日キャンセル不可ツアー多く、<b>事前予約必須</b>。日焼け・体力消耗対策を入念に。</div>
+      <div class="pros"><b>👍 メリット</b><br>沖縄ならではのマリン体験。お兄ちゃんはシュノーケルにハマる可能性大。「夏休みの作文」ネタになる。海の中は意外と涼しい。</div>
+      <div class="cons"><b>👎 デメリット</b><br>4歳児にはやや疲れる。当日キャンセル不可ツアー多く、<b>事前予約必須</b>。<b>真夏の青の洞窟は超混雑</b>(早朝便除く)。日焼け・体力消耗対策を入念に。</div>
     </div>
     <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li><b>青の洞窟は午前9時前のツアー</b>(ファーストツアー)を予約。日差しが弱く、空いていて、洞窟内も水中の青がきれい。</li>
+        <li>マリン体験は午前で切り上げ、<b>14〜17時の暑い時間帯は屋内でクールダウン</b>(イオンモールライカム or おきみゅーへ)。</li>
+        <li>4歳児は無理せず、シーパーク北谷のグラスボートで「服を着たまま海の世界」を見るプランも◎。</li>
+      </ul>
       <b>🔗 参考</b>: <a href="https://goo-chatan.com/?dir=info&page=churaumiline" target="_blank">シーパーク北谷</a> ／ <a href="https://bluecave-core.com/1802/" target="_blank">青の洞窟 4歳〜ツアー</a>
     </div>
   </div>
@@ -532,8 +719,14 @@
       <h3 class="course-title" style="margin:0;">南部・沖縄文化テーマパークコース</h3>
       <span class="course-tag tag-new">NEW</span>
     </div>
+    <div class="badge-row">
+      <span class="badge badge-cool">🌡️ 玉泉洞は年中21℃</span>
+      <span class="badge badge-normal">👥👥 普通</span>
+      <span class="badge badge-hit">◎ 涼しさ最強</span>
+    </div>
     <div class="course-pitch">
-      <b>沖縄文化に丸ごと触れる</b>1日。鍾乳洞・ハブ・エイサーショー・天ぷら・夕日と、4歳でも飽きない盛りだくさん。北部に行かない分、運転負担も中程度。
+      <b>沖縄文化に丸ごと触れる</b>1日。鍾乳洞・ハブ・エイサーショー・天ぷら・夕日と、4歳でも飽きない盛りだくさん。<br>
+      <b>玉泉洞は天然クーラー(年中21℃前後)で猛暑日の救世主</b>。北部に行かない分、運転負担も中程度で美ら海より圧倒的に空いている。
     </div>
     <table class="schedule-table">
       <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
@@ -545,10 +738,16 @@
       <tr><td>19:00</td><td>ホテル戻り</td><td>—</td></tr>
     </table>
     <div class="pros-cons">
-      <div class="pros"><b>👍 メリット</b><br>1日で <b>鍾乳洞・動物・伝統芸能・絶景・グルメ・夕日</b> を全部体験。<b>シーサー色付け（4歳〜OK）</b>はお土産にもなる。屋内多く猛暑にも強い。</div>
-      <div class="cons"><b>👎 デメリット</b><br>欲張り型なので時間管理が要。ハブショーは音や見た目で4歳児が驚く可能性あり（避けて通ることも可）。</div>
+      <div class="pros"><b>👍 メリット</b><br>1日で <b>鍾乳洞・動物・伝統芸能・絶景・グルメ・夕日</b> を全部体験。<b>シーサー色付け（4歳〜OK）</b>はお土産にもなる。<b>玉泉洞=天然クーラー</b>で猛暑時の救世主。美ら海より遥かに空いている。</div>
+      <div class="cons"><b>👎 デメリット</b><br>欲張り型なので時間管理が要。ハブショーは音や見た目で4歳児が驚く可能性あり（避けて通ることも可）。鍾乳洞内は<b>湿度高め+暗め</b>で4歳が怖がる可能性も。</div>
     </div>
     <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li><b>玉泉洞は9時開園の朝イチ入洞</b>がベスト。涼しいうちに探検→暑くなる10時以降は王国村(屋根多め)→エイサーショーへ流れる動線。</li>
+        <li>夏休み期間は<b>「南の島の洞くつ探検」(6歳〜)</b>あり。長男が冒険好きならテンション爆上がり。</li>
+        <li>瀬長島ウミカジテラスは<b>16時以降の方が涼しく、夕日も狙える</b>。</li>
+      </ul>
       <b>📍 北谷からおきなわワールドまで</b>: 約50分（高速利用）<br>
       <b>🔗 参考</b>: <a href="https://www.okinawastory.jp/spot/1055" target="_blank">おきなわワールド</a> ／ <a href="https://www.ryukyumura.co.jp/facilities/memorysisa/" target="_blank">シーサー色付け体験</a>
     </div>
@@ -561,8 +760,13 @@
       <h3 class="course-title" style="margin:0;">海中道路・離島めぐりドライブコース</h3>
       <span class="course-tag tag-new">NEW</span>
     </div>
+    <div class="badge-row">
+      <span class="badge badge-mild">🌤️ 海風で体感涼しめ</span>
+      <span class="badge badge-empty">👥 穴場・空いてる</span>
+      <span class="badge badge-hit">◎ 混雑回避◎</span>
+    </div>
     <div class="course-pitch">
-      <b>ノアクラスならではのドライブ満喫コース。</b>海の上を走る4.75kmの海中道路で4つの離島へ。遠浅で穏やかなビーチは小さい子にも安心。
+      <b>ノアクラスならではのドライブ満喫コース。</b>海の上を走る4.75kmの海中道路で4つの離島へ。<b>北部観光客の動線と逆方向なのでハイシーズンでも穴場</b>。海風が常に吹くので体感気温も街中より涼しい。遠浅で穏やかなビーチは小さい子にも安心。
     </div>
     <table class="schedule-table">
       <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
@@ -575,12 +779,59 @@
       <tr><td>17:30</td><td>ホテル戻り</td><td>—</td></tr>
     </table>
     <div class="pros-cons">
-      <div class="pros"><b>👍 メリット</b><br>北谷から約50分で到着。<b>「海の上を走る」体験</b>は子供大興奮。ビーチは遠浅で4歳児も安心。観光客密度が低く混雑回避◎。</div>
-      <div class="cons"><b>👎 デメリット</b><br>離島部はトイレ・コンビニが限定的。<b>水着・タオル・浮き輪は車に積んで出発</b>。猛暑日はビーチでの日陰確保が必須。</div>
+      <div class="pros"><b>👍 メリット</b><br>北谷から約50分で到着。<b>「海の上を走る」体験</b>は子供大興奮。ビーチは遠浅で4歳児も安心。<b>観光客密度が低く混雑回避◎</b>。海風で体感気温-2〜3℃。</div>
+      <div class="cons"><b>👎 デメリット</b><br>離島部はトイレ・コンビニが限定的。<b>水着・タオル・浮き輪は車に積んで出発</b>。猛暑日はビーチでの日陰確保が必須(パラソルレンタル要確認)。</div>
     </div>
     <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li><b>伊計ビーチは8〜10時か15時以降</b>に滞在。10〜14時の炎天下は<b>ぬちまーす製塩工場(屋内)+果報バンタ展望</b>で涼む。塩ソフトクリーム必食。</li>
+        <li>果報バンタは<b>絶景だが日陰なし</b>。10分以内で写真を撮って退散が吉。</li>
+        <li>子供のテンション持続のため、海中道路の往路で「あやはし館」、復路はうるま市の「シーサーパーク」など寄り道箇所を分散。</li>
+      </ul>
       <b>📍 北谷から海中道路入口まで</b>: 約50分<br>
       <b>🔗 参考</b>: <a href="https://www.okinawaclip.com/post/uruma-recommend/" target="_blank">海中道路と4離島ガイド</a> ／ <a href="https://rurubu.jp/andmore/spot/80042947" target="_blank">ぬちまーす製塩</a>
+    </div>
+  </div>
+
+  <!-- COURSE F: 涼しい屋内ホッピング (NEW) -->
+  <div class="course course-D" style="border-top-color: #5e72e4;">
+    <div class="course-head">
+      <span class="course-badge" style="background:#5e72e4;">F</span>
+      <h3 class="course-title" style="margin:0;">涼しい屋内ホッピングコース</h3>
+      <span class="course-tag tag-new">NEW</span>
+    </div>
+    <div class="badge-row">
+      <span class="badge badge-cool">🌡️ ほぼ全行程冷房</span>
+      <span class="badge badge-empty">👥 比較的空いてる</span>
+      <span class="badge badge-hit">◎ 猛暑日の安全策</span>
+    </div>
+    <div class="course-pitch" style="background:#e8eaff; border-left-color:#5e72e4;">
+      <b>「観光より、家族みんなが快適に過ごせる方が優先」派へ。</b>
+      天気予報が35℃超の猛暑日や、子供が外で疲れてしまった日の<b>セーフティネット</b>。観光地らしさは控えめだが、ほぼ全行程冷房付きで<b>大人も子供もストレスゼロ</b>。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>9:30</td><td>ホテル出発</td><td>—</td></tr>
+      <tr><td>10:00</td><td><b>沖縄県立博物館・美術館「おきみゅー」(那覇おもろまち)</b><br><span style="color:var(--gray);font-size:12px;">館内冷房完備、未就学児無料、ふれあい体験室で「自然の仕組み」を遊びながら学習。夏休みこどもフェスタあり</span></td><td>1.5h</td></tr>
+      <tr><td>11:30</td><td><b>那覇国際通りでランチ</b>(屋内アーケード「平和通り」「市場本通り」)<br><span style="color:var(--gray);font-size:12px;">第一牧志公設市場、ステーキ、タコライス、ブルーシール</span></td><td>1.5h</td></tr>
+      <tr><td>13:30</td><td><b>イオンモール沖縄ライカム(北中城村)</b><br><span style="color:var(--gray);font-size:12px;">日本最大級モール。1Fに容量100t超の<b>大水槽「ライカムアクアリウム」(無料)</b>、熱帯魚約1,000匹。屋内キッズ施設、食事、買い物すべて揃う</span></td><td>3h</td></tr>
+      <tr><td>16:30</td><td>北谷へ → ホテル着</td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br><b>1日中ほぼ冷房</b>。子供は遊び場・水槽・買い物で大満足。雨でも完全に成立。<b>美術館は穴場で空いている</b>。ライカム水槽は無料なのにクオリティ高し。</div>
+      <div class="cons"><b>👎 デメリット</b><br>沖縄ならではの自然・海体験は薄い。「これじゃ地元のモールと変わらない」と感じる人もいる(が、ライカム水槽は沖縄ならでは)。</div>
+    </div>
+    <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li>朝はおきみゅー → 暑くなる前にランチ → 一番暑い13〜16時はライカム(屋内)で過ごすという「<b>暑さリレー</b>」設計。</li>
+        <li>ライカムの<b>大水槽は混雑なし</b>(モール来場者の通過点なので)。じっくり見られる。</li>
+        <li>このコース+ホテルの<b>「ちゅらーゆ」夕方利用</b>で、暑さ完全回避の1日が完成。</li>
+        <li>美術館の展示が物足りなければ、すぐ近くの<b>DFSギャラリア(免税店)</b>でぶらぶらも可。</li>
+      </ul>
+      <b>📍 距離</b>: 北谷→おきみゅー(40分) →ライカム(30分) →北谷(20分)<br>
+      <b>🔗 参考</b>: <a href="https://okimu.jp/" target="_blank">沖縄県立博物館・美術館</a> ／ <a href="https://okinawarycom.aeonmall.jp/" target="_blank">イオンモール沖縄ライカム</a>
     </div>
   </div>
 
