@@ -358,6 +358,101 @@
   }
   .season-callout .principle b { color: var(--sun); }
 
+  /* ----- Street Map (schematic) ----- */
+  .street-map {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 20px 16px;
+    margin: 10px 0 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+  }
+  .street-map-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ocean-dark);
+    margin-bottom: 14px;
+  }
+  .street-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .street-end {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+  .street-line {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 460px;
+    height: 56px;
+    background-image: repeating-linear-gradient(to right, var(--border) 0 10px, transparent 10px 22px);
+    background-position: center;
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+  }
+  .pin {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .pin-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    color: white;
+    font-size: 12.5px;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    border: 2px solid white;
+  }
+  .pin-souvenir .pin-num { background: var(--leaf); }
+  .pin-lunch .pin-num { background: var(--coral); }
+  .pin-both .pin-num { background: var(--sun); }
+  .map-legend {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--gray);
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .legend-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .dot-lunch { background: var(--coral); }
+  .dot-souvenir { background: var(--leaf); }
+  .dot-both { background: var(--sun); }
+  .map-note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--gray);
+  }
+  .map-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
   /* ----- Responsive ----- */
   @media (max-width: 640px) {
     .container { padding: 14px 10px 60px; }
@@ -451,6 +546,13 @@
 
     /* Badges stay readable */
     .badge { font-size: 11px; padding: 2px 8px; }
+
+    /* Street map */
+    .street-map { padding: 14px 12px 12px; }
+    .street-map-title { font-size: 13px; }
+    .street-line { min-width: 360px; height: 48px; }
+    .pin-num { width: 22px; height: 22px; font-size: 11px; }
+    .map-legend { font-size: 11.5px; gap: 10px; }
   }
   @media print {
     body { background: white; }
@@ -851,11 +953,59 @@
     </table>
 
     <h3>🛍️ 国際通り（11:30〜13:10）の過ごし方</h3>
-    <ul style="font-size:14px;margin:0;padding-left:20px;">
+    <ul style="font-size:14px;margin:0 0 14px;padding-left:20px;">
       <li><b>お土産購入はここが最終チャンス</b> — 国際通り・市場本通り周辺の屋内アーケードなら暑さも回避しやすい。</li>
       <li><b>ランチもここで済ませておく</b> — 空港着後は搭乗までの時間が短いため、国際通り滞在中に食事を済ませておくと安心。</li>
       <li><b>集合時刻厳守</b> — 13:10発、13:40空港着、14:40搭乗という詰まったスケジュールなので、遅れないよう余裕を持って集合場所へ。</li>
     </ul>
+
+    <h3>🗺️ ピックアップマップ（国際通り イメージ図）</h3>
+    <div class="street-map">
+      <div class="street-map-title">県庁前 ⇔ 牧志・市場エリア（簡易イメージ）</div>
+      <div class="street-bar">
+        <span class="street-end">県庁前駅 側</span>
+        <div class="street-line">
+          <div class="pin pin-souvenir" style="left:6%" title="1. わしたショップ 国際通り本店"><span class="pin-num">1</span></div>
+          <div class="pin pin-souvenir" style="left:26%" title="2. 御菓子御殿 国際通り松尾店"><span class="pin-num">2</span></div>
+          <div class="pin pin-souvenir" style="left:52%" title="3. THE CHINSUKO（ちんすこう専門店）"><span class="pin-num">3</span></div>
+          <div class="pin pin-lunch" style="left:76%" title="4. 金月そば 那覇店"><span class="pin-num">4</span></div>
+          <div class="pin pin-lunch" style="left:86%" title="5. やっぱりステーキ 4th 国際通り店"><span class="pin-num">5</span></div>
+          <div class="pin pin-both" style="left:95%" title="6. 第一牧志公設市場"><span class="pin-num">6</span></div>
+        </div>
+        <span class="street-end">牧志駅・市場本通り 側</span>
+      </div>
+      <div class="map-legend">
+        <span><span class="legend-dot dot-souvenir"></span>お土産</span>
+        <span><span class="legend-dot dot-lunch"></span>ランチ</span>
+        <span><span class="legend-dot dot-both"></span>両方楽しめる</span>
+      </div>
+      <div class="map-note">
+        ※ 位置関係は簡易イメージです（正確な縮尺ではありません）。① わしたショップ・② 御菓子御殿は<b>県庁前駅寄り</b>、④⑤⑥の食事エリアは<b>牧志駅・第一牧志公設市場寄り</b>で、両端は徒歩15〜20分ほど離れています。バスの乗降場所に近い側から回るのが効率的です。
+      </div>
+    </div>
+
+    <h3>🍽️ ランチのおすすめ3選</h3>
+    <table class="schedule-table">
+      <tr><th>お店</th><th>ジャンル</th><th>ひとこと</th></tr>
+      <tr><td><span class="map-badge" style="background:var(--coral);">4</span><b>金月そば 那覇店</b></td><td>沖縄そば</td><td>サバ・煮干し等8種の魚節出汁が効いた自家製麺。提供が早く時間が読みやすい</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--coral);">5</span><b>やっぱりステーキ 4th 国際通り店</b></td><td>ステーキ</td><td>サラダ・スープ・ライス食べ放題でコスパ良好。しっかり食べたい日に</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--sun);">6</span><b>第一牧志公設市場 2F食堂（豊年 等）</b></td><td>沖縄家庭料理</td><td>ちゃんぷるー・ソーキそば・てびち定食など。市場見学とあわせて楽しめる</td></tr>
+    </table>
+    <div class="notes">
+      <b>🔗 参考</b>: <a href="https://s.tabelog.com/smartphone/matome/30910/" target="_blank">国際通り 沖縄そば人気店</a> ／ <a href="https://www.tabirai.net/localinfo/article/article-47556/" target="_blank">国際通り ステーキ店9選</a> ／ <a href="https://activityjapan.com/feature/makishi-public-market/" target="_blank">第一牧志公設市場ガイド</a>
+    </div>
+
+    <h3>🎁 お土産のおすすめ3選</h3>
+    <table class="schedule-table">
+      <tr><th>お店</th><th>ジャンル</th><th>ひとこと</th></tr>
+      <tr><td><span class="map-badge" style="background:var(--leaf);">1</span><b>わしたショップ 国際通り本店</b></td><td>沖縄物産全般</td><td>ちんすこう・紅芋タルトなど定番土産が一通り揃う老舗。2Fに美ら海水族館アンテナショップ併設</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--leaf);">2</span><b>御菓子御殿 国際通り松尾店</b></td><td>紅芋タルト専門</td><td>看板商品の紅芋タルトを製造ラインをガラス越しに見学しながら購入可。出来立てが買える</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--leaf);">3</span><b>THE CHINSUKO（ちんすこう専門店）</b></td><td>ちんすこう専門</td><td>国際通り唯一のちんすこう専門店。70種類以上、ここでしか買えない限定フレーバーも</td></tr>
+    </table>
+    <div class="notes">
+      <b>🔗 参考</b>: <a href="https://www.washita.co.jp/info/shop/honten/" target="_blank">わしたショップ 国際通り本店</a> ／ <a href="https://www.tabirai.net/localinfo/article/article-48400/" target="_blank">国際通り おすすめ土産店</a> ／ <a href="https://www.chinsuko-shop.com/" target="_blank">THE CHINSUKO</a><br>
+      <b>💡 ヒント</b>: 時間が読めない場合は<b>⑥第一牧志公設市場〜市場本通り・平和通り一帯</b>も小さな土産物店が密集しており、④⑤のランチと合わせて一箇所で完結できて効率的です。
+    </div>
   </div>
 
   <!-- ========== CHECKLIST ========== -->
