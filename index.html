@@ -335,6 +335,26 @@
   .badge-crowd { background: #f8d7da; color: #721c24; }
   .badge-hit { background: linear-gradient(135deg, #ff9933, #ff6b6b); color: white; }
 
+  /* ----- Map embed ----- */
+  .map-embed {
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid var(--border);
+  }
+  .map-embed iframe {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 0;
+  }
+  .map-embed-caption {
+    font-size: 12px;
+    color: var(--gray);
+    margin: -4px 0 14px;
+  }
+
   /* Season callout */
   .season-callout {
     background: linear-gradient(135deg, #fff7e6 0%, #ffe6f0 100%);
@@ -373,50 +393,8 @@
     color: var(--ocean-dark);
     margin-bottom: 14px;
   }
-  .street-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 6px;
-  }
-  .street-end {
-    flex: 0 0 auto;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--gray);
-    white-space: nowrap;
-  }
-  .street-line {
-    position: relative;
-    flex: 1 1 auto;
-    min-width: 460px;
-    height: 56px;
-    background-image: repeating-linear-gradient(to right, var(--border) 0 10px, transparent 10px 22px);
-    background-position: center;
-    background-size: 100% 3px;
-    background-repeat: no-repeat;
-  }
-  .pin {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .pin-num {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    color: white;
-    font-size: 12.5px;
-    font-weight: 700;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-    border: 2px solid white;
-  }
-  .pin-souvenir .pin-num { background: var(--leaf); }
-  .pin-lunch .pin-num { background: var(--coral); }
-  .pin-both .pin-num { background: var(--sun); }
+  .map-svg-wrap { overflow-x: auto; }
+  .map-svg-wrap svg { display: block; width: 100%; height: auto; min-width: 560px; }
   .map-legend {
     margin-top: 10px;
     font-size: 12.5px;
@@ -550,9 +528,11 @@
     /* Street map */
     .street-map { padding: 14px 12px 12px; }
     .street-map-title { font-size: 13px; }
-    .street-line { min-width: 360px; height: 48px; }
-    .pin-num { width: 22px; height: 22px; font-size: 11px; }
+    .map-svg-wrap svg { min-width: 480px; }
     .map-legend { font-size: 11.5px; gap: 10px; }
+
+    /* Map embed */
+    .map-embed iframe { height: 200px; }
   }
   @media print {
     body { background: white; }
@@ -609,6 +589,106 @@
     </tr>
   </table>
 
+  <!-- ========== ISLAND OVERVIEW MAP ========== -->
+  <h2>🗺️ 全体マップ（沖縄本島）</h2>
+  <div class="street-map">
+    <div class="street-map-title">旅行スポットの位置関係（簡略図・おおよその縮尺）</div>
+    <div class="map-svg-wrap">
+    <svg viewBox="0 0 680 760" role="img" aria-label="沖縄本島 全体マップ" style="font-family:inherit;">
+      <style>
+        .isl-lbl{font-size:13px;font-weight:600;fill:#1a2b3c;stroke:#fff;stroke-width:3.5px;paint-order:stroke;stroke-linejoin:round;}
+        .isl-pin{font-size:12px;font-weight:700;fill:#fff;text-anchor:middle;}
+        .isl-rg{font-size:18px;font-weight:700;fill:#cbb98d;letter-spacing:6px;opacity:.85;}
+        .isl-lg{font-size:12.5px;fill:#1a2b3c;}
+      </style>
+      <rect width="680" height="760" fill="#d9edf7" rx="10"/>
+      <!-- 本島 -->
+      <path d="M584,43 L457,121 L422,173 L397,225 L346,190 L269,181 L260,225 L277,251 L346,294 L311,337 L243,380 L175,415 L124,423 L141,467 L149,492 L158,527 L81,605 L64,639 L81,691 L90,726 L132,717 L226,657 L192,605 L269,536 L320,518 L303,484 L303,423 L311,406 L371,363 L405,337 L414,311 L508,233 L627,164 Z"
+            fill="#f7eed6" stroke="#d9c495" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- 古宇利島・海中道路の離島 -->
+      <circle cx="387" cy="183" r="7" fill="#f7eed6" stroke="#d9c495" stroke-width="2"/>
+      <path d="M320,518 L345,495 L367,462" stroke="#d9c495" stroke-width="3" fill="none"/>
+      <circle cx="345" cy="495" r="5" fill="#f7eed6" stroke="#d9c495" stroke-width="2"/>
+      <circle cx="367" cy="462" r="7" fill="#f7eed6" stroke="#d9c495" stroke-width="2"/>
+      <circle cx="338" cy="530" r="6" fill="#f7eed6" stroke="#d9c495" stroke-width="2"/>
+      <!-- 地域名 -->
+      <text class="isl-rg" x="440" y="215">北部</text>
+      <text class="isl-rg" x="205" y="455">中部</text>
+      <!-- コンパス・スケール -->
+      <line x1="52" y1="88" x2="52" y2="56" stroke="#7fa8bf" stroke-width="2.5"/>
+      <path d="M52,44 L45,60 L59,60 Z" fill="#7fa8bf"/>
+      <text x="66" y="62" font-size="14" fill="#7fa8bf" font-weight="700">N</text>
+      <line x1="40" y1="118" x2="118" y2="118" stroke="#7fa8bf" stroke-width="3"/>
+      <line x1="40" y1="112" x2="40" y2="124" stroke="#7fa8bf" stroke-width="2"/>
+      <line x1="118" y1="112" x2="118" y2="124" stroke="#7fa8bf" stroke-width="2"/>
+      <text x="44" y="138" font-size="12" fill="#7fa8bf">約10km</text>
+
+      <!-- A: 美ら海(北部) -->
+      <circle cx="267" cy="195" r="12" fill="#5e9ee5" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="267" y="200">A</text>
+      <text class="isl-lbl" x="250" y="178" text-anchor="end">美ら海・古宇利島</text>
+      <!-- C: 青の洞窟 -->
+      <circle cx="176" cy="412" r="12" fill="#0099cc" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="176" y="417">C</text>
+      <text class="isl-lbl" x="160" y="400" text-anchor="end">青の洞窟(恩納村)</text>
+      <!-- B: ビオスの丘 -->
+      <circle cx="192" cy="484" r="12" fill="#2da866" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="192" y="489">B</text>
+      <text class="isl-lbl" x="208" y="478">ビオスの丘・こどもの国</text>
+      <!-- E: 海中道路 -->
+      <circle cx="304" cy="509" r="12" fill="#ff6b6b" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="304" y="514">E</text>
+      <text class="isl-lbl" x="322" y="548">海中道路・伊計島</text>
+      <!-- ホテル(北谷) -->
+      <circle cx="163" cy="522" r="13" fill="#fff" stroke="#006699" stroke-width="3"/>
+      <text x="163" y="527" font-size="13" text-anchor="middle">🏨</text>
+      <text class="isl-lbl" x="147" y="508" text-anchor="end">ホテル(北谷・2泊)</text>
+      <!-- F: ライカム -->
+      <circle cx="200" cy="540" r="12" fill="#5e72e4" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="200" y="545">F</text>
+      <text class="isl-lbl" x="215" y="560">ライカム・おきみゅー</text>
+      <!-- 3日目: 国際通り -->
+      <circle cx="107" cy="608" r="11" fill="#006699" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="107" y="613">3</text>
+      <text class="isl-lbl" x="122" y="602">国際通り(3日目)</text>
+      <!-- 那覇空港 -->
+      <circle cx="64" cy="640" r="11" fill="#607080" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="64" y="645" font-size="11">✈</text>
+      <text class="isl-lbl" x="64" y="622" text-anchor="middle">那覇空港</text>
+      <!-- 1日目: DMM -->
+      <circle cx="80" cy="668" r="11" fill="#2da866" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="80" y="673">1</text>
+      <text class="isl-lbl" x="75" y="695" text-anchor="middle">DMM水族館(1日目)</text>
+      <!-- D: おきなわワールド -->
+      <circle cx="157" cy="674" r="12" fill="#ff9933" stroke="#fff" stroke-width="2.5"/>
+      <text class="isl-pin" x="157" y="679">D</text>
+      <text class="isl-lbl" x="172" y="679">おきなわワールド・瀬長島</text>
+
+      <!-- 凡例 -->
+      <rect x="420" y="565" width="245" height="170" rx="10" fill="#ffffff" opacity="0.93" stroke="#d9e2ec"/>
+      <text x="438" y="592" class="isl-lg" font-weight="700">凡例</text>
+      <circle cx="446" cy="612" r="8" fill="#607080"/>
+      <text x="462" y="616" class="isl-lg">✈ 那覇空港（発着）</text>
+      <circle cx="446" cy="637" r="8" fill="#fff" stroke="#006699" stroke-width="2.5"/>
+      <text x="462" y="641" class="isl-lg">🏨 ホテル（北谷・2泊）</text>
+      <circle cx="446" cy="662" r="8" fill="#2da866"/>
+      <text x="462" y="666" class="isl-lg">1日目 DMM水族館（確定）</text>
+      <circle cx="446" cy="687" r="8" fill="#006699"/>
+      <text x="462" y="691" class="isl-lg">3日目 国際通り</text>
+      <circle cx="440" cy="712" r="7" fill="#5e9ee5"/><text class="isl-pin" x="440" y="715" font-size="9">A</text>
+      <circle cx="458" cy="712" r="7" fill="#2da866"/><text class="isl-pin" x="458" y="715" font-size="9">B</text>
+      <circle cx="476" cy="712" r="7" fill="#0099cc"/><text class="isl-pin" x="476" y="715" font-size="9">C</text>
+      <circle cx="494" cy="712" r="7" fill="#ff9933"/><text class="isl-pin" x="494" y="715" font-size="9">D</text>
+      <circle cx="512" cy="712" r="7" fill="#ff6b6b"/><text class="isl-pin" x="512" y="715" font-size="9">E</text>
+      <circle cx="530" cy="712" r="7" fill="#5e72e4"/><text class="isl-pin" x="530" y="715" font-size="9">F</text>
+      <text x="545" y="716" class="isl-lg">2日目コース案</text>
+    </svg>
+    </div>
+    <div class="map-note">
+      ※ 島の形・位置はおおよそのイメージです。2日目のコースA〜Fは候補（いずれか1つを選択）。<b>A=北部(片道75km)</b>が最も遠く、<b>B・E・F=中部</b>、<b>C=西海岸</b>、<b>D=南部</b>という位置関係です。
+    </div>
+  </div>
+
   <!-- ========== HOTEL ========== -->
   <h2>🏨 宿泊先: ザ・ビーチタワー沖縄</h2>
   <div class="confirmed" style="border-color: var(--ocean); background: linear-gradient(135deg, #e6f4fa 0%, #fdf6e3 100%);">
@@ -659,6 +739,9 @@
       <b>♨ 温泉&プール詳細</b>: <a href="https://dormy-hotels.com/resort/hotels/okinawa/spa/" target="_blank">天然温泉&プール「ちゅらーゆ」</a><br>
       <b>📍 住所</b>: 沖縄県中頭郡北谷町字美浜8-6
     </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E3%82%B6%E3%83%BB%E3%83%93%E3%83%BC%E3%83%81%E3%82%BF%E3%83%AF%E3%83%BC%E6%B2%96%E7%B8%84&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
 
   <!-- ========== DAY 1 ========== -->
@@ -671,6 +754,9 @@
       <b>📍 場所</b>: 豊見城市 イーアス豊崎内<br>
       <b>⏱ 滞在目安</b>: 1〜1.5時間<br>
       <b>🔗 公式</b>: <a href="https://kariyushi-aquarium.com/" target="_blank">kariyushi-aquarium.com</a>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=DMM%E3%81%8B%E3%82%8A%E3%82%86%E3%81%97%E6%B0%B4%E6%97%8F%E9%A4%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 
@@ -737,6 +823,9 @@
       </ul>
       <b>🔗 公式</b>: <a href="https://churaumi.okinawa/" target="_blank">美ら海水族館</a> ／ <a href="https://www.nagopine.com/" target="_blank">ナゴパイナップルパーク</a>
     </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E6%B2%96%E7%B8%84%E7%BE%8E%E3%82%89%E6%B5%B7%E6%B0%B4%E6%97%8F%E9%A4%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
 
   <!-- COURSE B: 中部ゆったり -->
@@ -775,6 +864,9 @@
       </ul>
       <b>🔗 参考</b>: <a href="https://iko-yo.net/facilities/2217" target="_blank">ビオスの丘</a> ／ <a href="https://www.okzm.jp/" target="_blank">沖縄こどもの国</a>
     </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E3%83%93%E3%82%AA%E3%82%B9%E3%81%AE%E4%B8%98&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
 
   <!-- COURSE C: 海体験 -->
@@ -811,6 +903,9 @@
         <li>4歳児は無理せず、シーパーク北谷のグラスボートで「服を着たまま海の世界」を見るプランも◎。</li>
       </ul>
       <b>🔗 参考</b>: <a href="https://goo-chatan.com/?dir=info&page=churaumiline" target="_blank">シーパーク北谷</a> ／ <a href="https://bluecave-core.com/1802/" target="_blank">青の洞窟 4歳〜ツアー</a>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E9%9D%92%E3%81%AE%E6%B4%9E%E7%AA%9F%20%E6%81%A9%E7%B4%8D%E6%9D%91&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 
@@ -853,6 +948,9 @@
       <b>📍 北谷からおきなわワールドまで</b>: 約50分（高速利用）<br>
       <b>🔗 参考</b>: <a href="https://www.okinawastory.jp/spot/1055" target="_blank">おきなわワールド</a> ／ <a href="https://www.ryukyumura.co.jp/facilities/memorysisa/" target="_blank">シーサー色付け体験</a>
     </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E3%81%8A%E3%81%8D%E3%81%AA%E3%82%8F%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
 
   <!-- COURSE E: 海中道路（新規） -->
@@ -893,6 +991,9 @@
       </ul>
       <b>📍 北谷から海中道路入口まで</b>: 約50分<br>
       <b>🔗 参考</b>: <a href="https://www.okinawaclip.com/post/uruma-recommend/" target="_blank">海中道路と4離島ガイド</a> ／ <a href="https://rurubu.jp/andmore/spot/80042947" target="_blank">ぬちまーす製塩</a>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E6%B5%B7%E4%B8%AD%E9%81%93%E8%B7%AF%20%E3%81%82%E3%82%84%E3%81%AF%E3%81%97%E9%A4%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 
@@ -935,6 +1036,9 @@
       <b>📍 距離</b>: 北谷→おきみゅー(40分) →ライカム(30分) →北谷(20分)<br>
       <b>🔗 参考</b>: <a href="https://okimu.jp/" target="_blank">沖縄県立博物館・美術館</a> ／ <a href="https://okinawarycom.aeonmall.jp/" target="_blank">イオンモール沖縄ライカム</a>
     </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%A2%E3%83%BC%E3%83%AB%E6%B2%96%E7%B8%84%E3%83%A9%E3%82%A4%E3%82%AB%E3%83%A0&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
 
   <!-- ========== DAY 3 ========== -->
@@ -959,20 +1063,65 @@
       <li><b>集合時刻厳守</b> — 13:10発、13:40空港着、14:40搭乗という詰まったスケジュールなので、遅れないよう余裕を持って集合場所へ。</li>
     </ul>
 
-    <h3>🗺️ ピックアップマップ（国際通り イメージ図）</h3>
+    <h3>🗺️ ピックアップマップ（国際通り 概略図）</h3>
     <div class="street-map">
-      <div class="street-map-title">県庁前 ⇔ 牧志・市場エリア（簡易イメージ）</div>
-      <div class="street-bar">
-        <span class="street-end">県庁前駅 側</span>
-        <div class="street-line">
-          <div class="pin pin-souvenir" style="left:6%" title="1. わしたショップ 国際通り本店"><span class="pin-num">1</span></div>
-          <div class="pin pin-souvenir" style="left:26%" title="2. 御菓子御殿 国際通り松尾店"><span class="pin-num">2</span></div>
-          <div class="pin pin-souvenir" style="left:52%" title="3. THE CHINSUKO（ちんすこう専門店）"><span class="pin-num">3</span></div>
-          <div class="pin pin-lunch" style="left:76%" title="4. 金月そば 那覇店"><span class="pin-num">4</span></div>
-          <div class="pin pin-lunch" style="left:86%" title="5. やっぱりステーキ 4th 国際通り店"><span class="pin-num">5</span></div>
-          <div class="pin pin-both" style="left:95%" title="6. 第一牧志公設市場"><span class="pin-num">6</span></div>
-        </div>
-        <span class="street-end">牧志駅・市場本通り 側</span>
+      <div class="street-map-title">国際通り 概略マップ（左下=県庁前 ⇔ 右上=牧志駅・安里）</div>
+      <div class="map-svg-wrap">
+      <svg viewBox="0 0 720 310" role="img" aria-label="国際通り 概略マップ" style="font-family:inherit;">
+        <style>
+          .st-lbl{font-size:13px;font-weight:600;fill:#1a2b3c;stroke:#fff;stroke-width:3.5px;paint-order:stroke;stroke-linejoin:round;}
+          .st-pin{font-size:12px;font-weight:700;fill:#fff;text-anchor:middle;}
+          .st-sub{font-size:11px;fill:#607080;}
+        </style>
+        <rect width="720" height="310" fill="#f2f4ef" rx="10"/>
+        <!-- ゆいレール -->
+        <path d="M30,272 L80,160 L180,88 L450,58 L662,60" fill="none" stroke="#9aa7b5" stroke-width="3" stroke-dasharray="8 5"/>
+        <circle cx="30" cy="272" r="6" fill="#fff" stroke="#607080" stroke-width="2.5"/>
+        <circle cx="180" cy="88" r="6" fill="#fff" stroke="#607080" stroke-width="2.5"/>
+        <circle cx="662" cy="60" r="6" fill="#fff" stroke="#607080" stroke-width="2.5"/>
+        <text class="st-sub" x="44" y="277">県庁前駅</text>
+        <text class="st-sub" x="180" y="72" text-anchor="middle">美栄橋駅</text>
+        <text class="st-sub" x="662" y="44" text-anchor="middle">牧志駅</text>
+        <!-- 国際通り本体 -->
+        <path d="M55,245 C 180,225 300,195 420,150 C 500,120 600,85 680,62" fill="none" stroke="#d9b44f" stroke-width="20" stroke-linecap="round"/>
+        <path d="M55,245 C 180,225 300,195 420,150 C 500,120 600,85 680,62" fill="none" stroke="#f5da7d" stroke-width="13" stroke-linecap="round"/>
+        <text x="262" y="176" class="st-lbl" fill="#8a6d1f" transform="rotate(-14 262 176)">国 際 通 り</text>
+        <!-- 市場本通り・平和通り -->
+        <path d="M378,163 C 385,200 390,235 396,278" fill="none" stroke="#cfc09b" stroke-width="9"/>
+        <path d="M430,148 C 452,188 488,228 532,258" fill="none" stroke="#cfc09b" stroke-width="7"/>
+        <text class="st-sub" x="372" y="215" text-anchor="end">市場本通り</text>
+        <text class="st-sub" x="512" y="255">平和通り</text>
+        <text class="st-sub" x="366" y="146" text-anchor="end">むつみ橋交差点</text>
+        <!-- ⑥ 第一牧志公設市場 -->
+        <rect x="405" y="246" width="38" height="24" rx="3" fill="#fff" stroke="#ff9933" stroke-width="2.5"/>
+        <circle cx="424" cy="238" r="11" fill="#ff9933" stroke="#fff" stroke-width="2.5"/>
+        <text class="st-pin" x="424" y="243">6</text>
+        <text class="st-lbl" x="424" y="292" text-anchor="middle">第一牧志公設市場</text>
+        <!-- ① わしたショップ -->
+        <circle cx="105" cy="220" r="11" fill="#2da866" stroke="#fff" stroke-width="2.5"/>
+        <text class="st-pin" x="105" y="225">1</text>
+        <text class="st-lbl" x="105" y="204" text-anchor="middle">わしたショップ</text>
+        <!-- ② 御菓子御殿 -->
+        <circle cx="180" cy="243" r="11" fill="#2da866" stroke="#fff" stroke-width="2.5"/>
+        <text class="st-pin" x="180" y="248">2</text>
+        <text class="st-lbl" x="180" y="266" text-anchor="middle">御菓子御殿</text>
+        <!-- ④ 金月そば -->
+        <circle cx="524" cy="92" r="11" fill="#ff6b6b" stroke="#fff" stroke-width="2.5"/>
+        <text class="st-pin" x="524" y="97">4</text>
+        <text class="st-lbl" x="524" y="74" text-anchor="middle">金月そば</text>
+        <!-- ③ THE CHINSUKO -->
+        <circle cx="556" cy="124" r="11" fill="#2da866" stroke="#fff" stroke-width="2.5"/>
+        <text class="st-pin" x="556" y="129">3</text>
+        <text class="st-lbl" x="556" y="146" text-anchor="middle">THE CHINSUKO</text>
+        <!-- ⑤ やっぱりステーキ -->
+        <circle cx="620" cy="104" r="11" fill="#ff6b6b" stroke="#fff" stroke-width="2.5"/>
+        <text class="st-pin" x="620" y="109">5</text>
+        <text class="st-lbl" x="630" y="124" text-anchor="middle">やっぱりステーキ</text>
+        <!-- 端ラベル・注記 -->
+        <text class="st-sub" x="30" y="300">← 県庁前・パレットくもじ</text>
+        <text class="st-sub" x="700" y="88" text-anchor="end">安里方面 →</text>
+        <text class="st-sub" x="30" y="32">国際通り: 全長約1.6km・端から端まで徒歩20〜25分</text>
+      </svg>
       </div>
       <div class="map-legend">
         <span><span class="legend-dot dot-souvenir"></span>お土産</span>
@@ -980,9 +1129,13 @@
         <span><span class="legend-dot dot-both"></span>両方楽しめる</span>
       </div>
       <div class="map-note">
-        ※ 位置関係は簡易イメージです（正確な縮尺ではありません）。① わしたショップ・② 御菓子御殿は<b>県庁前駅寄り</b>、④⑤⑥の食事エリアは<b>牧志駅・第一牧志公設市場寄り</b>で、両端は徒歩15〜20分ほど離れています。バスの乗降場所に近い側から回るのが効率的です。
+        ※ 概略図です（縮尺・道の形は簡略化）。<b>①わしたショップ・②御菓子御殿は県庁前寄り</b>、<b>③④⑤は牧志駅寄り</b>、<b>⑥公設市場は中間のむつみ橋交差点から市場本通り（アーケード）を南に入ってすぐ</b>。端から端は徒歩20分強あるので、バス降車場所に近い側から効率よく回るのがおすすめです。
       </div>
     </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%20%E9%82%A3%E8%A6%87&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="map-embed-caption">↑ 実際の地図（Googleマップ）。ズーム・スクロールして通り沿いの位置関係を確認できます。</div>
 
     <h3>🍽️ ランチのおすすめ3選</h3>
     <table class="schedule-table">
