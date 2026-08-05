@@ -431,6 +431,131 @@
     flex-shrink: 0;
   }
 
+  /* ----- Official (HIS しおり) blocks ----- */
+  .official {
+    background: white;
+    border: 2px solid var(--ocean-dark);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
+  .official-badge {
+    display: inline-block;
+    background: var(--ocean-dark);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .alert {
+    background: #fff4e1;
+    border: 2px solid var(--sun);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 14px 0 22px;
+  }
+  .alert h3 { margin: 0 0 8px; color: #c63; font-size: 16px; }
+  .alert.critical { background: #ffecec; border-color: var(--coral); }
+  .alert.critical h3 { color: #b02a2a; }
+  .bigtime {
+    display: inline-block;
+    background: var(--coral);
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    border-radius: 8px;
+    padding: 4px 14px;
+    margin: 4px 8px 4px 0;
+    vertical-align: middle;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .contact-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--ocean);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+  .contact-card.urgent { border-left-color: var(--coral); }
+  .contact-card .cc-label { font-size: 12px; color: var(--gray); }
+  .contact-card .cc-name { font-weight: 700; font-size: 15px; margin: 2px 0 4px; }
+  .contact-card a.tel {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ocean-dark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .contact-card.urgent a.tel { color: #c0392b; }
+  .seat-chip {
+    display: inline-block;
+    background: var(--ocean-dark);
+    color: white;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .seat-chip.alt { background: var(--sun); }
+  .seat-chip.alt2 { background: var(--leaf); }
+  .datalist {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin: 10px 0;
+  }
+  .datalist th {
+    width: 130px;
+    text-align: left;
+    background: #f5f9fc;
+    color: var(--ocean-dark);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  .datalist td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .rule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .rule-card {
+    background: #fafbfc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .rule-card h4 {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: var(--ocean-dark);
+  }
+  .rule-card ul { margin: 4px 0 0; padding-left: 18px; }
+  .rule-card li { margin-bottom: 3px; }
+  .ng { color: #c0392b; font-weight: 700; }
+  .ok { color: #1e8449; font-weight: 700; }
+
   /* ----- Responsive ----- */
   @media (max-width: 640px) {
     .container { padding: 14px 10px 60px; }
@@ -533,6 +658,17 @@
 
     /* Map embed */
     .map-embed iframe { height: 200px; }
+
+    /* Official blocks */
+    .official { padding: 16px 14px; }
+    .alert { padding: 14px 14px; }
+    .alert h3 { font-size: 15px; }
+    .bigtime { font-size: 19px; padding: 3px 12px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .rule-grid { grid-template-columns: 1fr; }
+    .datalist, .datalist tbody, .datalist tr, .datalist th, .datalist td { display: block; width: 100%; }
+    .datalist th { border-bottom: none; padding-bottom: 2px; background: transparent; }
+    .datalist td { padding-top: 0; }
   }
   @media print {
     body { background: white; }
@@ -546,8 +682,11 @@
 
   <!-- ========== HERO ========== -->
   <header class="hero">
-    <div class="sub">家族旅行プラン</div>
+    <div class="sub">みつわポンプ製作所 70周年記念旅行（社員旅行）／家族同行プラン</div>
     <h1>沖縄 家族旅行プラン<br>2026年8月22日(土) - 24日(月)</h1>
+    <div style="font-size:14px;margin-top:10px;background:rgba(255,255,255,0.2);border-radius:8px;padding:8px 14px;display:inline-block;">
+      🕖 <b>8/22(土) 7:20 セントレア第1ターミナル3階 旅行会社専用カウンター【5番】集合</b>
+    </div>
     <div class="family-card">
       <div><b>👨</b> 夫(私) 38歳</div>
       <div><b>👩</b> 妻 37歳</div>
@@ -555,6 +694,39 @@
       <div><b>🧒</b> 次男 4歳</div>
     </div>
   </header>
+
+  <!-- ========== DEPARTURE DAY (from HIS 旅のしおり) ========== -->
+  <h2>🎫 出発当日の集合案内</h2>
+  <div class="alert critical">
+    <h3>⏰ 8/22(土) 集合 — 時間厳守</h3>
+    <div style="margin:6px 0 10px;">
+      <span class="bigtime">7:20 集合</span>
+      <span style="font-size:14px;">→ <b>8:20 発 (NH303)</b> ／ 出発の1時間前が目安</span>
+    </div>
+    <table class="datalist">
+      <tr><th>集合場所</th><td><b>中部国際空港 第1ターミナル 3階 国内線側<br>「旅行会社専用カウンター【5番】」（HIS専用カウンター）</b></td></tr>
+      <tr><th>往路便</th><td>全日空 <b>NH303</b>　中部 08:20 → 那覇 10:35（約2時間15分）</td></tr>
+      <tr><th>復路便</th><td>全日空 <b>NH306</b>　那覇 14:40 → 中部 16:50（約2時間10分）</td></tr>
+      <tr><th>座席指定</th><td>団体航空券のため<b>事前の座席指定不可</b>（当日カウンターで発券）</td></tr>
+    </table>
+    <div class="notes" style="margin-top:8px;">
+      <b>💡 子連れ動線メモ</b>：ご出発時刻<b>30分前</b>までに保安検査場を通過、<b>10分前</b>までに搭乗口へ。
+      4歳児連れだと保安検査で時間が読みにくいので、7:20集合→7:40までに手荷物を預け、8時前には制限エリアに入っておくと安心。
+    </div>
+  </div>
+
+  <div class="official">
+    <span class="official-badge">🅿️ セントレア駐車場（予約済）</span>
+    <table class="datalist">
+      <tr><th>予約番号</th><td><b>027645</b>（駐車場入口で必要になる場合あり）</td></tr>
+      <tr><th>利用期間</th><td>2026/08/22 〜 2026/08/24</td></tr>
+      <tr><th>登録車両</th><td>三重 336 す 180</td></tr>
+      <tr><th>場所</th><td><b>予約棟（P1駐車場内）</b>　※P1が満車表示でもそのままP1へ進む</td></tr>
+      <tr><th>料金</th><td>駐車料金 + <b>予約料 1,000円</b>（精算時に合算払い）</td></tr>
+      <tr><th>注意</th><td>高さ2.1m・幅2.2m以下の普通車のみ／<b>利用開始日(8/22)以外は入場不可</b>・当日24時までに入場しないと予約キャンセル</td></tr>
+      <tr><th>問合せ</th><td>0569-38-7830（24時間・年中無休）</td></tr>
+    </table>
+  </div>
 
   <!-- ========== OVERVIEW ========== -->
   <h2>📋 旅程概要</h2>
@@ -567,23 +739,26 @@
     <tr>
       <td><b>1日目<br>8/22 (土)</b></td>
       <td>
-        中部空港 08:20 → 那覇空港 10:35 (NH303)<br>
-        貸切バスで観光（<b>Aプラン: DMMかりゆし水族館</b>）<br>
-        ホテルチェックイン → 18:00 BBQディナー (ヤンバルクッチーナ)
+        <b>7:20 セントレア集合</b> → 08:20 発 → 那覇空港 10:35 着 (NH303)<br>
+        11:10 貸切バス発 → 11:30 ロワジールホテル那覇「フォンテーヌ」で昼食<br>
+        13:00 <b>Aプラン: DMMかりゆし水族館</b>(〜14:30) → 15:45 ホテルチェックイン<br>
+        17:45 ビーチで集合写真 → 18:00 BBQディナー「ヤンバルクッチーナ」(〜20:00)
       </td>
       <td rowspan="2">ザ・ビーチタワー沖縄<br>(北谷町)</td>
     </tr>
     <tr>
       <td><b>2日目<br>8/23 (日)</b></td>
       <td>
-        朝食後、<b>レンタカー(ノアクラス)で終日自由行動</b>
+        朝食(7:00〜10:00 / L.O 9:30)後、<b>レンタカー(WAクラス=ノア等)で終日自由行動</b><br>
+        <span style="color:var(--gray);font-size:13px;">レンタカー予約時間 09:00〜18:00</span>
       </td>
     </tr>
     <tr>
       <td><b>3日目<br>8/24 (月)</b></td>
       <td>
-        ホテルで朝食(L.O 09:30) → 各自チェックアウト → 10:30 バス発 → <b>国際通り(11:30-13:10)</b> → 那覇空港着 13:40<br>
-        那覇空港 14:40 → 中部空港 16:50 (NH306)
+        朝食(L.O 09:30) → <b>10:15までに各自チェックアウト</b> → 10:30 バス発<br>
+        <b>国際通り 自由散策＆各自昼食 (11:10〜13:10)</b> → 13:40 那覇空港着（3階ANAカウンター集合）<br>
+        那覇空港 14:40 → 中部空港 16:50 着 (NH306) → 解散
       </td>
       <td>—</td>
     </tr>
@@ -697,6 +872,24 @@
       <b>併設の温泉&プール「ちゅらーゆ」</b>と<b>キッズバイキング</b>が子連れに大人気。
     </p>
 
+    <h3 style="margin-top:14px;">🏨 ホテルDATA（HISしおりより）</h3>
+    <table class="datalist">
+      <tr><th>所在地</th><td>〒904-0115 沖縄県中頭郡北谷町字美浜8-6</td></tr>
+      <tr><th>TEL</th><td><b><a href="tel:0989217711" style="color:var(--ocean-dark);text-decoration:none;">098-921-7711</a></b></td></tr>
+      <tr><th>チェックイン<br>／アウト</th><td>15:00 ／ 11:00　<span style="color:var(--gray);">※1日目のチェックインは Aプラン 15:45 の予定</span></td></tr>
+      <tr><th>朝食</th><td>7:00〜10:00（<b>ラストオーダー 9:30</b>）／ 2日目・3日目の朝</td></tr>
+      <tr><th>客室数 / Wi-Fi</th><td>280室 ／ 全室無料</td></tr>
+      <tr><th>アメニティ</th><td>石鹸・ボディソープ・シャンプー・コンディショナー・洗顔ソープ・バスタオル・フェイスタオル・<b>パジャマ(二部式)</b>・スリッパ<br><span style="color:var(--gray);">1階フロントロビーのアメニティブースに 歯磨きセット／ヘアブラシ／コットン／綿棒／カミソリ 等</span></td></tr>
+      <tr><th>客室設備</th><td>テレビ／電話／湯沸かしポット／お茶セット／ドライヤー／空気清浄機(加湿付)／個別空調／洗浄機付トイレ／金庫<span style="color:var(--gray);">（一部未設置の部屋あり）</span></td></tr>
+      <tr><th>貸出品</th><td>ズボンプレッサー／アイロン／<b>ベビーベッド／ベビーガード</b> など</td></tr>
+      <tr><th>館内施設</th><td>レストラン／宴会場・会議室／売店／自動販売機／コインランドリー(有料)／手もみ処／バリアフリートイレ</td></tr>
+      <tr><th>駐車場</th><td>有料168台・<b>先着順</b>。入出庫の都度料金発生／入庫後2時間以降は1時間400円・<b>最大1,000円</b>（当日12:00〜翌12:00）<br><span style="color:var(--gray);">※2日目レンタカーの出し入れは「都度課金」に注意。用がなければ出しっぱなしにしない工夫を。</span></td></tr>
+    </table>
+    <div class="notes" style="margin-bottom:14px;">
+      <b>♨ 隣接「Terme VILLA ちゅらーゆ」</b>：宿泊者は<b>無料または割引価格</b>で入館可。<br>
+      【屋内】露天風呂（源泉掛け流し天然温泉）／高温サウナ　【屋外】ヒーリングプール（天然温泉使用）／多目的プール／浅瀬プール／低温サウナ
+    </div>
+
     <h3 style="margin-top:14px;">👨‍👩‍👦‍👦 子連れの楽しみ方おすすめ</h3>
     <table class="schedule-table">
       <tr><th>場所・サービス</th><th>内容</th><th>子連れポイント</th></tr>
@@ -746,9 +939,49 @@
 
   <!-- ========== DAY 1 ========== -->
   <h2><span class="day-tag">1日目</span>8/22(土) — 確定プラン</h2>
+
+  <div class="official">
+    <span class="official-badge">📖 HIS旅のしおり 記載の行程（団体）</span>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>内容</th><th>交通</th></tr>
+      <tr><td>07:20</td><td><b>中部国際空港 第1ターミナル3階 旅行会社専用カウンター【5番】に集合</b></td><td>—</td></tr>
+      <tr><td>08:20</td><td>中部国際空港より空路、沖縄へ（約2時間15分）</td><td>ANA303</td></tr>
+      <tr><td>10:35</td><td>那覇空港 到着</td><td>—</td></tr>
+      <tr><td>11:10</td><td><b>専用車2台にて昼食会場へ</b>（那覇空港 出発）</td><td>専用車</td></tr>
+      <tr><td>11:30<br>〜12:30</td><td><b>ロワジールホテル那覇</b> オールデイダイニング<b>「フォンテーヌ」</b>にて昼食</td><td>—</td></tr>
+      <tr><td>12:30</td><td>専用車2台に分かれて乗車。A/Bプラン各観光地へ</td><td>専用車</td></tr>
+      <tr><td>13:00<br>〜14:30</td><td><b>【Aプラン】DMMかりゆし水族館</b><br><span style="color:var(--gray);font-size:12px;">（【Bプラン】首里城公園 13:00〜14:00）</span></td><td>—</td></tr>
+      <tr><td>15:45</td><td><b>ホテル チェックイン</b>（Aプラン）<span style="color:var(--gray);font-size:12px;">／Bプランは15:15</span></td><td>—</td></tr>
+      <tr><td>17:45</td><td><b>ビーチにて集合写真</b>　←集合を忘れずに</td><td>—</td></tr>
+      <tr><td>18:00<br>〜20:00</td><td><b>ホテル内「ヤンバルクッチーナ」にてBBQディナー</b></td><td>—</td></tr>
+    </table>
+
+    <h3 style="margin-top:16px;">💺 加藤家の座席・お席（しおり指定）</h3>
+    <table class="datalist">
+      <tr>
+        <th>1日目バス</th>
+        <td><span class="seat-chip">1号車</span><b>2列目・3列目（乗降口側の4席）</b><br>
+        <span style="color:var(--gray);font-size:12.5px;">乗降口すぐ後ろ。子連れの乗り降りがしやすい位置です。1号車は他に 佐藤様・立道様・湯浅様・前原様・高木様・大岡様・松田様・三崎様・今枝様・石田様 と同乗。</span></td>
+      </tr>
+      <tr>
+        <th>昼食<br>(フォンテーヌ)</th>
+        <td><span class="seat-chip alt">H卓</span>ロワジールホテル那覇 オールデイダイニング<br>
+        <span style="color:var(--gray);font-size:12.5px;">配置：中央列（J・I・H・G・F・E・D・C）のうち中ほど。ドリンクバーは会場右手。</span></td>
+      </tr>
+      <tr>
+        <th>夕食BBQ<br>(ヤンバルクッチーナ)</th>
+        <td><span class="seat-chip alt2">F卓（107番テーブル）</span><br>
+        <span style="color:var(--gray);font-size:12.5px;">テラス入口側の手前列。海辺のテラス席です。</span></td>
+      </tr>
+    </table>
+    <div class="notes">
+      <b>⚠️ 変更の可能性</b>：行程は航空会社・輸送会社および現地事情・天候により予告なく変更になる場合があります。記載時刻はあくまで目安です。
+    </div>
+  </div>
+
   <div class="confirmed">
     <span class="confirmed-badge">✓ 決定</span>
-    <h3 style="margin-top:8px;">Aプラン: DMMかりゆし水族館</h3>
+    <h3 style="margin-top:8px;">Aプラン: DMMかりゆし水族館 <span style="font-size:13px;font-weight:400;color:var(--gray);">（13:00〜14:30）</span></h3>
     <p>最新の映像演出と動物ふれあい体験が充実。<b>コツメカワウソとの握手・ナマケモノ・フクロウのふれあい広場</b>など、特に4歳児の食いつき抜群。空港から近いので午前便の到着後にスムーズに合流できる。</p>
     <div class="notes">
       <b>📍 場所</b>: 豊見城市 イーアス豊崎内<br>
@@ -766,6 +999,22 @@
     ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅰、初めての体験を重視するなら 🅱〜🅵 から選択。<br>
     ★ 北谷起点で、家族4人ノアクラスなので移動快適。
   </p>
+
+  <div class="official">
+    <span class="official-badge">🚗 レンタカー手配内容（HIS経由・手配済）</span>
+    <table class="datalist">
+      <tr><th>クラス</th><td><b>WAクラス</b>（ノア／ステップワゴン／セレナ 等・7〜8人乗り）</td></tr>
+      <tr><th>予約時間</th><td><b>09:00 〜 18:00</b>（2026/8/23）</td></tr>
+      <tr><th>チャイルドシート</th><td><b>ジュニアシート ×1（長男8歳用）＋ チャイルドシート ×1（次男4歳用）</b> 手配済</td></tr>
+      <tr><th>料金</th><td>WAクラス 15,400円 + ジュニアシート 1,100円 + チャイルドシート 1,650円 = <b>18,150円</b>（税込・HIS請求済）</td></tr>
+    </table>
+    <div class="notes">
+      <b>⚠️ 時間の制約に注意</b>：<b>返却18:00</b>が予約条件です。下の各コースは9:00発想定ですが、
+      <b>Aコース(北部)は18:30頃ホテル戻り想定なので延長交渉が必要</b>。Dコース(南部)も瀬長島19:00戻りで超過します。
+      18:00返却を厳守するなら <b>B・E・F コース</b>が安全圏。延長したい場合は事前にHIS担当（判家様）へ確認を。<br>
+      <b>💡</b> ホテル駐車場は<b>入出庫の都度課金</b>（最大1,000円/日）なので、朝出したら夜まで出しっぱなしにする動線が無駄がありません。
+    </div>
+  </div>
 
   <!-- HI-SEASON / HEAT STRATEGY -->
   <div class="season-callout">
@@ -1047,20 +1296,26 @@
     <h3 style="margin-top:0;">🚌 当日の流れ（確定）</h3>
     <table class="schedule-table">
       <tr><th>時刻目安</th><th>内容</th><th>備考</th></tr>
-      <tr><td>〜09:30</td><td><b>ホテルで朝食</b>（L.O. 09:30）</td><td>キッズバイキング</td></tr>
+      <tr><td>07:00〜<br>09:30</td><td><b>ホテルで朝食</b>（7:00開始／L.O. 09:30）</td><td>キッズバイキング</td></tr>
       <tr><td>〜10:15</td><td><b>各自チェックアウト</b></td><td>バス乗車15分前までに</td></tr>
-      <tr><td>10:30</td><td><b>貸切バスでホテル発</b></td><td>—</td></tr>
-      <tr><td>11:30〜13:10</td><td><b>国際通り</b>（自由散策・お土産）</td><td>約1時間40分</td></tr>
-      <tr><td>13:40</td><td><b>那覇空港着</b></td><td>—</td></tr>
+      <tr><td>10:30</td><td><b>貸切バスでホテル発</b>（加藤家は<span class="seat-chip">2号車</span>）</td><td>専用車</td></tr>
+      <tr><td>11:10〜13:10</td><td><b>国際通り</b>（自由散策・お土産・各自昼食）</td><td>約2時間</td></tr>
+      <tr><td>13:40</td><td><b>那覇空港着 → 3階 ANA（全日空）カウンター集合</b></td><td>—</td></tr>
+      <tr><td>14:10まで</td><td>保安検査場を通過（出発30分前）</td><td>—</td></tr>
       <tr><td>14:40</td><td>那覇空港発 (NH306)</td><td>2時間10分</td></tr>
       <tr><td>16:50</td><td>中部国際空港着 → 解散</td><td>—</td></tr>
     </table>
+    <div class="notes" style="margin-bottom:14px;">
+      <b>🚌 3日目バスの号車</b>：加藤家は<b>2号車</b>（同乗＝立道様・大岡様・今枝様・前原様・小林様・太田様・三崎様）。
+      <span style="color:var(--gray);">※1日目は1号車だったので、間違えやすいポイントです。</span>
+    </div>
 
-    <h3>🛍️ 国際通り（11:30〜13:10）の過ごし方</h3>
+    <h3>🛍️ 国際通り（11:10〜13:10・約2時間）の過ごし方</h3>
     <ul style="font-size:14px;margin:0 0 14px;padding-left:20px;">
       <li><b>お土産購入はここが最終チャンス</b> — 国際通り・市場本通り周辺の屋内アーケードなら暑さも回避しやすい。</li>
       <li><b>ランチもここで済ませておく</b> — 空港着後は搭乗までの時間が短いため、国際通り滞在中に食事を済ませておくと安心。</li>
       <li><b>集合時刻厳守</b> — 13:10発、13:40空港着、14:40搭乗という詰まったスケジュールなので、遅れないよう余裕を持って集合場所へ。</li>
+      <li><b>大きい荷物はバスに置いたまま</b> — チェックアウト後の荷物はバス車内へ。身軽に散策できます（貴重品は必ず携帯）。</li>
     </ul>
 
     <h3>🗺️ ピックアップマップ（国際通り 概略図）</h3>
@@ -1161,10 +1416,119 @@
     </div>
   </div>
 
+  <!-- ========== BAGGAGE RULES (from HIS しおり) ========== -->
+  <h2>🧳 手荷物・機内持込ルール（ANA）</h2>
+
+  <div class="alert critical">
+    <h3>🔋 モバイルバッテリー新ルール（令和8年4月24日〜）— 今回の旅行から適用</h3>
+    <p style="font-size:13.5px;margin:0 0 10px;">
+      リチウムイオン電池の発煙・発火対策として、<b>2026年4月24日から機内での扱いが厳しくなりました</b>。
+      違反すると航空法により罰則が科される可能性があります。
+    </p>
+    <div class="rule-grid">
+      <div class="rule-card">
+        <h4>やってはいけないこと</h4>
+        <ul>
+          <li><span class="ng">預入手荷物に入れるのはNG</span> — 必ず<b>機内持込</b>で手元に</li>
+          <li><span class="ng">座席上の収納棚に入れるのはNG</span> — <b>座席ポケット等お手元</b>に保管</li>
+          <li><span class="ng">機内でモバイルバッテリーを充電するのはNG</span></li>
+          <li><span class="ng">機内でモバイルバッテリーから機器に充電するのもNG</span> — 充電は<b>機内備付の電源</b>から</li>
+        </ul>
+      </div>
+      <div class="rule-card">
+        <h4>持ち込める個数・容量</h4>
+        <ul>
+          <li>ワット時定格量 <b>160Wh超は持込不可</b></li>
+          <li><b>100Wh以下</b>：個数制限なし</li>
+          <li><b>100Wh超〜160Wh以下</b>：<b>2個まで</b></li>
+          <li>モバイルバッテリー本体は<b>2個まで</b></li>
+          <li>端子に絶縁テープ／ケースや収納袋に入れる等、<b>ショート防止措置</b>を各個に</li>
+        </ul>
+      </div>
+      <div class="rule-card">
+        <h4>Wh（ワット時定格量）の計算</h4>
+        <ul>
+          <li>Ah表記：<b>Wh = Ah × V</b></li>
+          <li>mAh表記：<b>Wh = mAh × V ÷ 1,000</b></li>
+          <li>例）27,000mAh × 3.7V ÷ 1000 = <b>99.9Wh</b>（100Wh以下＝個数制限なし）</li>
+        </ul>
+      </div>
+      <div class="rule-card">
+        <h4>ヘアアイロン・ドライヤー</h4>
+        <ul>
+          <li>コンセント式（USBコードタイプ含む）→ <span class="ok">OK（非危険物）</span></li>
+          <li>電池式で<b>熱源と電池が分離できる</b> → <span class="ok">OK（条件付き）</span>／取り外した電池は端子保護を</li>
+          <li><span class="ng">電池式で本体から電池を取り外せないもの → 持込・預入とも不可</span></li>
+          <li>ガス式は条件付きOK（予備ガスカートリッジは持込・預入とも不可）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <b>💡 我が家の実務メモ</b>：モバイルバッテリー・タブレット・カメラの予備電池は<b>すべて機内持込バッグへ</b>。
+      スーツケースに入れると保安検査でやり直しになります。子供のタブレットを充電したい場合は、機内では<b>座席の電源</b>を使うこと。
+    </div>
+  </div>
+
+  <div class="official">
+    <span class="official-badge">🧳 ANA 手荷物の重さ・サイズ・個数</span>
+    <div class="rule-grid">
+      <div class="rule-card">
+        <h4>お預かり（受託）手荷物</h4>
+        <ul>
+          <li>サイズ：3辺の合計 <b>158cm以内</b></li>
+          <li>個数：<b>お一人様2個まで</b></li>
+          <li>重量：<b>1個あたり23kgまで無料</b></li>
+          <li>※キャスター・ハンドル・ポケット等の付属品もサイズに含む</li>
+        </ul>
+      </div>
+      <div class="rule-card">
+        <h4>機内持込手荷物</h4>
+        <ul>
+          <li>お一人様 <b>手荷物1個＋身の回り品1個＝計2個</b></li>
+          <li>総重量 <b>10kg以内</b></li>
+          <li>手荷物：3辺の和 <b>115cm以内</b>かつ <b>55×40×25cm以内</b></li>
+          <li>身の回り品：<b>40×30×20cm以内</b>（前の座席の下に収納できる大きさ）</li>
+        </ul>
+      </div>
+      <div class="rule-card">
+        <h4>身につけて持ち込むもの</h4>
+        <ul>
+          <li>喫煙用ライター／安全マッチ：<b>お一人1個のみ</b>、ポケット等身につけて</li>
+          <li>電子タバコ：身につけて機内持込（預入不可）</li>
+        </ul>
+      </div>
+      <div class="rule-card">
+        <h4>機内に持ち込めないもの</h4>
+        <ul>
+          <li><span class="ng">ナイフ／ハサミ類／先の尖った物／バット類</span></li>
+          <li>子供の工作ハサミ・爪切り・砂遊びスコップ等も対象になり得るので<b>預入荷物へ</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      家族4人なら預入は最大8個・機内持込は最大8個まで可能。規定は機材により異なる場合があるため、詳細は
+      <a href="https://www.ana.co.jp/ja/jp/guide/boarding-procedures/baggage/domestic/" target="_blank">ANA公式（国内線手荷物）</a>で最終確認を。
+      危険物の詳細は <a href="https://www.mlit.go.jp/koku/koku_fr2_000007.html" target="_blank">国土交通省サイト</a>。
+    </div>
+  </div>
+
   <!-- ========== CHECKLIST ========== -->
   <h2>🎒 持ち物チェックリスト（8月沖縄・子連れ）</h2>
   <div class="checklist">
-    <h3 style="margin-top:0;">必須</h3>
+    <h3 style="margin-top:0;">書類・貴重品（忘れると詰むもの）</h3>
+    <ul>
+      <li>eチケット控え・旅程表</li>
+      <li>HIS旅のしおり（本ページでも代用可）</li>
+      <li>運転免許証（<b>2日目レンタカー必須</b>）</li>
+      <li>駐車場予約番号 <b>027645</b> 控え</li>
+      <li>身分証明書（大人分）</li>
+      <li>健康保険証・お薬手帳</li>
+      <li>現金・クレジットカード</li>
+      <li>スマホ＋充電器（人数分）</li>
+      <li><b>モバイルバッテリーは機内持込バッグへ</b></li>
+      <li>子供の母子手帳（念のため）</li>
+    </ul>
+    <h3>必須</h3>
     <ul>
       <li>水着 ×4人分</li>
       <li>ラッシュガード（特に子供）</li>
@@ -1192,10 +1556,51 @@
     </ul>
   </div>
 
+  <!-- ========== CONTACTS ========== -->
+  <h2>📞 緊急連絡先</h2>
+  <p style="font-size:13.5px;color:var(--gray);margin:0 0 4px;">
+    当日トラブル（遅刻・道に迷った・体調不良・忘れ物など）が生じた場合の連絡先です。スマホに登録しておくと安心。
+  </p>
+  <div class="contact-grid">
+    <div class="contact-card urgent">
+      <div class="cc-label">HIS営業担当（当日連絡先）</div>
+      <div class="cc-name">判家（はんげ）様</div>
+      <a class="tel" href="tel:08037383474">080-3738-3474</a>
+    </div>
+    <div class="contact-card urgent">
+      <div class="cc-label">HIS営業担当（当日連絡先）</div>
+      <div class="cc-name">秋山 様</div>
+      <a class="tel" href="tel:07013820750">070-1382-0750</a>
+    </div>
+    <div class="contact-card">
+      <div class="cc-label">宿泊先</div>
+      <div class="cc-name">ザ・ビーチタワー沖縄</div>
+      <a class="tel" href="tel:0989217711">098-921-7711</a>
+      <div style="color:var(--gray);font-size:12px;margin-top:4px;">〒904-0115 北谷町字美浜8-6</div>
+    </div>
+    <div class="contact-card">
+      <div class="cc-label">セントレア駐車場</div>
+      <div class="cc-name">中部国際空港 駐車場管理事務所</div>
+      <a class="tel" href="tel:0569387830">0569-38-7830</a>
+      <div style="color:var(--gray);font-size:12px;margin-top:4px;">24時間・年中無休／予約番号 027645</div>
+    </div>
+  </div>
+  <div class="official">
+    <span class="official-badge">🏢 旅行お問い合わせ先</span>
+    <table class="datalist">
+      <tr><th>会社</th><td><b>株式会社エイチ・アイ・エス</b> 中部法人営業グループ ビジネスプロデュースチーム 第一営業所</td></tr>
+      <tr><th>住所</th><td>〒450-6416 愛知県名古屋市中村区名駅3丁目28番12号 大名古屋ビルヂング16F</td></tr>
+      <tr><th>TEL / FAX</th><td><b><a href="tel:05017528436" style="color:var(--ocean-dark);text-decoration:none;">050-1752-8436</a></b> ／ FAX 052-856-5711</td></tr>
+      <tr><th>営業時間</th><td>平日 09:30〜17:00（<b>土・日・祝は定休</b>）<br><span style="color:var(--gray);">※旅行期間の8/22(土)〜24(月)は営業所が休みのため、当日は上記の担当者携帯へ。</span></td></tr>
+      <tr><th>担当</th><td>判家・秋山</td></tr>
+    </table>
+  </div>
+
   <!-- ========== FOOTER ========== -->
   <footer>
-    Created 2026-05-15<br>
-    宿泊: ザ・ビーチタワー沖縄 ｜ 航空: 全日空 NH303 / NH306 ｜ 2日目レンタカー: ノアクラス
+    Created 2026-05-15 ／ Updated 2026-08-05（HIS「旅のしおり – 0804」の内容を反映）<br>
+    宿泊: ザ・ビーチタワー沖縄 ｜ 航空: 全日空 NH303 / NH306 ｜ 2日目レンタカー: WAクラス(ノア等) 09:00〜18:00<br>
+    <span style="font-size:11px;">※行程は航空会社・輸送会社および現地事情・天候により予告なく変更になる場合があります。記載の時刻は目安です。</span>
   </footer>
 
 </div>
