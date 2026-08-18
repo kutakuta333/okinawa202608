@@ -125,11 +125,12 @@
     border-top: 5px solid var(--ocean);
     page-break-inside: avoid;
   }
-  .course.course-A { border-top-color: #5e9ee5; }
-  .course.course-B { border-top-color: var(--leaf); }
-  .course.course-C { border-top-color: var(--ocean); }
-  .course.course-D { border-top-color: var(--sun); }
-  .course.course-E { border-top-color: var(--coral); }
+  .course.course-A { border-top-color: var(--coral); }
+  .course.course-B { border-top-color: #5e72e4; }
+  .course.course-C { border-top-color: #5e9ee5; }
+  .course.course-D { border-top-color: var(--leaf); }
+  .course.course-E { border-top-color: var(--ocean); }
+  .course.course-F { border-top-color: var(--sun); }
   .course-head {
     display: flex;
     align-items: center;
@@ -149,11 +150,12 @@
     justify-content: center;
     flex-shrink: 0;
   }
-  .course-A .course-badge { background: #5e9ee5; }
-  .course-B .course-badge { background: var(--leaf); }
-  .course-C .course-badge { background: var(--ocean); }
-  .course-D .course-badge { background: var(--sun); }
-  .course-E .course-badge { background: var(--coral); }
+  .course-A .course-badge { background: var(--coral); }
+  .course-B .course-badge { background: #5e72e4; }
+  .course-C .course-badge { background: #5e9ee5; }
+  .course-D .course-badge { background: var(--leaf); }
+  .course-E .course-badge { background: var(--ocean); }
+  .course-F .course-badge { background: var(--sun); }
   .course-title {
     font-size: 20px;
     font-weight: 700;
@@ -185,9 +187,10 @@
     font-size: 14px;
     margin: 10px 0 16px;
   }
-  .course-D .course-pitch { background: #fff4e1; border-left-color: var(--sun); }
-  .course-E .course-pitch { background: #ffe9e9; border-left-color: var(--coral); }
-  .course-B .course-pitch { background: #e6f5ed; border-left-color: var(--leaf); }
+  .course-A .course-pitch { background: #ffe9e9; border-left-color: var(--coral); }
+  .course-B .course-pitch { background: #e8eaff; border-left-color: #5e72e4; }
+  .course-D .course-pitch { background: #e6f5ed; border-left-color: var(--leaf); }
+  .course-F .course-pitch { background: #fff4e1; border-left-color: var(--sun); }
   .schedule-table {
     width: 100%;
     border-collapse: collapse;
@@ -756,12 +759,12 @@
     font-size: 11px;
     font-weight: 700;
   }
-  nav.toc .tb-A { background: #5e9ee5; }
-  nav.toc .tb-B { background: var(--leaf); }
-  nav.toc .tb-C { background: var(--ocean); }
-  nav.toc .tb-D { background: var(--sun); }
-  nav.toc .tb-E { background: var(--coral); }
-  nav.toc .tb-F { background: #5e72e4; }
+  nav.toc .tb-A { background: var(--coral); }
+  nav.toc .tb-B { background: #5e72e4; }
+  nav.toc .tb-C { background: #5e9ee5; }
+  nav.toc .tb-D { background: var(--leaf); }
+  nav.toc .tb-E { background: var(--ocean); }
+  nav.toc .tb-F { background: var(--sun); }
   nav.toc em.toc-main {
     font-style: normal;
     margin-left: 7px;
@@ -773,10 +776,11 @@
     font-size: 11px;
     font-weight: 700;
   }
-  /* 本命コース（E/F）の強調 */
+  /* 本命コース（A/B）の強調 */
   .course.main-course {
     box-shadow: 0 4px 16px rgba(240, 196, 25, 0.28);
-    border: 1px solid #f0c419;
+    outline: 2px solid #f0c419;
+    outline-offset: -1px;
   }
   .course-tag.tag-main {
     background: #fff2cc;
@@ -841,12 +845,12 @@
       <li><a href="#day1">🛫 1日目 8/22(土) — 確定プラン</a></li>
       <li><a href="#day2">🚗 2日目 8/23(日) — レンタカー自由行動・6コース</a>
         <ul class="toc-sub">
-          <li><a href="#course-E"><span class="toc-badge tb-E">E</span>海中道路・離島めぐり<em class="toc-main">本命</em></a></li>
-          <li><a href="#course-F"><span class="toc-badge tb-F">F</span>涼しい屋内ホッピング<em class="toc-main">本命</em></a></li>
-          <li><a href="#course-A"><span class="toc-badge tb-A">A</span>王道・北部1日</a></li>
-          <li><a href="#course-B"><span class="toc-badge tb-B">B</span>中部ゆったり自然体験</a></li>
-          <li><a href="#course-C"><span class="toc-badge tb-C">C</span>マリン体験</a></li>
-          <li><a href="#course-D"><span class="toc-badge tb-D">D</span>南部・沖縄文化テーマパーク</a></li>
+          <li><a href="#course-A"><span class="toc-badge tb-A">A</span>海中道路・離島めぐり<em class="toc-main">本命</em></a></li>
+          <li><a href="#course-B"><span class="toc-badge tb-B">B</span>涼しい屋内ホッピング<em class="toc-main">本命</em></a></li>
+          <li><a href="#course-C"><span class="toc-badge tb-C">C</span>王道・北部1日</a></li>
+          <li><a href="#course-D"><span class="toc-badge tb-D">D</span>中部ゆったり自然体験</a></li>
+          <li><a href="#course-E"><span class="toc-badge tb-E">E</span>マリン体験</a></li>
+          <li><a href="#course-F"><span class="toc-badge tb-F">F</span>南部・沖縄文化テーマパーク</a></li>
         </ul>
       </li>
       <li><a href="#day3">🛍️ 3日目 8/24(月) — 出発日・国際通り</a></li>
@@ -959,29 +963,29 @@
       <line x1="118" y1="112" x2="118" y2="124" stroke="#7fa8bf" stroke-width="2"/>
       <text x="44" y="138" font-size="12" fill="#7fa8bf">約10km</text>
 
-      <!-- A: 美ら海(北部) -->
+      <!-- C: 美ら海(北部) -->
       <circle cx="267" cy="195" r="12" fill="#5e9ee5" stroke="#fff" stroke-width="2.5"/>
-      <text class="isl-pin" x="267" y="200">A</text>
+      <text class="isl-pin" x="267" y="200">C</text>
       <text class="isl-lbl" x="250" y="178" text-anchor="end">美ら海・古宇利島</text>
-      <!-- C: 青の洞窟 -->
+      <!-- E: 青の洞窟 -->
       <circle cx="176" cy="412" r="12" fill="#0099cc" stroke="#fff" stroke-width="2.5"/>
-      <text class="isl-pin" x="176" y="417">C</text>
+      <text class="isl-pin" x="176" y="417">E</text>
       <text class="isl-lbl" x="160" y="400" text-anchor="end">青の洞窟(恩納村)</text>
-      <!-- B: ビオスの丘 -->
+      <!-- D: ビオスの丘 -->
       <circle cx="192" cy="484" r="12" fill="#2da866" stroke="#fff" stroke-width="2.5"/>
-      <text class="isl-pin" x="192" y="489">B</text>
+      <text class="isl-pin" x="192" y="489">D</text>
       <text class="isl-lbl" x="208" y="478">ビオスの丘・こどもの国</text>
-      <!-- E: 海中道路 -->
+      <!-- A: 海中道路 -->
       <circle cx="304" cy="509" r="12" fill="#ff6b6b" stroke="#fff" stroke-width="2.5"/>
-      <text class="isl-pin" x="304" y="514">E</text>
+      <text class="isl-pin" x="304" y="514">A</text>
       <text class="isl-lbl" x="322" y="548">海中道路・伊計島</text>
       <!-- ホテル(北谷) -->
       <circle cx="163" cy="522" r="13" fill="#fff" stroke="#006699" stroke-width="3"/>
       <text x="163" y="527" font-size="13" text-anchor="middle">🏨</text>
       <text class="isl-lbl" x="147" y="508" text-anchor="end">ホテル(北谷・2泊)</text>
-      <!-- F: ライカム -->
+      <!-- B: ライカム -->
       <circle cx="200" cy="540" r="12" fill="#5e72e4" stroke="#fff" stroke-width="2.5"/>
-      <text class="isl-pin" x="200" y="545">F</text>
+      <text class="isl-pin" x="200" y="545">B</text>
       <text class="isl-lbl" x="215" y="560">ライカム・おきみゅー</text>
       <!-- 3日目: 国際通り -->
       <circle cx="107" cy="608" r="11" fill="#006699" stroke="#fff" stroke-width="2.5"/>
@@ -995,9 +999,9 @@
       <circle cx="80" cy="668" r="11" fill="#2da866" stroke="#fff" stroke-width="2.5"/>
       <text class="isl-pin" x="80" y="673">1</text>
       <text class="isl-lbl" x="75" y="695" text-anchor="middle">DMM水族館(1日目)</text>
-      <!-- D: おきなわワールド -->
+      <!-- F: おきなわワールド -->
       <circle cx="157" cy="674" r="12" fill="#ff9933" stroke="#fff" stroke-width="2.5"/>
-      <text class="isl-pin" x="157" y="679">D</text>
+      <text class="isl-pin" x="157" y="679">F</text>
       <text class="isl-lbl" x="172" y="679">おきなわワールド・瀬長島</text>
 
       <!-- 凡例 -->
@@ -1011,17 +1015,17 @@
       <text x="462" y="666" class="isl-lg">1日目 DMM水族館（確定）</text>
       <circle cx="446" cy="687" r="8" fill="#006699"/>
       <text x="462" y="691" class="isl-lg">3日目 国際通り</text>
-      <circle cx="440" cy="712" r="7" fill="#5e9ee5"/><text class="isl-pin" x="440" y="715" font-size="9">A</text>
-      <circle cx="458" cy="712" r="7" fill="#2da866"/><text class="isl-pin" x="458" y="715" font-size="9">B</text>
-      <circle cx="476" cy="712" r="7" fill="#0099cc"/><text class="isl-pin" x="476" y="715" font-size="9">C</text>
-      <circle cx="494" cy="712" r="7" fill="#ff9933"/><text class="isl-pin" x="494" y="715" font-size="9">D</text>
-      <circle cx="512" cy="712" r="7" fill="#ff6b6b"/><text class="isl-pin" x="512" y="715" font-size="9">E</text>
-      <circle cx="530" cy="712" r="7" fill="#5e72e4"/><text class="isl-pin" x="530" y="715" font-size="9">F</text>
+      <circle cx="440" cy="712" r="7" fill="#ff6b6b"/><text class="isl-pin" x="440" y="715" font-size="9">A</text>
+      <circle cx="458" cy="712" r="7" fill="#5e72e4"/><text class="isl-pin" x="458" y="715" font-size="9">B</text>
+      <circle cx="476" cy="712" r="7" fill="#5e9ee5"/><text class="isl-pin" x="476" y="715" font-size="9">C</text>
+      <circle cx="494" cy="712" r="7" fill="#2da866"/><text class="isl-pin" x="494" y="715" font-size="9">D</text>
+      <circle cx="512" cy="712" r="7" fill="#0099cc"/><text class="isl-pin" x="512" y="715" font-size="9">E</text>
+      <circle cx="530" cy="712" r="7" fill="#ff9933"/><text class="isl-pin" x="530" y="715" font-size="9">F</text>
       <text x="545" y="716" class="isl-lg">2日目コース案</text>
     </svg>
     </div>
     <div class="map-note">
-      ※ 島の形・位置はおおよそのイメージです。2日目のコースA〜Fは候補（いずれか1つを選択）。<b>A=北部(片道75km)</b>が最も遠く、<b>B・E・F=中部</b>、<b>C=西海岸</b>、<b>D=南部</b>という位置関係です。
+      ※ 島の形・位置はおおよそのイメージです。2日目のコースA〜Fは候補（いずれか1つを選択）。<b>C=北部(片道75km)</b>が最も遠く、<b>A・B・D=中部</b>、<b>E=西海岸</b>、<b>F=南部</b>という位置関係です。
     </div>
   </div>
 
@@ -1157,8 +1161,8 @@
   <!-- ========== DAY 2 ========== -->
   <h2 id="day2"><span class="day-tag">2日目</span>8/23(日) — レンタカー自由行動・6コース提案</h2>
   <p style="font-size:14px; color:var(--gray);">
-    ★ <b>本命は E（海中道路・離島めぐり）と F（涼しい屋内ホッピング）</b>。混雑回避・暑さ対策・18:00返却の3点で有利なため、この2つを先頭に置いています。<br>
-    ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅰、その他の候補として 🅱🅲🅳 も掲載。<br>
+    ★ <b>本命は A（海中道路・離島めぐり）と B（涼しい屋内ホッピング）</b>。混雑回避・暑さ対策・18:00返却の3点で有利なため、この2つを先頭に置いています。<br>
+    ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅲、その他の候補として 🅳🅴🅵 も掲載。<br>
     ★ 北谷起点で、家族4人ノアクラスなので移動快適。
   </p>
 
@@ -1172,8 +1176,8 @@
     </table>
     <div class="notes">
       <b>⚠️ 時間の制約に注意</b>：<b>返却18:00</b>が予約条件です。下の各コースは9:00発想定ですが、
-      <b>Aコース(北部)は18:30頃ホテル戻り想定なので延長交渉が必要</b>。Dコース(南部)も瀬長島19:00戻りで超過します。
-      18:00返却を厳守するなら <b>B・E・F コース</b>が安全圏。延長したい場合は事前にHIS担当（判家様）へ確認を。<br>
+      <b>Cコース(北部)は18:30頃ホテル戻り想定なので延長交渉が必要</b>。Fコース(南部)も瀬長島19:00戻りで超過します。
+      18:00返却を厳守するなら <b>A・B・D コース</b>が安全圏。延長したい場合は事前にHIS担当（判家様）へ確認を。<br>
       <b>💡</b> ホテル駐車場は<b>入出庫の都度課金</b>（最大1,000円/日）なので、朝出したら夜まで出しっぱなしにする動線が無駄がありません。
     </div>
   </div>
@@ -1198,10 +1202,10 @@
     </p>
   </div>
 
-  <!-- COURSE E: 海中道路（新規） -->
-  <div class="course course-E main-course" id="course-E">
+  <!-- COURSE A: 海中道路・離島めぐり -->
+  <div class="course course-A main-course" id="course-A">
     <div class="course-head">
-      <span class="course-badge">E</span>
+      <span class="course-badge">A</span>
       <h3 class="course-title" style="margin:0;">海中道路・離島めぐりドライブコース</h3>
       <span class="course-tag tag-main">★本命</span>
       <span class="course-tag tag-new">NEW</span>
@@ -1243,10 +1247,10 @@
     </div>
   </div>
 
-  <!-- COURSE F: 涼しい屋内ホッピング (NEW) -->
-  <div class="course course-D main-course" id="course-F" style="border-top-color: #5e72e4;">
+  <!-- COURSE B: 涼しい屋内ホッピング -->
+  <div class="course course-B main-course" id="course-B">
     <div class="course-head">
-      <span class="course-badge" style="background:#5e72e4;">F</span>
+      <span class="course-badge">B</span>
       <h3 class="course-title" style="margin:0;">涼しい屋内ホッピングコース</h3>
       <span class="course-tag tag-main">★本命</span>
       <span class="course-tag tag-new">NEW</span>
@@ -1256,7 +1260,7 @@
       <span class="badge badge-empty">👥 比較的空いてる</span>
       <span class="badge badge-hit">◎ 猛暑日の安全策</span>
     </div>
-    <div class="course-pitch" style="background:#e8eaff; border-left-color:#5e72e4;">
+    <div class="course-pitch">
       <b>「観光より、家族みんなが快適に過ごせる方が優先」派へ。</b>
       天気予報が35℃超の猛暑日や、子供が外で疲れてしまった日の<b>セーフティネット</b>。観光地らしさは控えめだが、ほぼ全行程冷房付きで<b>大人も子供もストレスゼロ</b>。
     </div>
@@ -1288,10 +1292,10 @@
     </div>
   </div>
 
-  <!-- COURSE A: 王道北部 -->
-  <div class="course course-A" id="course-A">
+  <!-- COURSE C: 王道・北部1日 -->
+  <div class="course course-C" id="course-C">
     <div class="course-head">
-      <span class="course-badge">A</span>
+      <span class="course-badge">C</span>
       <h3 class="course-title" style="margin:0;">王道・北部1日コース</h3>
       <span class="course-tag tag-visited">★再訪</span>
     </div>
@@ -1329,10 +1333,10 @@
     </div>
   </div>
 
-  <!-- COURSE B: 中部ゆったり -->
-  <div class="course course-B" id="course-B">
+  <!-- COURSE D: 中部ゆったり自然体験 -->
+  <div class="course course-D" id="course-D">
     <div class="course-head">
-      <span class="course-badge">B</span>
+      <span class="course-badge">D</span>
       <h3 class="course-title" style="margin:0;">中部ゆったり自然体験コース</h3>
       <span class="course-tag tag-recommend">◎一押し</span>
     </div>
@@ -1370,10 +1374,10 @@
     </div>
   </div>
 
-  <!-- COURSE C: 海体験 -->
-  <div class="course course-C" id="course-C">
+  <!-- COURSE E: マリン体験 -->
+  <div class="course course-E" id="course-E">
     <div class="course-head">
-      <span class="course-badge">C</span>
+      <span class="course-badge">E</span>
       <h3 class="course-title" style="margin:0;">マリン体験コース</h3>
     </div>
     <div class="badge-row">
@@ -1410,10 +1414,10 @@
     </div>
   </div>
 
-  <!-- COURSE D: 南部探検（新規） -->
-  <div class="course course-D" id="course-D">
+  <!-- COURSE F: 南部・沖縄文化テーマパーク -->
+  <div class="course course-F" id="course-F">
     <div class="course-head">
-      <span class="course-badge">D</span>
+      <span class="course-badge">F</span>
       <h3 class="course-title" style="margin:0;">南部・沖縄文化テーマパークコース</h3>
       <span class="course-tag tag-new">NEW</span>
     </div>
