@@ -675,6 +675,141 @@
     .course, .confirmed, .checklist { box-shadow: none; border: 1px solid var(--border); }
     header.hero { background: var(--ocean-dark) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  /* ===== 目次（TOC） ===== */
+  html { scroll-behavior: smooth; }
+  h2[id], .course[id] { scroll-margin-top: 16px; }
+  nav.toc {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 5px solid var(--ocean);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 3px 10px rgba(0, 102, 153, 0.08);
+  }
+  nav.toc .toc-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ocean-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  nav.toc .toc-title span {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+  }
+  nav.toc ol.toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: toc;
+  }
+  nav.toc ol.toc-list > li { margin: 0 0 4px; }
+  nav.toc ol.toc-list > li > a::before {
+    counter-increment: toc;
+    content: counter(toc);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    margin-right: 9px;
+    flex: none;
+    border-radius: 6px;
+    background: var(--ocean-light);
+    color: var(--ocean-dark);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  nav.toc a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 14.5px;
+    font-weight: 600;
+    padding: 7px 10px;
+    border-radius: 8px;
+    line-height: 1.45;
+  }
+  nav.toc a:hover, nav.toc a:focus { background: var(--ocean-light); color: var(--ocean-dark); }
+  nav.toc ul.toc-sub {
+    list-style: none;
+    margin: 4px 0 8px;
+    padding: 0 0 0 12px;
+    border-left: 2px dashed var(--border);
+  }
+  nav.toc ul.toc-sub a { font-size: 13.5px; font-weight: 500; padding: 5px 10px; }
+  nav.toc .toc-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    flex: none;
+    margin-right: 8px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  nav.toc .tb-A { background: #5e9ee5; }
+  nav.toc .tb-B { background: var(--leaf); }
+  nav.toc .tb-C { background: var(--ocean); }
+  nav.toc .tb-D { background: var(--sun); }
+  nav.toc .tb-E { background: var(--coral); }
+  nav.toc .tb-F { background: #5e72e4; }
+  nav.toc em.toc-main {
+    font-style: normal;
+    margin-left: 7px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: #fff2cc;
+    border: 1px solid #f0c419;
+    color: #8a6100;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  /* 本命コース（E/F）の強調 */
+  .course.main-course {
+    box-shadow: 0 4px 16px rgba(240, 196, 25, 0.28);
+    border: 1px solid #f0c419;
+  }
+  .course-tag.tag-main {
+    background: #fff2cc;
+    color: #8a6100;
+    border: 1px solid #f0c419;
+  }
+  /* ページ上部へ戻る */
+  a.to-top {
+    position: fixed;
+    right: 14px; bottom: 14px;
+    z-index: 50;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--ocean-dark);
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    opacity: 0.9;
+  }
+  a.to-top:hover { opacity: 1; }
+  @media (max-width: 640px) {
+    nav.toc { padding: 14px 12px; }
+    nav.toc a { font-size: 14px; padding: 8px 8px; }
+    nav.toc ul.toc-sub a { font-size: 13px; }
+  }
+  @media print {
+    nav.toc { break-inside: avoid; }
+    a.to-top { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -695,8 +830,34 @@
     </div>
   </header>
 
+  <!-- ========== 目次 ========== -->
+  <nav class="toc" id="top-toc">
+    <div class="toc-title">📑 目次 <span>タップで各セクションへジャンプ</span></div>
+    <ol class="toc-list">
+      <li><a href="#meetup">🎫 出発当日の集合案内</a></li>
+      <li><a href="#overview">📋 旅程概要</a></li>
+      <li><a href="#map">🗺️ 全体マップ（沖縄本島）</a></li>
+      <li><a href="#hotel">🏨 宿泊先: ザ・ビーチタワー沖縄</a></li>
+      <li><a href="#day1">🛫 1日目 8/22(土) — 確定プラン</a></li>
+      <li><a href="#day2">🚗 2日目 8/23(日) — レンタカー自由行動・6コース</a>
+        <ul class="toc-sub">
+          <li><a href="#course-E"><span class="toc-badge tb-E">E</span>海中道路・離島めぐり<em class="toc-main">本命</em></a></li>
+          <li><a href="#course-F"><span class="toc-badge tb-F">F</span>涼しい屋内ホッピング<em class="toc-main">本命</em></a></li>
+          <li><a href="#course-A"><span class="toc-badge tb-A">A</span>王道・北部1日</a></li>
+          <li><a href="#course-B"><span class="toc-badge tb-B">B</span>中部ゆったり自然体験</a></li>
+          <li><a href="#course-C"><span class="toc-badge tb-C">C</span>マリン体験</a></li>
+          <li><a href="#course-D"><span class="toc-badge tb-D">D</span>南部・沖縄文化テーマパーク</a></li>
+        </ul>
+      </li>
+      <li><a href="#day3">🛍️ 3日目 8/24(月) — 出発日・国際通り</a></li>
+      <li><a href="#baggage">🧳 手荷物・機内持込ルール（ANA）</a></li>
+      <li><a href="#checklist">🎒 持ち物チェックリスト</a></li>
+      <li><a href="#contacts">📞 緊急連絡先</a></li>
+    </ol>
+  </nav>
+
   <!-- ========== DEPARTURE DAY (from HIS 旅のしおり) ========== -->
-  <h2>🎫 出発当日の集合案内</h2>
+  <h2 id="meetup">🎫 出発当日の集合案内</h2>
   <div class="alert critical">
     <h3>⏰ 8/22(土) 集合 — 時間厳守</h3>
     <div style="margin:6px 0 10px;">
@@ -729,7 +890,7 @@
   </div>
 
   <!-- ========== OVERVIEW ========== -->
-  <h2>📋 旅程概要</h2>
+  <h2 id="overview">📋 旅程概要</h2>
   <table class="summary-table">
     <tr>
       <th>日付</th>
@@ -765,7 +926,7 @@
   </table>
 
   <!-- ========== ISLAND OVERVIEW MAP ========== -->
-  <h2>🗺️ 全体マップ（沖縄本島）</h2>
+  <h2 id="map">🗺️ 全体マップ（沖縄本島）</h2>
   <div class="street-map">
     <div class="street-map-title">旅行スポットの位置関係（簡略図・おおよその縮尺）</div>
     <div class="map-svg-wrap">
@@ -865,7 +1026,7 @@
   </div>
 
   <!-- ========== HOTEL ========== -->
-  <h2>🏨 宿泊先: ザ・ビーチタワー沖縄</h2>
+  <h2 id="hotel">🏨 宿泊先: ザ・ビーチタワー沖縄</h2>
   <div class="confirmed" style="border-color: var(--ocean); background: linear-gradient(135deg, #e6f4fa 0%, #fdf6e3 100%);">
     <p style="margin-top:0;font-size:14px;">
       アメリカンビレッジ隣接、東シナ海を望む高層リゾートホテル（共立リゾート系列・全280室）。
@@ -938,7 +1099,7 @@
   </div>
 
   <!-- ========== DAY 1 ========== -->
-  <h2><span class="day-tag">1日目</span>8/22(土) — 確定プラン</h2>
+  <h2 id="day1"><span class="day-tag">1日目</span>8/22(土) — 確定プラン</h2>
 
   <div class="official">
     <span class="official-badge">📖 HIS旅のしおり 記載の行程（団体）</span>
@@ -994,9 +1155,10 @@
   </div>
 
   <!-- ========== DAY 2 ========== -->
-  <h2><span class="day-tag">2日目</span>8/23(日) — レンタカー自由行動・6コース提案</h2>
+  <h2 id="day2"><span class="day-tag">2日目</span>8/23(日) — レンタカー自由行動・6コース提案</h2>
   <p style="font-size:14px; color:var(--gray);">
-    ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅰、初めての体験を重視するなら 🅱〜🅵 から選択。<br>
+    ★ <b>本命は E（海中道路・離島めぐり）と F（涼しい屋内ホッピング）</b>。混雑回避・暑さ対策・18:00返却の3点で有利なため、この2つを先頭に置いています。<br>
+    ★ <b>美ら海水族館・ナゴパイナップルパーク</b>はパパ・ママ・長男が過去に訪問済。再訪ありなら 🅰、その他の候補として 🅱🅲🅳 も掲載。<br>
     ★ 北谷起点で、家族4人ノアクラスなので移動快適。
   </p>
 
@@ -1036,8 +1198,98 @@
     </p>
   </div>
 
+  <!-- COURSE E: 海中道路（新規） -->
+  <div class="course course-E main-course" id="course-E">
+    <div class="course-head">
+      <span class="course-badge">E</span>
+      <h3 class="course-title" style="margin:0;">海中道路・離島めぐりドライブコース</h3>
+      <span class="course-tag tag-main">★本命</span>
+      <span class="course-tag tag-new">NEW</span>
+    </div>
+    <div class="badge-row">
+      <span class="badge badge-mild">🌤️ 海風で体感涼しめ</span>
+      <span class="badge badge-empty">👥 穴場・空いてる</span>
+      <span class="badge badge-hit">◎ 混雑回避◎</span>
+    </div>
+    <div class="course-pitch">
+      <b>ノアクラスならではのドライブ満喫コース。</b>海の上を走る4.75kmの海中道路で4つの離島へ。<b>北部観光客の動線と逆方向なのでハイシーズンでも穴場</b>。海風が常に吹くので体感気温も街中より涼しい。遠浅で穏やかなビーチは小さい子にも安心。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>9:00</td><td>ホテル出発（北谷）</td><td>—</td></tr>
+      <tr><td>9:50</td><td><b>海中道路「あやはし館」</b><br><span style="color:var(--gray);font-size:12px;">海の駅、休憩・トイレ。海の上を走る道路の絶景</span></td><td>30分</td></tr>
+      <tr><td>10:30</td><td><b>浜比嘉島</b> をドライブ<br><span style="color:var(--gray);font-size:12px;">琉球創世神話の島、シルミチュー・アマミチュー</span></td><td>30分</td></tr>
+      <tr><td>11:30</td><td><b>伊計ビーチ（伊計島）</b><br><span style="color:var(--gray);font-size:12px;">遠浅で穏やか、レンタル充実、家族向け天然ビーチ。ランチも島内で</span></td><td>2.5h</td></tr>
+      <tr><td>14:30</td><td><b>ぬちまーす観光製塩ファクトリー（宮城島）</b><br><span style="color:var(--gray);font-size:12px;">工場無料見学、塩ソフトクリーム、絶景「果報(かふう)バンタ」</span></td><td>1h</td></tr>
+      <tr><td>16:00</td><td>うるま市内でショッピング or 早めに帰路</td><td>—</td></tr>
+      <tr><td>17:30</td><td>ホテル戻り</td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br>北谷から約50分で到着。<b>「海の上を走る」体験</b>は子供大興奮。ビーチは遠浅で4歳児も安心。<b>観光客密度が低く混雑回避◎</b>。海風で体感気温-2〜3℃。</div>
+      <div class="cons"><b>👎 デメリット</b><br>離島部はトイレ・コンビニが限定的。<b>水着・タオル・浮き輪は車に積んで出発</b>。猛暑日はビーチでの日陰確保が必須(パラソルレンタル要確認)。</div>
+    </div>
+    <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li><b>伊計ビーチは8〜10時か15時以降</b>に滞在。10〜14時の炎天下は<b>ぬちまーす製塩工場(屋内)+果報バンタ展望</b>で涼む。塩ソフトクリーム必食。</li>
+        <li>果報バンタは<b>絶景だが日陰なし</b>。10分以内で写真を撮って退散が吉。</li>
+        <li>子供のテンション持続のため、海中道路の往路で「あやはし館」、復路はうるま市の「シーサーパーク」など寄り道箇所を分散。</li>
+      </ul>
+      <b>📍 北谷から海中道路入口まで</b>: 約50分<br>
+      <b>🔗 参考</b>: <a href="https://www.okinawaclip.com/post/uruma-recommend/" target="_blank">海中道路と4離島ガイド</a> ／ <a href="https://rurubu.jp/andmore/spot/80042947" target="_blank">ぬちまーす製塩</a>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E6%B5%B7%E4%B8%AD%E9%81%93%E8%B7%AF%20%E3%81%82%E3%82%84%E3%81%AF%E3%81%97%E9%A4%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <!-- COURSE F: 涼しい屋内ホッピング (NEW) -->
+  <div class="course course-D main-course" id="course-F" style="border-top-color: #5e72e4;">
+    <div class="course-head">
+      <span class="course-badge" style="background:#5e72e4;">F</span>
+      <h3 class="course-title" style="margin:0;">涼しい屋内ホッピングコース</h3>
+      <span class="course-tag tag-main">★本命</span>
+      <span class="course-tag tag-new">NEW</span>
+    </div>
+    <div class="badge-row">
+      <span class="badge badge-cool">🌡️ ほぼ全行程冷房</span>
+      <span class="badge badge-empty">👥 比較的空いてる</span>
+      <span class="badge badge-hit">◎ 猛暑日の安全策</span>
+    </div>
+    <div class="course-pitch" style="background:#e8eaff; border-left-color:#5e72e4;">
+      <b>「観光より、家族みんなが快適に過ごせる方が優先」派へ。</b>
+      天気予報が35℃超の猛暑日や、子供が外で疲れてしまった日の<b>セーフティネット</b>。観光地らしさは控えめだが、ほぼ全行程冷房付きで<b>大人も子供もストレスゼロ</b>。
+    </div>
+    <table class="schedule-table">
+      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
+      <tr><td>9:30</td><td>ホテル出発</td><td>—</td></tr>
+      <tr><td>10:00</td><td><b>沖縄県立博物館・美術館「おきみゅー」(那覇おもろまち)</b><br><span style="color:var(--gray);font-size:12px;">館内冷房完備、未就学児無料、ふれあい体験室で「自然の仕組み」を遊びながら学習。夏休みこどもフェスタあり</span></td><td>1.5h</td></tr>
+      <tr><td>11:30</td><td><b>那覇国際通りでランチ</b>(屋内アーケード「平和通り」「市場本通り」)<br><span style="color:var(--gray);font-size:12px;">第一牧志公設市場、ステーキ、タコライス、ブルーシール</span></td><td>1.5h</td></tr>
+      <tr><td>13:30</td><td><b>イオンモール沖縄ライカム(北中城村)</b><br><span style="color:var(--gray);font-size:12px;">日本最大級モール。1Fに容量100t超の<b>大水槽「ライカムアクアリウム」(無料)</b>、熱帯魚約1,000匹。屋内キッズ施設、食事、買い物すべて揃う</span></td><td>3h</td></tr>
+      <tr><td>16:30</td><td>北谷へ → ホテル着</td><td>—</td></tr>
+    </table>
+    <div class="pros-cons">
+      <div class="pros"><b>👍 メリット</b><br><b>1日中ほぼ冷房</b>。子供は遊び場・水槽・買い物で大満足。雨でも完全に成立。<b>美術館は穴場で空いている</b>。ライカム水槽は無料なのにクオリティ高し。</div>
+      <div class="cons"><b>👎 デメリット</b><br>沖縄ならではの自然・海体験は薄い。「これじゃ地元のモールと変わらない」と感じる人もいる(が、ライカム水槽は沖縄ならでは)。</div>
+    </div>
+    <div class="notes">
+      <b>🔥 攻略Tips</b>:
+      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
+        <li>朝はおきみゅー → 暑くなる前にランチ → 一番暑い13〜16時はライカム(屋内)で過ごすという「<b>暑さリレー</b>」設計。</li>
+        <li>ライカムの<b>大水槽は混雑なし</b>(モール来場者の通過点なので)。じっくり見られる。</li>
+        <li>このコース+ホテルの<b>「ちゅらーゆ」夕方利用</b>で、暑さ完全回避の1日が完成。</li>
+        <li>美術館の展示が物足りなければ、すぐ近くの<b>DFSギャラリア(免税店)</b>でぶらぶらも可。</li>
+      </ul>
+      <b>📍 距離</b>: 北谷→おきみゅー(40分) →ライカム(30分) →北谷(20分)<br>
+      <b>🔗 参考</b>: <a href="https://okimu.jp/" target="_blank">沖縄県立博物館・美術館</a> ／ <a href="https://okinawarycom.aeonmall.jp/" target="_blank">イオンモール沖縄ライカム</a>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://maps.google.com/maps?q=%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%A2%E3%83%BC%E3%83%AB%E6%B2%96%E7%B8%84%E3%83%A9%E3%82%A4%E3%82%AB%E3%83%A0&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
   <!-- COURSE A: 王道北部 -->
-  <div class="course course-A">
+  <div class="course course-A" id="course-A">
     <div class="course-head">
       <span class="course-badge">A</span>
       <h3 class="course-title" style="margin:0;">王道・北部1日コース</h3>
@@ -1078,7 +1330,7 @@
   </div>
 
   <!-- COURSE B: 中部ゆったり -->
-  <div class="course course-B">
+  <div class="course course-B" id="course-B">
     <div class="course-head">
       <span class="course-badge">B</span>
       <h3 class="course-title" style="margin:0;">中部ゆったり自然体験コース</h3>
@@ -1119,7 +1371,7 @@
   </div>
 
   <!-- COURSE C: 海体験 -->
-  <div class="course course-C">
+  <div class="course course-C" id="course-C">
     <div class="course-head">
       <span class="course-badge">C</span>
       <h3 class="course-title" style="margin:0;">マリン体験コース</h3>
@@ -1159,7 +1411,7 @@
   </div>
 
   <!-- COURSE D: 南部探検（新規） -->
-  <div class="course course-D">
+  <div class="course course-D" id="course-D">
     <div class="course-head">
       <span class="course-badge">D</span>
       <h3 class="course-title" style="margin:0;">南部・沖縄文化テーマパークコース</h3>
@@ -1202,96 +1454,8 @@
     </div>
   </div>
 
-  <!-- COURSE E: 海中道路（新規） -->
-  <div class="course course-E">
-    <div class="course-head">
-      <span class="course-badge">E</span>
-      <h3 class="course-title" style="margin:0;">海中道路・離島めぐりドライブコース</h3>
-      <span class="course-tag tag-new">NEW</span>
-    </div>
-    <div class="badge-row">
-      <span class="badge badge-mild">🌤️ 海風で体感涼しめ</span>
-      <span class="badge badge-empty">👥 穴場・空いてる</span>
-      <span class="badge badge-hit">◎ 混雑回避◎</span>
-    </div>
-    <div class="course-pitch">
-      <b>ノアクラスならではのドライブ満喫コース。</b>海の上を走る4.75kmの海中道路で4つの離島へ。<b>北部観光客の動線と逆方向なのでハイシーズンでも穴場</b>。海風が常に吹くので体感気温も街中より涼しい。遠浅で穏やかなビーチは小さい子にも安心。
-    </div>
-    <table class="schedule-table">
-      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
-      <tr><td>9:00</td><td>ホテル出発（北谷）</td><td>—</td></tr>
-      <tr><td>9:50</td><td><b>海中道路「あやはし館」</b><br><span style="color:var(--gray);font-size:12px;">海の駅、休憩・トイレ。海の上を走る道路の絶景</span></td><td>30分</td></tr>
-      <tr><td>10:30</td><td><b>浜比嘉島</b> をドライブ<br><span style="color:var(--gray);font-size:12px;">琉球創世神話の島、シルミチュー・アマミチュー</span></td><td>30分</td></tr>
-      <tr><td>11:30</td><td><b>伊計ビーチ（伊計島）</b><br><span style="color:var(--gray);font-size:12px;">遠浅で穏やか、レンタル充実、家族向け天然ビーチ。ランチも島内で</span></td><td>2.5h</td></tr>
-      <tr><td>14:30</td><td><b>ぬちまーす観光製塩ファクトリー（宮城島）</b><br><span style="color:var(--gray);font-size:12px;">工場無料見学、塩ソフトクリーム、絶景「果報(かふう)バンタ」</span></td><td>1h</td></tr>
-      <tr><td>16:00</td><td>うるま市内でショッピング or 早めに帰路</td><td>—</td></tr>
-      <tr><td>17:30</td><td>ホテル戻り</td><td>—</td></tr>
-    </table>
-    <div class="pros-cons">
-      <div class="pros"><b>👍 メリット</b><br>北谷から約50分で到着。<b>「海の上を走る」体験</b>は子供大興奮。ビーチは遠浅で4歳児も安心。<b>観光客密度が低く混雑回避◎</b>。海風で体感気温-2〜3℃。</div>
-      <div class="cons"><b>👎 デメリット</b><br>離島部はトイレ・コンビニが限定的。<b>水着・タオル・浮き輪は車に積んで出発</b>。猛暑日はビーチでの日陰確保が必須(パラソルレンタル要確認)。</div>
-    </div>
-    <div class="notes">
-      <b>🔥 攻略Tips</b>:
-      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
-        <li><b>伊計ビーチは8〜10時か15時以降</b>に滞在。10〜14時の炎天下は<b>ぬちまーす製塩工場(屋内)+果報バンタ展望</b>で涼む。塩ソフトクリーム必食。</li>
-        <li>果報バンタは<b>絶景だが日陰なし</b>。10分以内で写真を撮って退散が吉。</li>
-        <li>子供のテンション持続のため、海中道路の往路で「あやはし館」、復路はうるま市の「シーサーパーク」など寄り道箇所を分散。</li>
-      </ul>
-      <b>📍 北谷から海中道路入口まで</b>: 約50分<br>
-      <b>🔗 参考</b>: <a href="https://www.okinawaclip.com/post/uruma-recommend/" target="_blank">海中道路と4離島ガイド</a> ／ <a href="https://rurubu.jp/andmore/spot/80042947" target="_blank">ぬちまーす製塩</a>
-    </div>
-    <div class="map-embed">
-      <iframe src="https://maps.google.com/maps?q=%E6%B5%B7%E4%B8%AD%E9%81%93%E8%B7%AF%20%E3%81%82%E3%82%84%E3%81%AF%E3%81%97%E9%A4%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </div>
-
-  <!-- COURSE F: 涼しい屋内ホッピング (NEW) -->
-  <div class="course course-D" style="border-top-color: #5e72e4;">
-    <div class="course-head">
-      <span class="course-badge" style="background:#5e72e4;">F</span>
-      <h3 class="course-title" style="margin:0;">涼しい屋内ホッピングコース</h3>
-      <span class="course-tag tag-new">NEW</span>
-    </div>
-    <div class="badge-row">
-      <span class="badge badge-cool">🌡️ ほぼ全行程冷房</span>
-      <span class="badge badge-empty">👥 比較的空いてる</span>
-      <span class="badge badge-hit">◎ 猛暑日の安全策</span>
-    </div>
-    <div class="course-pitch" style="background:#e8eaff; border-left-color:#5e72e4;">
-      <b>「観光より、家族みんなが快適に過ごせる方が優先」派へ。</b>
-      天気予報が35℃超の猛暑日や、子供が外で疲れてしまった日の<b>セーフティネット</b>。観光地らしさは控えめだが、ほぼ全行程冷房付きで<b>大人も子供もストレスゼロ</b>。
-    </div>
-    <table class="schedule-table">
-      <tr><th>時刻</th><th>スポット</th><th>滞在</th></tr>
-      <tr><td>9:30</td><td>ホテル出発</td><td>—</td></tr>
-      <tr><td>10:00</td><td><b>沖縄県立博物館・美術館「おきみゅー」(那覇おもろまち)</b><br><span style="color:var(--gray);font-size:12px;">館内冷房完備、未就学児無料、ふれあい体験室で「自然の仕組み」を遊びながら学習。夏休みこどもフェスタあり</span></td><td>1.5h</td></tr>
-      <tr><td>11:30</td><td><b>那覇国際通りでランチ</b>(屋内アーケード「平和通り」「市場本通り」)<br><span style="color:var(--gray);font-size:12px;">第一牧志公設市場、ステーキ、タコライス、ブルーシール</span></td><td>1.5h</td></tr>
-      <tr><td>13:30</td><td><b>イオンモール沖縄ライカム(北中城村)</b><br><span style="color:var(--gray);font-size:12px;">日本最大級モール。1Fに容量100t超の<b>大水槽「ライカムアクアリウム」(無料)</b>、熱帯魚約1,000匹。屋内キッズ施設、食事、買い物すべて揃う</span></td><td>3h</td></tr>
-      <tr><td>16:30</td><td>北谷へ → ホテル着</td><td>—</td></tr>
-    </table>
-    <div class="pros-cons">
-      <div class="pros"><b>👍 メリット</b><br><b>1日中ほぼ冷房</b>。子供は遊び場・水槽・買い物で大満足。雨でも完全に成立。<b>美術館は穴場で空いている</b>。ライカム水槽は無料なのにクオリティ高し。</div>
-      <div class="cons"><b>👎 デメリット</b><br>沖縄ならではの自然・海体験は薄い。「これじゃ地元のモールと変わらない」と感じる人もいる(が、ライカム水槽は沖縄ならでは)。</div>
-    </div>
-    <div class="notes">
-      <b>🔥 攻略Tips</b>:
-      <ul style="margin:4px 0; padding-left:18px; font-size:12.5px;">
-        <li>朝はおきみゅー → 暑くなる前にランチ → 一番暑い13〜16時はライカム(屋内)で過ごすという「<b>暑さリレー</b>」設計。</li>
-        <li>ライカムの<b>大水槽は混雑なし</b>(モール来場者の通過点なので)。じっくり見られる。</li>
-        <li>このコース+ホテルの<b>「ちゅらーゆ」夕方利用</b>で、暑さ完全回避の1日が完成。</li>
-        <li>美術館の展示が物足りなければ、すぐ近くの<b>DFSギャラリア(免税店)</b>でぶらぶらも可。</li>
-      </ul>
-      <b>📍 距離</b>: 北谷→おきみゅー(40分) →ライカム(30分) →北谷(20分)<br>
-      <b>🔗 参考</b>: <a href="https://okimu.jp/" target="_blank">沖縄県立博物館・美術館</a> ／ <a href="https://okinawarycom.aeonmall.jp/" target="_blank">イオンモール沖縄ライカム</a>
-    </div>
-    <div class="map-embed">
-      <iframe src="https://maps.google.com/maps?q=%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%A2%E3%83%BC%E3%83%AB%E6%B2%96%E7%B8%84%E3%83%A9%E3%82%A4%E3%82%AB%E3%83%A0&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </div>
-
   <!-- ========== DAY 3 ========== -->
-  <h2><span class="day-tag">3日目</span>8/24(月) — 出発日</h2>
+  <h2 id="day3"><span class="day-tag">3日目</span>8/24(月) — 出発日</h2>
   <div class="confirmed" style="border-color: var(--ocean);">
     <h3 style="margin-top:0;">🚌 当日の流れ（確定）</h3>
     <table class="schedule-table">
@@ -1417,7 +1581,7 @@
   </div>
 
   <!-- ========== BAGGAGE RULES (from HIS しおり) ========== -->
-  <h2>🧳 手荷物・機内持込ルール（ANA）</h2>
+  <h2 id="baggage">🧳 手荷物・機内持込ルール（ANA）</h2>
 
   <div class="alert critical">
     <h3>🔋 モバイルバッテリー新ルール（令和8年4月24日〜）— 今回の旅行から適用</h3>
@@ -1513,7 +1677,7 @@
   </div>
 
   <!-- ========== CHECKLIST ========== -->
-  <h2>🎒 持ち物チェックリスト（8月沖縄・子連れ）</h2>
+  <h2 id="checklist">🎒 持ち物チェックリスト（8月沖縄・子連れ）</h2>
   <div class="checklist">
     <h3 style="margin-top:0;">書類・貴重品（忘れると詰むもの）</h3>
     <ul>
@@ -1557,7 +1721,7 @@
   </div>
 
   <!-- ========== CONTACTS ========== -->
-  <h2>📞 緊急連絡先</h2>
+  <h2 id="contacts">📞 緊急連絡先</h2>
   <p style="font-size:13.5px;color:var(--gray);margin:0 0 4px;">
     当日トラブル（遅刻・道に迷った・体調不良・忘れ物など）が生じた場合の連絡先です。スマホに登録しておくと安心。
   </p>
@@ -1604,5 +1768,6 @@
   </footer>
 
 </div>
+<a class="to-top" href="#top-toc" aria-label="目次へ戻る">↑</a>
 </body>
 </html>
