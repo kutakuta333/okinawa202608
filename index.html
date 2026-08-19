@@ -842,10 +842,13 @@
     text-align: center; font-size: 11px; line-height: 1.2;
     word-break: break-word;
   }
-  .sg.me   { background: #fff2cc; border-color: #f0c419; color: #8a6100; font-weight: 700; }
+  .sg.me   {
+    background: #ffd84d; border: 2px solid #c98a00; color: #4a3200;
+    font-weight: 800; box-shadow: 0 1px 4px rgba(201, 138, 0, 0.35);
+  }
   .sg.his  { background: var(--ocean-light); border-color: #b9dcee; color: var(--ocean-dark); font-weight: 700; font-size: 9.5px; }
   .sg.vac  { background: #fcfdfd; color: #c6ced6; font-size: 10px; }
-  .sg.chg  { border-color: var(--coral); box-shadow: inset 0 0 0 1px var(--coral); background: #fff5f5; }
+  .sg.chg  { border-color: #b8c4cf; border-style: dashed; background: #f3f6f9; color: #5a6b7a; }
   .sg.aux  {
     background: repeating-linear-gradient(45deg, #f4f6f8, #f4f6f8 4px, #e8ecf0 4px, #e8ecf0 8px);
     color: #c0392b; font-weight: 700; font-size: 13px; border-style: dashed;
@@ -896,7 +899,10 @@
   }
 
   /* 会場レイアウト図（横スクロールなしで全体表示） */
-  .plan-svg-wrap svg { display: block; width: 100%; height: auto; }
+  .plan-svg-wrap { overflow-x: auto; }
+  .plan-svg-wrap svg { display: block; width: 100%; height: auto; min-width: 520px; }
+  .plan-hint { display: none; font-size: 11.5px; color: var(--gray); margin: 7px 0 0; text-align: center; }
+  @media (max-width: 620px) { .plan-hint { display: block; } }
   /* 3日目バスの号車わけ */
   .bus-split { display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0 2px; }
   .bus-col {
@@ -912,6 +918,77 @@
   .bus-col.is-me { border-color: #f0c419; }
   .bus-col.is-me .bus-col-h { background: #f0c419; color: #5c4200; }
   .bus-col.is-me .bus-col-b { background: #fffbef; }
+
+  /* ===== 折り畳み（details/summary） ===== */
+  details.foldable > summary,
+  details.course > summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  details.foldable > summary::-webkit-details-marker,
+  details.course > summary::-webkit-details-marker { display: none; }
+  details.foldable > summary::after,
+  details.course > summary::after {
+    content: "▾ 開く";
+    margin-left: auto;
+    flex: none;
+    color: var(--ocean-dark);
+    background: var(--ocean-light);
+    border-radius: 6px;
+    padding: 2px 9px;
+    font-size: 11.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  details.foldable[open] > summary::after,
+  details.course[open] > summary::after { content: "▴ 閉じる"; }
+  details.foldable > summary:hover::after,
+  details.course > summary:hover::after { background: #d3ebf6; }
+  details.foldable > summary .official-badge { margin-bottom: 0; }
+  details.foldable[open] > summary { margin-bottom: 10px; }
+  details.course > summary { margin-bottom: 0; }
+  details.course[open] > summary { margin-bottom: 8px; }
+  .fold-lead {
+    font-size: 13.5px; font-weight: 700; color: var(--gray);
+    margin: 26px 0 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .fold-lead::before, .fold-lead::after {
+    content: ""; height: 1px; background: var(--border); flex: 1;
+  }
+  @media (max-width: 640px) {
+    details.foldable > summary::after,
+    details.course > summary::after { content: "▾"; padding: 2px 7px; font-size: 12px; }
+    details.foldable[open] > summary::after,
+    details.course[open] > summary::after { content: "▴"; }
+  }
+
+  .tbl-legend-h { font-size: 12px; font-weight: 700; color: var(--gray); margin-top: 14px; }
+
+  /* 文章が入る3列テーブル：1列目・3列目の nowrap を解除して横はみ出しを防ぐ */
+  .schedule-table.wrap-cells td:first-child,
+  .schedule-table.wrap-cells td:last-child {
+    white-space: normal;
+    width: auto;
+  }
+  .schedule-table.wrap-cells td:last-child { font-size: 13px; color: var(--ink); }
+  /* ジャンル列だけは1文字ずつ縦に折れないよう固定 */
+  .schedule-table th.genre, .schedule-table td.genre {
+    white-space: nowrap;
+    width: 6em;
+    font-size: 13px;
+  }
+  @media (max-width: 640px) {
+    /* モバイルではカード積みになるので通常の折り返しに戻す */
+    .schedule-table td.genre {
+      white-space: normal !important;
+      width: auto !important;
+      font-weight: 700;
+      color: var(--ocean-dark);
+    }
+  }
 </style>
 </head>
 <body>
@@ -1166,7 +1243,7 @@
     </div>
 
     <h3 style="margin-top:14px;">👨‍👩‍👦‍👦 子連れの楽しみ方おすすめ</h3>
-    <table class="schedule-table">
+    <table class="schedule-table wrap-cells">
       <tr><th>場所・サービス</th><th>内容</th><th>子連れポイント</th></tr>
       <tr>
         <td><b>天然温泉&プール「ちゅらーゆ」</b></td>
@@ -1376,9 +1453,9 @@
       <div class="sg">松田</div>
     </div>
       <div class="sc-tags">
-        <span class="sc-tag"><i class="sc-sw" style="background:#fff2cc;border-color:#f0c419;"></i>加藤家（我が家）</span>
+        <span class="sc-tag" style="color:#4a3200;font-weight:700;"><i class="sc-sw" style="background:#ffd84d;border-color:#c98a00;border-width:2px;"></i>加藤家（我が家）</span>
         <span class="sc-tag"><i class="sc-sw" style="background:#e6f4fa;border-color:#b9dcee;"></i>HIS添乗（判家様）</span>
-        <span class="sc-tag"><i class="sc-sw" style="background:#fff5f5;border-color:#ff6b6b;"></i>しおりから変更された席</span>
+        <span class="sc-tag"><i class="sc-sw" style="background:#f3f6f9;border-color:#b8c4cf;border-style:dashed;"></i>しおりから変更された席</span>
         <span class="sc-tag"><i class="sc-sw" style="background:#eef1f4;border-style:dashed;"></i>補助席（使用しない）</span>
       </div>
     </div>
@@ -1394,8 +1471,8 @@
     </div>
   </div>
 
-  <div class="official">
-    <span class="official-badge">🚌 1日目バス 2号車（Bプラン）— しおり掲載版</span>
+  <details class="official foldable">
+    <summary><span class="official-badge">🚌 1日目バス 2号車（Bプラン）— しおり掲載版</span></summary>
     <p style="font-size:13px;margin:10px 0 0;color:var(--gray);">
       加藤家は乗りませんが、同行の皆さんの配置として掲載。空欄は空席です。
     </p>
@@ -1480,7 +1557,7 @@
       <b>⚠️ 注意</b>：改訂版で<b>太田様が1号車へ移動</b>しているため、この図の10〜11列目（太田様）は変更になる可能性があります。
       2号車の改訂版は配布されていないため、<b>しおり時点の図</b>を参考として掲載しています。
     </div>
-  </div>
+  </details>
 
   <div class="official">
     <span class="official-badge">🚌 3日目バス（8/24・ホテル→国際通り→那覇空港）</span>
@@ -1505,99 +1582,42 @@
   <div class="street-map">
     <div class="street-map-title">🍽️ 1日目 昼食：ロワジールホテル那覇「フォンテーヌ」会場レイアウト（11:30〜12:30）</div>
     <div class="plan-svg-wrap">
-      <svg viewBox="0 0 700 290" role="img" aria-label="ロワジールホテル フォンテーヌ 会場レイアウト" style="font-family:inherit;">
+      <svg viewBox="0 0 700 340" role="img" aria-label="ロワジールホテル フォンテーヌ 会場レイアウト" style="font-family:inherit;">
         <style>
-          .ltb   { fill:#e0cfa0; stroke:#2b2b2b; stroke-width:2.5; }
-          .ltb-me{ fill:#f0c419; stroke:#8a6100; stroke-width:3.5; }
-          .lch   { fill:#ffffff; stroke:#2b2b2b; stroke-width:2; }
-          .ltl   { font-size:21px; font-weight:700; fill:#123; text-anchor:middle; }
-          .ltl-me{ font-size:21px; font-weight:700; fill:#5c4200; text-anchor:middle; }
-          .lbar  { fill:#fdf1d6; stroke:#c8b48a; stroke-width:2; }
-          .lbl   { font-size:13px; font-weight:700; fill:#7a663c; text-anchor:middle; }
+          .ltb    { fill:#e8d9ae; stroke:#5a4a22; stroke-width:2; }
+          .ltb-me { fill:#ffd84d; stroke:#8a5c00; stroke-width:3.5; }
+          .lch    { fill:#ffffff; stroke:#5a4a22; stroke-width:1.6; }
+          .ltl    { font-size:19px; font-weight:800; fill:#3d3116; text-anchor:middle; }
+          .ltl-me { font-size:19px; font-weight:800; fill:#4a3200; text-anchor:middle; }
+          .lnm    { font-size:17px; font-weight:700; fill:#4d4022; text-anchor:middle; }
+          .lnm-me { font-size:17px; font-weight:800; fill:#4a3200; text-anchor:middle; }
+          .lbar   { fill:#fdf1d6; stroke:#c8b48a; stroke-width:2; }
+          .lbl    { font-size:14px; font-weight:700; fill:#7a663c; text-anchor:middle; }
         </style>
-        <rect width="700" height="290" fill="#ffffff"/>
-        <!-- 料理台 -->
-        <rect class="lbar" x="34" y="26" width="264" height="22"/><text class="lbl" x="166" y="41">温製料理台</text>
-        <rect class="lbar" x="298" y="26" width="196" height="22"/><text class="lbl" x="396" y="41">サラダ＆デザート</text>
-        <rect class="lbar" x="494" y="6" width="22" height="42"/><text class="lbl" x="505" y="22" transform="rotate(90 505 22)">デザート</text>
-        <!-- ドリンクバー -->
-        <rect class="lbar" x="646" y="70" width="22" height="160"/><text class="lbl" x="657" y="150" transform="rotate(90 657 150)">ドリンクバー</text>
-        <!-- 右上 A / B -->
-        <rect class="lch" x="566" y="12" width="14" height="12"/><rect class="lch" x="596" y="12" width="14" height="12"/>
-        <rect class="ltb" x="562" y="24" width="52" height="40"/><text class="ltl" x="588" y="51">A</text>
-        <rect class="lch" x="566" y="64" width="14" height="12"/><rect class="lch" x="596" y="64" width="14" height="12"/>
-        <rect class="lch" x="566" y="86" width="14" height="12"/><rect class="lch" x="596" y="86" width="14" height="12"/>
-        <rect class="ltb" x="562" y="98" width="52" height="40"/><text class="ltl" x="588" y="125">B</text>
-        <rect class="lch" x="566" y="138" width="14" height="12"/><rect class="lch" x="596" y="138" width="14" height="12"/>
-        <!-- 中央列（左から J I H G F E D C） -->
-        <g>
-          <rect class="lch" x="42" y="104" width="16" height="13"/><rect class="lch" x="74" y="104" width="16" height="13"/>
-          <rect class="ltb" x="38" y="117" width="56" height="44"/><text class="ltl" x="66" y="146">J</text>
-          <rect class="lch" x="42" y="161" width="16" height="13"/><rect class="lch" x="74" y="161" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="112" y="104" width="16" height="13"/><rect class="lch" x="144" y="104" width="16" height="13"/>
-          <rect class="ltb" x="108" y="117" width="56" height="44"/><text class="ltl" x="136" y="146">I</text>
-          <rect class="lch" x="112" y="161" width="16" height="13"/><rect class="lch" x="144" y="161" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="182" y="104" width="16" height="13"/><rect class="lch" x="214" y="104" width="16" height="13"/>
-          <rect class="ltb-me" x="178" y="117" width="56" height="44"/><text class="ltl-me" x="206" y="146">H</text>
-          <rect class="lch" x="182" y="161" width="16" height="13"/><rect class="lch" x="214" y="161" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="258" y="104" width="16" height="13"/>
-          <rect class="ltb" x="248" y="117" width="38" height="44"/><text class="ltl" x="267" y="146">G</text>
-          <rect class="lch" x="258" y="161" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="304" y="104" width="16" height="13"/><rect class="lch" x="336" y="104" width="16" height="13"/>
-          <rect class="ltb" x="300" y="117" width="56" height="44"/><text class="ltl" x="328" y="146">F</text>
-          <rect class="lch" x="304" y="161" width="16" height="13"/><rect class="lch" x="336" y="161" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="374" y="104" width="16" height="13"/><rect class="lch" x="406" y="104" width="16" height="13"/>
-          <rect class="ltb" x="370" y="117" width="56" height="44"/><text class="ltl" x="398" y="146">E</text>
-          <rect class="lch" x="374" y="161" width="16" height="13"/><rect class="lch" x="406" y="161" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="450" y="104" width="16" height="13"/>
-          <rect class="ltb" x="440" y="117" width="38" height="44"/><text class="ltl" x="459" y="146">D</text>
-          <rect class="lch" x="450" y="161" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="512" y="104" width="16" height="13"/>
-          <rect class="ltb" x="502" y="117" width="38" height="44"/><text class="ltl" x="521" y="146">C</text>
-          <rect class="lch" x="512" y="161" width="16" height="13"/>
-        </g>
-        <!-- 下列（左から O N M L K） -->
-        <g>
-          <rect class="lch" x="60" y="196" width="16" height="13"/><rect class="lch" x="90" y="196" width="16" height="13"/><rect class="lch" x="120" y="196" width="16" height="13"/>
-          <rect class="ltb" x="54" y="209" width="92" height="44"/><text class="ltl" x="100" y="238">O</text>
-          <rect class="lch" x="60" y="253" width="16" height="13"/><rect class="lch" x="90" y="253" width="16" height="13"/><rect class="lch" x="120" y="253" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="186" y="196" width="16" height="13"/><rect class="lch" x="216" y="196" width="16" height="13"/><rect class="lch" x="246" y="196" width="16" height="13"/>
-          <rect class="ltb" x="180" y="209" width="92" height="44"/><text class="ltl" x="226" y="238">N</text>
-          <rect class="lch" x="186" y="253" width="16" height="13"/><rect class="lch" x="216" y="253" width="16" height="13"/><rect class="lch" x="246" y="253" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="316" y="196" width="16" height="13"/><rect class="lch" x="348" y="196" width="16" height="13"/>
-          <rect class="ltb" x="312" y="209" width="56" height="44"/><text class="ltl" x="340" y="238">M</text>
-          <rect class="lch" x="316" y="253" width="16" height="13"/><rect class="lch" x="348" y="253" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="414" y="196" width="16" height="13"/>
-          <rect class="ltb" x="404" y="209" width="38" height="44"/><text class="ltl" x="423" y="238">L</text>
-          <rect class="lch" x="414" y="253" width="16" height="13"/>
-        </g>
-        <g>
-          <rect class="lch" x="486" y="196" width="16" height="13"/>
-          <rect class="ltb" x="476" y="209" width="38" height="44"/><text class="ltl" x="495" y="238">K</text>
-          <rect class="lch" x="486" y="253" width="16" height="13"/>
-        </g>
+        <rect width="700" height="340" fill="#ffffff"/>
+        <rect class="lbar" x="30" y="26" width="270" height="24"/><text class="lbl" x="165" y="43">温製料理台</text>
+        <rect class="lbar" x="300" y="26" width="200" height="24"/><text class="lbl" x="400" y="43">サラダ＆デザート</text>
+        <rect class="lbar" x="500" y="4" width="24" height="46"/><text class="lbl" x="512" y="22" transform="rotate(90 512 22)">デザート</text>
+        <rect class="lbar" x="664" y="20" width="24" height="200"/><text class="lbl" x="676" y="120" transform="rotate(90 676 120)">ドリンクバー</text>
+        <g><rect class="lch" x="37.3" y="103.0" width="17" height="13"/><rect class="lch" x="61.7" y="103.0" width="17" height="13"/><rect class="lch" x="37.3" y="176.0" width="17" height="13"/><rect class="lch" x="61.7" y="176.0" width="17" height="13"/><rect class="ltb" x="30" y="116" width="56" height="60" rx="3"/><text class="ltl" x="58.0" y="140.0">J</text><text class="lnm" x="58.0" y="164.0" style="font-size:17px;">佐藤</text></g>
+        <g><rect class="lch" x="105.3" y="103.0" width="17" height="13"/><rect class="lch" x="129.7" y="103.0" width="17" height="13"/><rect class="lch" x="105.3" y="176.0" width="17" height="13"/><rect class="lch" x="129.7" y="176.0" width="17" height="13"/><rect class="ltb" x="98" y="116" width="56" height="60" rx="3"/><text class="ltl" x="126.0" y="140.0">I</text><text class="lnm" x="126.0" y="164.0" style="font-size:17px;">三崎</text></g>
+        <g><rect class="lch" x="173.3" y="103.0" width="17" height="13"/><rect class="lch" x="197.7" y="103.0" width="17" height="13"/><rect class="lch" x="173.3" y="176.0" width="17" height="13"/><rect class="lch" x="197.7" y="176.0" width="17" height="13"/><rect class="ltb-me" x="166" y="116" width="56" height="60" rx="3"/><text class="ltl-me" x="194.0" y="140.0">H</text><text class="lnm-me" x="194.0" y="164.0" style="font-size:17px;">加藤</text></g>
+        <g><rect class="lch" x="241.3" y="103.0" width="17" height="13"/><rect class="lch" x="265.7" y="103.0" width="17" height="13"/><rect class="lch" x="241.3" y="176.0" width="17" height="13"/><rect class="lch" x="265.7" y="176.0" width="17" height="13"/><rect class="ltb" x="234" y="116" width="56" height="60" rx="3"/><text class="ltl" x="262.0" y="136.0" style="font-size:16px;">G</text><text class="lnm" x="262.0" y="156.0" style="font-size:14px;">今枝</text><text class="lnm" x="262.0" y="172.0" style="font-size:14px;">湯浅</text></g>
+        <g><rect class="lch" x="309.3" y="103.0" width="17" height="13"/><rect class="lch" x="333.7" y="103.0" width="17" height="13"/><rect class="lch" x="309.3" y="176.0" width="17" height="13"/><rect class="lch" x="333.7" y="176.0" width="17" height="13"/><rect class="ltb" x="302" y="116" width="56" height="60" rx="3"/><text class="ltl" x="330.0" y="140.0">F</text><text class="lnm" x="330.0" y="164.0" style="font-size:17px;">池川</text></g>
+        <g><rect class="lch" x="377.3" y="103.0" width="17" height="13"/><rect class="lch" x="401.7" y="103.0" width="17" height="13"/><rect class="lch" x="377.3" y="176.0" width="17" height="13"/><rect class="lch" x="401.7" y="176.0" width="17" height="13"/><rect class="ltb" x="370" y="116" width="56" height="60" rx="3"/><text class="ltl" x="398.0" y="140.0">E</text><text class="lnm" x="398.0" y="164.0" style="font-size:17px;">前原</text></g>
+        <g><rect class="lch" x="445.3" y="103.0" width="17" height="13"/><rect class="lch" x="469.7" y="103.0" width="17" height="13"/><rect class="lch" x="445.3" y="176.0" width="17" height="13"/><rect class="lch" x="469.7" y="176.0" width="17" height="13"/><rect class="ltb" x="438" y="116" width="56" height="60" rx="3"/><text class="ltl" x="466.0" y="140.0">D</text><text class="lnm" x="466.0" y="164.0" style="font-size:17px;">立道</text></g>
+        <g><rect class="lch" x="513.3" y="103.0" width="17" height="13"/><rect class="lch" x="537.7" y="103.0" width="17" height="13"/><rect class="lch" x="513.3" y="176.0" width="17" height="13"/><rect class="lch" x="537.7" y="176.0" width="17" height="13"/><rect class="ltb" x="506" y="116" width="56" height="60" rx="3"/><text class="ltl" x="534.0" y="140.0">C</text><text class="lnm" x="534.0" y="164.0" style="font-size:17px;">高木</text></g>
+        <g><rect class="lch" x="597.3" y="7.0" width="17" height="13"/><rect class="lch" x="621.7" y="7.0" width="17" height="13"/><rect class="lch" x="597.3" y="80.0" width="17" height="13"/><rect class="lch" x="621.7" y="80.0" width="17" height="13"/><rect class="ltb" x="590" y="20" width="56" height="60" rx="3"/><text class="ltl" x="618.0" y="44.0">A</text><text class="lnm" x="618.0" y="68.0" style="font-size:17px;">石田</text></g>
+        <g><rect class="lch" x="597.3" y="103.0" width="17" height="13"/><rect class="lch" x="621.7" y="103.0" width="17" height="13"/><rect class="lch" x="597.3" y="176.0" width="17" height="13"/><rect class="lch" x="621.7" y="176.0" width="17" height="13"/><rect class="ltb" x="590" y="116" width="56" height="60" rx="3"/><text class="ltl" x="618.0" y="140.0">B</text><text class="lnm" x="618.0" y="164.0" style="font-size:17px;">大岡</text></g>
+        <g><rect class="lch" x="46.2" y="227.0" width="17" height="13"/><rect class="lch" x="73.5" y="227.0" width="17" height="13"/><rect class="lch" x="100.8" y="227.0" width="17" height="13"/><rect class="lch" x="46.2" y="300.0" width="17" height="13"/><rect class="lch" x="73.5" y="300.0" width="17" height="13"/><rect class="lch" x="100.8" y="300.0" width="17" height="13"/><rect class="ltb" x="36" y="240" width="92" height="60" rx="3"/><text class="ltl" x="82.0" y="264.0">O</text><text class="lnm" x="82.0" y="288.0" style="font-size:17px;">太田</text></g>
+        <g><rect class="lch" x="162.2" y="227.0" width="17" height="13"/><rect class="lch" x="189.5" y="227.0" width="17" height="13"/><rect class="lch" x="216.8" y="227.0" width="17" height="13"/><rect class="lch" x="162.2" y="300.0" width="17" height="13"/><rect class="lch" x="189.5" y="300.0" width="17" height="13"/><rect class="lch" x="216.8" y="300.0" width="17" height="13"/><rect class="ltb" x="152" y="240" width="92" height="60" rx="3"/><text class="ltl" x="198.0" y="264.0">N</text><text class="lnm" x="198.0" y="288.0" style="font-size:17px;">松田</text></g>
+        <g><rect class="lch" x="275.3" y="227.0" width="17" height="13"/><rect class="lch" x="299.7" y="227.0" width="17" height="13"/><rect class="lch" x="275.3" y="300.0" width="17" height="13"/><rect class="lch" x="299.7" y="300.0" width="17" height="13"/><rect class="ltb" x="268" y="240" width="56" height="60" rx="3"/><text class="ltl" x="296.0" y="264.0">M</text><text class="lnm" x="296.0" y="288.0" style="font-size:17px;">小林</text></g>
+        <g><rect class="lch" x="355.3" y="227.0" width="17" height="13"/><rect class="lch" x="379.7" y="227.0" width="17" height="13"/><rect class="lch" x="355.3" y="300.0" width="17" height="13"/><rect class="lch" x="379.7" y="300.0" width="17" height="13"/><rect class="ltb" x="348" y="240" width="56" height="60" rx="3"/><text class="ltl" x="376.0" y="264.0">L</text><text class="lnm" x="376.0" y="288.0" style="font-size:17px;">中村</text></g>
+        <g><rect class="lch" x="435.3" y="227.0" width="17" height="13"/><rect class="lch" x="459.7" y="227.0" width="17" height="13"/><rect class="lch" x="435.3" y="300.0" width="17" height="13"/><rect class="lch" x="459.7" y="300.0" width="17" height="13"/><rect class="ltb" x="428" y="240" width="56" height="60" rx="3"/><text class="ltl" x="456.0" y="264.0">K</text><text class="lnm" x="456.0" y="288.0" style="font-size:17px;">平野</text></g>
       </svg>
     </div>
+      <p class="plan-hint">← 図は横にスクロールできます →</p>
+      <div class="tbl-legend-h">記号と卓の対応（図に併記済み・索引用）</div>
       <div class="tbl-legend">
         <div><b>A</b><span>石田様</span></div>
         <div><b>B</b><span>大岡様</span></div>
@@ -1624,116 +1644,58 @@
   <div class="street-map">
     <div class="street-map-title">🔥 1日目 夕食：ホテル内「ヤンバルクッチーナ」BBQ テラス席レイアウト（18:00〜）</div>
     <div class="plan-svg-wrap">
-      <svg viewBox="0 0 720 265" role="img" aria-label="ヤンバルクッチーナ テラス席レイアウト" style="font-family:inherit;">
+      <svg viewBox="0 0 700 402" role="img" aria-label="ヤンバルクッチーナ テラス席レイアウト" style="font-family:inherit;">
         <style>
-          .dtb   { fill:#f9a3a3; stroke:#1a1a1a; stroke-width:2.5; }
-          .dtb-me{ fill:#f0c419; stroke:#8a6100; stroke-width:3.5; }
-          .dch   { fill:#ffffff; stroke:#1a1a1a; stroke-width:2; }
-          .dtl   { font-size:18px; font-weight:700; fill:#3a1010; text-anchor:middle; }
-          .dtl-me{ font-size:18px; font-weight:700; fill:#5c4200; text-anchor:middle; }
-          .dlc   { fill:#ffffff; stroke:#123a6b; stroke-width:2.5; }
-          .dll   { font-size:15px; font-weight:700; fill:#123a6b; text-anchor:middle; }
-          .dgrp  { fill:none; stroke:#123a6b; stroke-width:3; stroke-dasharray:9 6; }
-          .dent  { font-size:14px; font-weight:700; fill:#33484f; text-anchor:middle; }
+          .dtb    { fill:#fbb0ab; stroke:#7a2b26; stroke-width:2; }
+          .dtb-me { fill:#ffd84d; stroke:#8a5c00; stroke-width:3.5; }
+          .dch    { fill:#ffffff; stroke:#4a4a4a; stroke-width:1.6; }
+          .dtl    { font-size:17px; font-weight:800; fill:#5c1a16; text-anchor:middle; }
+          .dtl-me { font-size:17px; font-weight:800; fill:#4a3200; text-anchor:middle; }
+          .dnm    { font-size:18px; font-weight:700; fill:#4a1b18; text-anchor:middle; }
+          .dnm-me { font-size:18px; font-weight:800; fill:#4a3200; text-anchor:middle; }
+          .dlc    { fill:#ffffff; stroke:#123a6b; stroke-width:2.5; }
+          .dll    { font-size:15px; font-weight:800; fill:#123a6b; text-anchor:middle; }
+          .dgl    { font-size:17px; font-weight:800; fill:#123a6b; text-anchor:start; }
+          .dgrp   { fill:none; stroke:#123a6b; stroke-width:3; stroke-dasharray:9 6; }
+          .dent   { font-size:14px; font-weight:700; fill:#2d4a52; text-anchor:middle; }
         </style>
-        <rect width="720" height="265" rx="6" fill="#d9f4f7"/>
-        <!-- キッチン室 -->
-        <rect class="dch" x="216" y="60" width="70" height="44"/><text class="dent" x="251" y="120">キッチン室</text>
-        <!-- G卓グループ（118+119） -->
-        <rect class="dgrp" x="352" y="34" width="140" height="96" rx="12"/>
-        <circle class="dlc" cx="422" cy="36" r="13"/><text class="dll" x="422" y="41">G</text>
-        <!-- L卓グループ（109+110） -->
-        <rect class="dgrp" x="518" y="154" width="140" height="96" rx="12"/>
-        <circle class="dlc" cx="588" cy="248" r="13"/><text class="dll" x="588" y="253">L</text>
-        <!-- 小テーブル -->
-        <rect class="dtb" x="466" y="188" width="40" height="34"/>
-        <!-- テラス入口 -->
-        <line x1="230" y1="252" x2="350" y2="252" stroke="#33484f" stroke-width="3"/>
-        <text class="dent" x="290" y="246">テラス入口</text>
-        <g>
-          <rect class="dch" x="25" y="46" width="17" height="14"/><rect class="dch" x="72" y="46" width="17" height="14"/>
-          <rect class="dtb" x="34" y="60" width="46" height="44"/><text class="dtl" x="57" y="88">114</text>
-          <rect class="dch" x="25" y="104" width="17" height="14"/><rect class="dch" x="72" y="104" width="17" height="14"/>
-          <circle class="dlc" cx="57" cy="36" r="13"/><text class="dll" x="57" y="41">A</text>
-        </g>
-        <g>
-          <rect class="dch" x="91" y="46" width="17" height="14"/><rect class="dch" x="138" y="46" width="17" height="14"/>
-          <rect class="dtb" x="100" y="60" width="46" height="44"/><text class="dtl" x="123" y="88">115</text>
-          <rect class="dch" x="91" y="104" width="17" height="14"/><rect class="dch" x="138" y="104" width="17" height="14"/>
-          <circle class="dlc" cx="123" cy="36" r="13"/><text class="dll" x="123" y="41">B</text>
-        </g>
-        <g>
-          <rect class="dch" x="157" y="46" width="17" height="14"/><rect class="dch" x="204" y="46" width="17" height="14"/>
-          <rect class="dtb" x="166" y="60" width="46" height="44"/><text class="dtl" x="189" y="88">116</text>
-          <rect class="dch" x="157" y="104" width="17" height="14"/><rect class="dch" x="204" y="104" width="17" height="14"/>
-          <circle class="dlc" cx="189" cy="36" r="13"/><text class="dll" x="189" y="41">C</text>
-        </g>
-        <g>
-          <rect class="dch" x="291" y="46" width="17" height="14"/><rect class="dch" x="338" y="46" width="17" height="14"/>
-          <rect class="dtb-me" x="300" y="60" width="46" height="44"/><text class="dtl-me" x="323" y="88">117</text>
-          <rect class="dch" x="291" y="104" width="17" height="14"/><rect class="dch" x="338" y="104" width="17" height="14"/>
-          <circle class="dlc" cx="323" cy="36" r="13"/><text class="dll" x="323" y="41">F</text>
-        </g>
-        <g>
-          <rect class="dch" x="357" y="46" width="17" height="14"/><rect class="dch" x="404" y="46" width="17" height="14"/>
-          <rect class="dtb" x="366" y="60" width="46" height="44"/><text class="dtl" x="389" y="88">118</text>
-          <rect class="dch" x="357" y="104" width="17" height="14"/><rect class="dch" x="404" y="104" width="17" height="14"/>
-          
-        </g>
-        <g>
-          <rect class="dch" x="423" y="46" width="17" height="14"/><rect class="dch" x="470" y="46" width="17" height="14"/>
-          <rect class="dtb" x="432" y="60" width="46" height="44"/><text class="dtl" x="455" y="88">119</text>
-          <rect class="dch" x="423" y="104" width="17" height="14"/><rect class="dch" x="470" y="104" width="17" height="14"/>
-          
-        </g>
-        <g>
-          <rect class="dch" x="489" y="46" width="17" height="14"/><rect class="dch" x="536" y="46" width="17" height="14"/>
-          <rect class="dtb" x="498" y="60" width="46" height="44"/><text class="dtl" x="521" y="88">120</text>
-          <rect class="dch" x="489" y="104" width="17" height="14"/><rect class="dch" x="536" y="104" width="17" height="14"/>
-          <circle class="dlc" cx="521" cy="36" r="13"/><text class="dll" x="521" y="41">H</text>
-        </g>
-        <g>
-          <rect class="dch" x="555" y="46" width="17" height="14"/><rect class="dch" x="602" y="46" width="17" height="14"/>
-          <rect class="dtb" x="564" y="60" width="46" height="44"/><text class="dtl" x="587" y="88">121</text>
-          <rect class="dch" x="555" y="104" width="17" height="14"/><rect class="dch" x="602" y="104" width="17" height="14"/>
-          <circle class="dlc" cx="587" cy="36" r="13"/><text class="dll" x="587" y="41">I</text>
-        </g>
-        <g>
-          <rect class="dch" x="621" y="46" width="17" height="14"/><rect class="dch" x="668" y="46" width="17" height="14"/>
-          <rect class="dtb" x="630" y="60" width="46" height="44"/><text class="dtl" x="653" y="88">122</text>
-          <rect class="dch" x="621" y="104" width="17" height="14"/><rect class="dch" x="668" y="104" width="17" height="14"/>
-          <circle class="dlc" cx="653" cy="36" r="13"/><text class="dll" x="653" y="41">J</text>
-        </g>
-        <g>
-          <rect class="dch" x="61" y="166" width="17" height="14"/><rect class="dch" x="108" y="166" width="17" height="14"/>
-          <rect class="dtb" x="70" y="180" width="46" height="44"/><text class="dtl" x="93" y="208">106</text>
-          <rect class="dch" x="61" y="224" width="17" height="14"/><rect class="dch" x="108" y="224" width="17" height="14"/>
-          <circle class="dlc" cx="93" cy="248" r="13"/><text class="dll" x="93" y="253">D</text>
-        </g>
-        <g>
-          <rect class="dch" x="127" y="166" width="17" height="14"/><rect class="dch" x="174" y="166" width="17" height="14"/>
-          <rect class="dtb" x="136" y="180" width="46" height="44"/><text class="dtl" x="159" y="208">107</text>
-          <rect class="dch" x="127" y="224" width="17" height="14"/><rect class="dch" x="174" y="224" width="17" height="14"/>
-          <circle class="dlc" cx="159" cy="248" r="13"/><text class="dll" x="159" y="253">E</text>
-        </g>
-        <g>
-          <rect class="dch" x="391" y="166" width="17" height="14"/><rect class="dch" x="438" y="166" width="17" height="14"/>
-          <rect class="dtb" x="400" y="180" width="46" height="44"/><text class="dtl" x="423" y="208">108</text>
-          <rect class="dch" x="391" y="224" width="17" height="14"/><rect class="dch" x="438" y="224" width="17" height="14"/>
-          <circle class="dlc" cx="423" cy="248" r="13"/><text class="dll" x="423" y="253">K</text>
-        </g>
-        <g>
-          <rect class="dch" x="523" y="166" width="17" height="14"/><rect class="dch" x="570" y="166" width="17" height="14"/>
-          <rect class="dtb" x="532" y="180" width="46" height="44"/><text class="dtl" x="555" y="208">109</text>
-          <rect class="dch" x="523" y="224" width="17" height="14"/><rect class="dch" x="570" y="224" width="17" height="14"/>
-        </g>
-        <g>
-          <rect class="dch" x="589" y="166" width="17" height="14"/><rect class="dch" x="636" y="166" width="17" height="14"/>
-          <rect class="dtb" x="598" y="180" width="46" height="44"/><text class="dtl" x="621" y="208">110</text>
-          <rect class="dch" x="589" y="224" width="17" height="14"/><rect class="dch" x="636" y="224" width="17" height="14"/>
-        </g>
+        <rect width="700" height="402" rx="6" fill="#ddf4f7"/>
+        <rect class="dch" x="212" y="106" width="62" height="62"/><text class="dent" x="243" y="188">キッチン室</text>
+        <rect class="dgrp" x="344" y="88" width="146" height="98" rx="12"/>
+        <rect class="dgrp" x="500" y="262" width="146" height="98" rx="12"/>
+        <line x1="196" y1="332" x2="330" y2="332" stroke="#2d4a52" stroke-width="3"/>
+        <text class="dent" x="263" y="326">テラス入口</text>
+        <circle class="dlc" cx="352" cy="208" r="14"/><text class="dll" x="352" y="213">G</text><text class="dgl" x="372" y="214">太田・今枝・湯浅</text>
+        <circle class="dlc" cx="516" cy="382" r="14"/><text class="dll" x="516" y="387">L</text><text class="dgl" x="536" y="388">松田</text>
+        <g><rect class="dch" x="27.3" y="93.0" width="17" height="13"/><rect class="dch" x="27.3" y="168.0" width="17" height="13"/><rect class="dch" x="51.7" y="93.0" width="17" height="13"/><rect class="dch" x="51.7" y="168.0" width="17" height="13"/><rect class="dtb" x="20" y="106" width="56" height="62" rx="3"/><text class="dtl" x="48.0" y="130.0" style="font-size:19px;">114</text><text class="dnm" x="48.0" y="155.0" style="font-size:18px;">池川</text></g>
+        <circle class="dlc" cx="48" cy="72" r="14"/><text class="dll" x="48" y="77">A</text>
+        <g><rect class="dch" x="93.3" y="93.0" width="17" height="13"/><rect class="dch" x="93.3" y="168.0" width="17" height="13"/><rect class="dch" x="117.7" y="93.0" width="17" height="13"/><rect class="dch" x="117.7" y="168.0" width="17" height="13"/><rect class="dtb" x="86" y="106" width="56" height="62" rx="3"/><text class="dtl" x="114.0" y="130.0" style="font-size:19px;">115</text><text class="dnm" x="114.0" y="155.0" style="font-size:18px;">三崎</text></g>
+        <circle class="dlc" cx="114" cy="72" r="14"/><text class="dll" x="114" y="77">B</text>
+        <g><rect class="dch" x="159.3" y="93.0" width="17" height="13"/><rect class="dch" x="159.3" y="168.0" width="17" height="13"/><rect class="dch" x="183.7" y="93.0" width="17" height="13"/><rect class="dch" x="183.7" y="168.0" width="17" height="13"/><rect class="dtb" x="152" y="106" width="56" height="62" rx="3"/><text class="dtl" x="180.0" y="126.0" style="font-size:17px;">116</text><text class="dnm" x="180.0" y="146.0" style="font-size:15px;">中村</text><text class="dnm" x="180.0" y="163.0" style="font-size:15px;">高木</text></g>
+        <circle class="dlc" cx="180" cy="72" r="14"/><text class="dll" x="180" y="77">C</text>
+        <g><rect class="dch" x="297.3" y="93.0" width="17" height="13"/><rect class="dch" x="297.3" y="168.0" width="17" height="13"/><rect class="dch" x="321.7" y="93.0" width="17" height="13"/><rect class="dch" x="321.7" y="168.0" width="17" height="13"/><rect class="dtb-me" x="290" y="106" width="56" height="62" rx="3"/><text class="dtl-me" x="318.0" y="130.0" style="font-size:19px;">117</text><text class="dnm-me" x="318.0" y="155.0" style="font-size:18px;">加藤</text></g>
+        <circle class="dlc" cx="318" cy="72" r="14"/><text class="dll" x="318" y="77">F</text>
+        <g><rect class="dch" x="359.3" y="93.0" width="17" height="13"/><rect class="dch" x="359.3" y="168.0" width="17" height="13"/><rect class="dch" x="383.7" y="93.0" width="17" height="13"/><rect class="dch" x="383.7" y="168.0" width="17" height="13"/><rect class="dtb" x="352" y="106" width="56" height="62" rx="3"/><text class="dtl" x="380.0" y="144.0" style="font-size:19px;">118</text></g>
+        <g><rect class="dch" x="425.3" y="93.0" width="17" height="13"/><rect class="dch" x="425.3" y="168.0" width="17" height="13"/><rect class="dch" x="449.7" y="93.0" width="17" height="13"/><rect class="dch" x="449.7" y="168.0" width="17" height="13"/><rect class="dtb" x="418" y="106" width="56" height="62" rx="3"/><text class="dtl" x="446.0" y="144.0" style="font-size:19px;">119</text></g>
+        <g><rect class="dch" x="497.3" y="93.0" width="17" height="13"/><rect class="dch" x="497.3" y="168.0" width="17" height="13"/><rect class="dch" x="521.7" y="93.0" width="17" height="13"/><rect class="dch" x="521.7" y="168.0" width="17" height="13"/><rect class="dtb" x="490" y="106" width="56" height="62" rx="3"/><text class="dtl" x="518.0" y="130.0" style="font-size:19px;">120</text><text class="dnm" x="518.0" y="155.0" style="font-size:18px;">石田</text></g>
+        <circle class="dlc" cx="518" cy="72" r="14"/><text class="dll" x="518" y="77">H</text>
+        <g><rect class="dch" x="563.3" y="93.0" width="17" height="13"/><rect class="dch" x="563.3" y="168.0" width="17" height="13"/><rect class="dch" x="587.7" y="93.0" width="17" height="13"/><rect class="dch" x="587.7" y="168.0" width="17" height="13"/><rect class="dtb" x="556" y="106" width="56" height="62" rx="3"/><text class="dtl" x="584.0" y="130.0" style="font-size:19px;">121</text><text class="dnm" x="584.0" y="155.0" style="font-size:18px;">大岡</text></g>
+        <circle class="dlc" cx="584" cy="72" r="14"/><text class="dll" x="584" y="77">I</text>
+        <g><rect class="dch" x="629.3" y="93.0" width="17" height="13"/><rect class="dch" x="629.3" y="168.0" width="17" height="13"/><rect class="dch" x="653.7" y="93.0" width="17" height="13"/><rect class="dch" x="653.7" y="168.0" width="17" height="13"/><rect class="dtb" x="622" y="106" width="56" height="62" rx="3"/><text class="dtl" x="650.0" y="130.0" style="font-size:19px;">122</text><text class="dnm" x="650.0" y="155.0" style="font-size:18px;">前原</text></g>
+        <circle class="dlc" cx="650" cy="72" r="14"/><text class="dll" x="650" y="77">J</text>
+        <g><rect class="dch" x="57.3" y="267.0" width="17" height="13"/><rect class="dch" x="57.3" y="342.0" width="17" height="13"/><rect class="dch" x="81.7" y="267.0" width="17" height="13"/><rect class="dch" x="81.7" y="342.0" width="17" height="13"/><rect class="dtb" x="50" y="280" width="56" height="62" rx="3"/><text class="dtl" x="78.0" y="300.0" style="font-size:17px;">106</text><text class="dnm" x="78.0" y="320.0" style="font-size:15px;">平野</text><text class="dnm" x="78.0" y="337.0" style="font-size:15px;">立道</text></g>
+        <circle class="dlc" cx="78" cy="360" r="14"/><text class="dll" x="78" y="365">D</text>
+        <g><rect class="dch" x="123.3" y="267.0" width="17" height="13"/><rect class="dch" x="123.3" y="342.0" width="17" height="13"/><rect class="dch" x="147.7" y="267.0" width="17" height="13"/><rect class="dch" x="147.7" y="342.0" width="17" height="13"/><rect class="dtb" x="116" y="280" width="56" height="62" rx="3"/><text class="dtl" x="144.0" y="304.0" style="font-size:19px;">107</text><text class="dnm" x="144.0" y="329.0" style="font-size:18px;">小林</text></g>
+        <circle class="dlc" cx="144" cy="360" r="14"/><text class="dll" x="144" y="365">E</text>
+        <g><rect class="dch" x="407.3" y="267.0" width="17" height="13"/><rect class="dch" x="407.3" y="342.0" width="17" height="13"/><rect class="dch" x="431.7" y="267.0" width="17" height="13"/><rect class="dch" x="431.7" y="342.0" width="17" height="13"/><rect class="dtb" x="400" y="280" width="56" height="62" rx="3"/><text class="dtl" x="428.0" y="304.0" style="font-size:19px;">108</text><text class="dnm" x="428.0" y="329.0" style="font-size:18px;">佐藤</text></g>
+        <circle class="dlc" cx="428" cy="360" r="14"/><text class="dll" x="428" y="365">K</text>
+        <g><rect class="dch" x="515.3" y="267.0" width="17" height="13"/><rect class="dch" x="515.3" y="342.0" width="17" height="13"/><rect class="dch" x="539.7" y="267.0" width="17" height="13"/><rect class="dch" x="539.7" y="342.0" width="17" height="13"/><rect class="dtb" x="508" y="280" width="56" height="62" rx="3"/><text class="dtl" x="536.0" y="318.0" style="font-size:19px;">109</text></g>
+        <g><rect class="dch" x="581.3" y="267.0" width="17" height="13"/><rect class="dch" x="581.3" y="342.0" width="17" height="13"/><rect class="dch" x="605.7" y="267.0" width="17" height="13"/><rect class="dch" x="605.7" y="342.0" width="17" height="13"/><rect class="dtb" x="574" y="280" width="56" height="62" rx="3"/><text class="dtl" x="602.0" y="318.0" style="font-size:19px;">110</text></g>
+        <rect class="dtb" x="466" y="294" width="34" height="34" rx="3"/>
       </svg>
     </div>
+      <p class="plan-hint">← 図は横にスクロールできます →</p>
+      <div class="tbl-legend-h">記号と卓の対応（図に併記済み・索引用）</div>
       <div class="tbl-legend">
         <div><b>A</b><span>池川様</span></div>
         <div><b>B</b><span>三崎様</span></div>
@@ -1889,13 +1851,15 @@
     </div>
   </div>
 
+  <div class="fold-lead">その他の候補（タップで開く）</div>
+
   <!-- COURSE C: 王道・北部1日 -->
-  <div class="course course-C" id="course-C">
-    <div class="course-head">
+  <details class="course course-C" id="course-C">
+    <summary class="course-head">
       <span class="course-badge">C</span>
       <h3 class="course-title" style="margin:0;">王道・北部1日コース</h3>
       <span class="course-tag tag-visited">★再訪</span>
-    </div>
+    </summary>
     <div class="badge-row">
       <span class="badge badge-hot">☀️ 暑い</span>
       <span class="badge badge-crowd">👥👥👥 大混雑</span>
@@ -1928,15 +1892,15 @@
     <div class="map-embed">
       <iframe src="https://maps.google.com/maps?q=%E6%B2%96%E7%B8%84%E7%BE%8E%E3%82%89%E6%B5%B7%E6%B0%B4%E6%97%8F%E9%A4%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-  </div>
+  </details>
 
   <!-- COURSE D: 中部ゆったり自然体験 -->
-  <div class="course course-D" id="course-D">
-    <div class="course-head">
+  <details class="course course-D" id="course-D">
+    <summary class="course-head">
       <span class="course-badge">D</span>
       <h3 class="course-title" style="margin:0;">中部ゆったり自然体験コース</h3>
       <span class="course-tag tag-recommend">◎一押し</span>
-    </div>
+    </summary>
     <div class="badge-row">
       <span class="badge badge-mild">🌤️ 木陰+屋内多め</span>
       <span class="badge badge-normal">👥👥 普通</span>
@@ -1969,14 +1933,14 @@
     <div class="map-embed">
       <iframe src="https://maps.google.com/maps?q=%E3%83%93%E3%82%AA%E3%82%B9%E3%81%AE%E4%B8%98&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-  </div>
+  </details>
 
   <!-- COURSE E: マリン体験 -->
-  <div class="course course-E" id="course-E">
-    <div class="course-head">
+  <details class="course course-E" id="course-E">
+    <summary class="course-head">
       <span class="course-badge">E</span>
       <h3 class="course-title" style="margin:0;">マリン体験コース</h3>
-    </div>
+    </summary>
     <div class="badge-row">
       <span class="badge badge-hot">☀️ 強烈な日差し</span>
       <span class="badge badge-crowd">👥👥👥 青の洞窟は大混雑</span>
@@ -2009,15 +1973,15 @@
     <div class="map-embed">
       <iframe src="https://maps.google.com/maps?q=%E9%9D%92%E3%81%AE%E6%B4%9E%E7%AA%9F%20%E6%81%A9%E7%B4%8D%E6%9D%91&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-  </div>
+  </details>
 
   <!-- COURSE F: 南部・沖縄文化テーマパーク -->
-  <div class="course course-F" id="course-F">
-    <div class="course-head">
+  <details class="course course-F" id="course-F">
+    <summary class="course-head">
       <span class="course-badge">F</span>
       <h3 class="course-title" style="margin:0;">南部・沖縄文化テーマパークコース</h3>
       <span class="course-tag tag-new">NEW</span>
-    </div>
+    </summary>
     <div class="badge-row">
       <span class="badge badge-cool">🌡️ 玉泉洞は年中21℃</span>
       <span class="badge badge-normal">👥👥 普通</span>
@@ -2053,7 +2017,7 @@
     <div class="map-embed">
       <iframe src="https://maps.google.com/maps?q=%E3%81%8A%E3%81%8D%E3%81%AA%E3%82%8F%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-  </div>
+  </details>
 
   <!-- ========== DAY 3 ========== -->
   <h2 id="day3"><span class="day-tag">3日目</span>8/24(月) — 出発日</h2>
@@ -2158,22 +2122,22 @@
     <div class="map-embed-caption">↑ 実際の地図（Googleマップ）。ズーム・スクロールして通り沿いの位置関係を確認できます。</div>
 
     <h3>🍽️ ランチのおすすめ3選</h3>
-    <table class="schedule-table">
-      <tr><th>お店</th><th>ジャンル</th><th>ひとこと</th></tr>
-      <tr><td><span class="map-badge" style="background:var(--coral);">4</span><b>金月そば 那覇店</b></td><td>沖縄そば</td><td>サバ・煮干し等8種の魚節出汁が効いた自家製麺。提供が早く時間が読みやすい</td></tr>
-      <tr><td><span class="map-badge" style="background:var(--coral);">5</span><b>やっぱりステーキ 4th 国際通り店</b></td><td>ステーキ</td><td>サラダ・スープ・ライス食べ放題でコスパ良好。しっかり食べたい日に</td></tr>
-      <tr><td><span class="map-badge" style="background:var(--sun);">6</span><b>第一牧志公設市場 2F食堂（豊年 等）</b></td><td>沖縄家庭料理</td><td>ちゃんぷるー・ソーキそば・てびち定食など。市場見学とあわせて楽しめる</td></tr>
+    <table class="schedule-table wrap-cells">
+      <tr><th>お店</th><th class="genre">ジャンル</th><th>ひとこと</th></tr>
+      <tr><td><span class="map-badge" style="background:var(--coral);">4</span><b>金月そば 那覇店</b></td><td class="genre">沖縄そば</td><td>サバ・煮干し等8種の魚節出汁が効いた自家製麺。提供が早く時間が読みやすい</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--coral);">5</span><b>やっぱりステーキ 4th 国際通り店</b></td><td class="genre">ステーキ</td><td>サラダ・スープ・ライス食べ放題でコスパ良好。しっかり食べたい日に</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--sun);">6</span><b>第一牧志公設市場 2F食堂（豊年 等）</b></td><td class="genre">沖縄家庭料理</td><td>ちゃんぷるー・ソーキそば・てびち定食など。市場見学とあわせて楽しめる</td></tr>
     </table>
     <div class="notes">
       <b>🔗 参考</b>: <a href="https://s.tabelog.com/smartphone/matome/30910/" target="_blank">国際通り 沖縄そば人気店</a> ／ <a href="https://www.tabirai.net/localinfo/article/article-47556/" target="_blank">国際通り ステーキ店9選</a> ／ <a href="https://activityjapan.com/feature/makishi-public-market/" target="_blank">第一牧志公設市場ガイド</a>
     </div>
 
     <h3>🎁 お土産のおすすめ3選</h3>
-    <table class="schedule-table">
-      <tr><th>お店</th><th>ジャンル</th><th>ひとこと</th></tr>
-      <tr><td><span class="map-badge" style="background:var(--leaf);">1</span><b>わしたショップ 国際通り本店</b></td><td>沖縄物産全般</td><td>ちんすこう・紅芋タルトなど定番土産が一通り揃う老舗。2Fに美ら海水族館アンテナショップ併設</td></tr>
-      <tr><td><span class="map-badge" style="background:var(--leaf);">2</span><b>御菓子御殿 国際通り松尾店</b></td><td>紅芋タルト専門</td><td>看板商品の紅芋タルトを製造ラインをガラス越しに見学しながら購入可。出来立てが買える</td></tr>
-      <tr><td><span class="map-badge" style="background:var(--leaf);">3</span><b>THE CHINSUKO（ちんすこう専門店）</b></td><td>ちんすこう専門</td><td>国際通り唯一のちんすこう専門店。70種類以上、ここでしか買えない限定フレーバーも</td></tr>
+    <table class="schedule-table wrap-cells">
+      <tr><th>お店</th><th class="genre">ジャンル</th><th>ひとこと</th></tr>
+      <tr><td><span class="map-badge" style="background:var(--leaf);">1</span><b>わしたショップ 国際通り本店</b></td><td class="genre">沖縄物産全般</td><td>ちんすこう・紅芋タルトなど定番土産が一通り揃う老舗。2Fに美ら海水族館アンテナショップ併設</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--leaf);">2</span><b>御菓子御殿 国際通り松尾店</b></td><td class="genre">紅芋タルト専門</td><td>看板商品の紅芋タルトを製造ラインをガラス越しに見学しながら購入可。出来立てが買える</td></tr>
+      <tr><td><span class="map-badge" style="background:var(--leaf);">3</span><b>THE CHINSUKO（ちんすこう専門店）</b></td><td class="genre">ちんすこう専門</td><td>国際通り唯一のちんすこう専門店。70種類以上、ここでしか買えない限定フレーバーも</td></tr>
     </table>
     <div class="notes">
       <b>🔗 参考</b>: <a href="https://www.washita.co.jp/info/shop/honten/" target="_blank">わしたショップ 国際通り本店</a> ／ <a href="https://www.tabirai.net/localinfo/article/article-48400/" target="_blank">国際通り おすすめ土産店</a> ／ <a href="https://www.chinsuko-shop.com/" target="_blank">THE CHINSUKO</a><br>
@@ -2376,5 +2340,19 @@
 
 </div>
 <a class="to-top" href="#top-toc" aria-label="目次へ戻る">↑</a>
+<script>
+/* 目次から折り畳みコースへ飛んだときは自動で開く */
+(function () {
+  function openTarget() {
+    var h = location.hash;
+    if (!h || h.length < 2) return;
+    var el = null;
+    try { el = document.querySelector(h); } catch (e) { return; }
+    if (el && el.tagName === "DETAILS" && !el.open) el.open = true;
+  }
+  window.addEventListener("hashchange", openTarget);
+  openTarget();
+})();
+</script>
 </body>
 </html>
