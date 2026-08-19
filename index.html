@@ -814,6 +814,104 @@
     nav.toc { break-inside: avoid; }
     a.to-top { display: none; }
   }
+
+  /* ===== バス座席表 ===== */
+  .seatchart { margin: 12px 0 4px; }
+  .sc-topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 8px; margin-bottom: 7px;
+  }
+  .sc-topbar span {
+    background: var(--ocean-light); color: var(--ocean-dark);
+    border-radius: 6px; padding: 3px 10px;
+    font-size: 11.5px; font-weight: 700;
+  }
+  .seat-grid {
+    display: grid;
+    grid-template-columns: 17px 1fr 1fr 0.72fr 1fr 1fr;
+    gap: 3px;
+  }
+  .sg-num {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: var(--gray);
+  }
+  .sg {
+    border: 1px solid var(--border); border-radius: 4px; background: #f7fafc;
+    min-height: 33px; padding: 2px 1px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 11px; line-height: 1.2;
+    word-break: break-word;
+  }
+  .sg.me   { background: #fff2cc; border-color: #f0c419; color: #8a6100; font-weight: 700; }
+  .sg.his  { background: var(--ocean-light); border-color: #b9dcee; color: var(--ocean-dark); font-weight: 700; font-size: 9.5px; }
+  .sg.vac  { background: #fcfdfd; color: #c6ced6; font-size: 10px; }
+  .sg.chg  { border-color: var(--coral); box-shadow: inset 0 0 0 1px var(--coral); background: #fff5f5; }
+  .sg.aux  {
+    background: repeating-linear-gradient(45deg, #f4f6f8, #f4f6f8 4px, #e8ecf0 4px, #e8ecf0 8px);
+    color: #c0392b; font-weight: 700; font-size: 13px; border-style: dashed;
+  }
+  .sg.aisle { border: none; background: transparent; color: #b7c1cb; font-size: 9.5px; }
+  .sc-tags {
+    display: flex; flex-wrap: wrap; gap: 6px 14px;
+    font-size: 11.5px; color: var(--gray); margin-top: 9px;
+  }
+  .sc-tag { display: inline-flex; align-items: center; gap: 5px; }
+  .sc-sw { width: 13px; height: 13px; border-radius: 3px; border: 1px solid var(--border); display: inline-block; flex: none; }
+
+  /* ===== 会場レイアウトの卓一覧 ===== */
+  .tbl-legend {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 5px 12px; margin-top: 12px; font-size: 12.5px;
+  }
+  .tbl-legend div { display: flex; gap: 7px; align-items: baseline; }
+  .tbl-legend b {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 22px; height: 20px; flex: none;
+    border-radius: 5px; background: var(--ocean-light); color: var(--ocean-dark);
+    font-size: 11.5px;
+  }
+  .tbl-legend div.me b { background: #f0c419; color: #6b4c00; }
+  .tbl-legend div.me { font-weight: 700; color: #8a6100; }
+
+  /* ===== 原本資料リンク ===== */
+  .doclinks { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 26px; }
+  .doclink {
+    display: flex; align-items: center; gap: 10px;
+    flex: 1 1 260px; min-width: 0;
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--ocean);
+    border-radius: 10px; padding: 11px 14px;
+    text-decoration: none; color: var(--ink);
+    font-size: 13.5px; font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0, 102, 153, 0.06);
+  }
+  .doclink:hover, .doclink:focus { background: var(--ocean-light); }
+  .doclink .dl-ico { font-size: 20px; flex: none; }
+  .doclink small { display: block; font-weight: 400; font-size: 11.5px; color: var(--gray); margin-top: 2px; }
+  @media (max-width: 640px) {
+    .seat-grid { gap: 2px; grid-template-columns: 15px 1fr 1fr 0.7fr 1fr 1fr; }
+    .sg { font-size: 10px; min-height: 31px; }
+    .sg.his { font-size: 8.5px; }
+    .doclink { flex: 1 1 100%; font-size: 13px; }
+    .tbl-legend { font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); }
+  }
+
+  /* 会場レイアウト図（横スクロールなしで全体表示） */
+  .plan-svg-wrap svg { display: block; width: 100%; height: auto; }
+  /* 3日目バスの号車わけ */
+  .bus-split { display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0 2px; }
+  .bus-col {
+    flex: 1 1 240px; min-width: 0;
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff;
+  }
+  .bus-col-h {
+    background: var(--ocean-dark); color: #fff;
+    font-size: 13.5px; font-weight: 700; padding: 7px 12px;
+  }
+  .bus-col-h span { font-size: 11.5px; font-weight: 400; opacity: 0.9; }
+  .bus-col-b { padding: 10px 12px; font-size: 13px; line-height: 1.8; }
+  .bus-col.is-me { border-color: #f0c419; }
+  .bus-col.is-me .bus-col-h { background: #f0c419; color: #5c4200; }
+  .bus-col.is-me .bus-col-b { background: #fffbef; }
 </style>
 </head>
 <body>
@@ -843,6 +941,7 @@
       <li><a href="#map">🗺️ 全体マップ（沖縄本島）</a></li>
       <li><a href="#hotel">🏨 宿泊先: ザ・ビーチタワー沖縄</a></li>
       <li><a href="#day1">🛫 1日目 8/22(土) — 確定プラン</a></li>
+      <li><a href="#seats">💺 座席・テーブル配置（バス／食事会場）</a></li>
       <li><a href="#day2">🚗 2日目 8/23(日) — レンタカー自由行動・6コース</a>
         <ul class="toc-sub">
           <li><a href="#course-A"><span class="toc-badge tb-A">A</span>海中道路・離島めぐり<em class="toc-main">本命</em></a></li>
@@ -859,6 +958,16 @@
       <li><a href="#contacts">📞 緊急連絡先</a></li>
     </ol>
   </nav>
+
+  <!-- ========== 原本資料リンク ========== -->
+  <div class="doclinks">
+    <a class="doclink" href="https://drive.google.com/file/d/11hyTE-xVKCI98RV3QJLamW4V9jBEGdGh/view?usp=sharing" target="_blank" rel="noopener">
+      <span class="dl-ico">📖</span><span>HIS 旅のしおり（0804）<small>集合案内・日程表・ホテルDATA・座席表の原本</small></span>
+    </a>
+    <a class="doclink" href="https://drive.google.com/file/d/1LydViVV3cvIiY2vulZkoQCXwF5JHzORm/view?usp=sharing" target="_blank" rel="noopener">
+      <span class="dl-ico">🚌</span><span>Aプラン：バス座席表（改訂版）<small>1日目1号車の最新座席。しおりより優先</small></span>
+    </a>
+  </div>
 
   <!-- ========== DEPARTURE DAY (from HIS 旅のしおり) ========== -->
   <h2 id="meetup">🎫 出発当日の集合案内</h2>
@@ -1041,6 +1150,7 @@
     <table class="datalist">
       <tr><th>所在地</th><td>〒904-0115 沖縄県中頭郡北谷町字美浜8-6</td></tr>
       <tr><th>TEL</th><td><b><a href="tel:0989217711" style="color:var(--ocean-dark);text-decoration:none;">098-921-7711</a></b></td></tr>
+      <tr><th>アクセス</th><td>【車】那覇空港から国道58号を北上 約40分／沖縄南I.C.から県道23号(国体記念道路)を北谷方面へ 約10分<br>【路線バス】那覇空港から20番または120番 約60分「美浜アメリカンビレッジ入口」下車 徒歩約7分<br>【空港リムジンバス】約60分「北谷ゲートウェイ」下車 徒歩約5分<br><span style="color:var(--gray);">※今回は往路・復路とも貸切バスなので、自力移動が必要になった場合の備えです。</span></td></tr>
       <tr><th>チェックイン<br>／アウト</th><td>15:00 ／ 11:00　<span style="color:var(--gray);">※1日目のチェックインは Aプラン 15:45 の予定</span></td></tr>
       <tr><th>朝食</th><td>7:00〜10:00（<b>ラストオーダー 9:30</b>）／ 2日目・3日目の朝</td></tr>
       <tr><th>客室数 / Wi-Fi</th><td>280室 ／ 全室無料</td></tr>
@@ -1126,7 +1236,7 @@
       <tr>
         <th>1日目バス</th>
         <td><span class="seat-chip">1号車</span><b>2列目・3列目（乗降口側の4席）</b><br>
-        <span style="color:var(--gray);font-size:12.5px;">乗降口すぐ後ろ。子連れの乗り降りがしやすい位置です。1号車は他に 佐藤様・立道様・湯浅様・前原様・高木様・大岡様・松田様・三崎様・今枝様・石田様 と同乗。</span></td>
+        <span style="color:var(--gray);font-size:12.5px;">乗降口すぐ後ろ。子連れの乗り降りがしやすい位置です。1号車は他に 佐藤様・立道様・湯浅様・前原様・太田様・高木様・大岡様・松田様・三崎様・今枝様・石田様 と同乗（改訂版反映）。</span></td>
       </tr>
       <tr>
         <th>昼食<br>(フォンテーヌ)</th>
@@ -1135,10 +1245,18 @@
       </tr>
       <tr>
         <th>夕食BBQ<br>(ヤンバルクッチーナ)</th>
-        <td><span class="seat-chip alt2">F卓（107番テーブル）</span><br>
-        <span style="color:var(--gray);font-size:12.5px;">テラス入口側の手前列。海辺のテラス席です。</span></td>
+        <td><span class="seat-chip alt2">F卓＝117番テーブル</span><br>
+        <span style="color:var(--gray);font-size:12.5px;">テラス奥側の列、キッチン室のすぐ右隣。海辺のテラス席です。</span></td>
+      </tr>
+      <tr>
+        <th>3日目バス</th>
+        <td><span class="seat-chip">2号車</span><b>座席指定なし（号車わけのみ）</b><br>
+        <span style="color:var(--gray);font-size:12.5px;">1日目とは号車が入れ替わるので注意。</span></td>
       </tr>
     </table>
+    <p style="margin:10px 0 0;font-size:13px;">
+      👉 <a href="#seats" style="color:var(--ocean-dark);font-weight:700;">全員分のバス座席表・食事会場レイアウトを見る</a>
+    </p>
     <div class="notes">
       <b>⚠️ 変更の可能性</b>：行程は航空会社・輸送会社および現地事情・天候により予告なく変更になる場合があります。記載時刻はあくまで目安です。
     </div>
@@ -1155,6 +1273,485 @@
     </div>
     <div class="map-embed">
       <iframe src="https://maps.google.com/maps?q=DMM%E3%81%8B%E3%82%8A%E3%82%86%E3%81%97%E6%B0%B4%E6%97%8F%E9%A4%A8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <!-- ========== SEATING / VENUE LAYOUT ========== -->
+  <h2 id="seats">💺 座席・テーブル配置（しおり／改訂版）</h2>
+
+  <div class="alert">
+    <b>📌 どの資料が最新か</b><br>
+    1日目バス <b>1号車（Aプラン）</b>の座席は、しおり配布後に <b>「Aプラン：バス座席表」で改訂</b>されています。
+    <b>最新はこちらの改訂版</b>で、下に再現したものが改訂後の並びです。
+    <span style="color:var(--gray);">※ 加藤家の席（2〜3列目・乗降口側）は改訂前後で変わりません。</span>
+    <div class="doclinks" style="margin:12px 0 0;">
+      <a class="doclink" href="https://drive.google.com/file/d/1LydViVV3cvIiY2vulZkoQCXwF5JHzORm/view?usp=sharing" target="_blank" rel="noopener">
+        <span class="dl-ico">🚌</span><span>Aプラン：バス座席表（改訂版）<small>Google ドライブで原本を開く</small></span>
+      </a>
+      <a class="doclink" href="https://drive.google.com/file/d/11hyTE-xVKCI98RV3QJLamW4V9jBEGdGh/view?usp=sharing" target="_blank" rel="noopener">
+        <span class="dl-ico">📖</span><span>HIS 旅のしおり 0804<small>Google ドライブで原本を開く</small></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="official">
+    <span class="official-badge">🚌 1日目バス 1号車（Aプラン）— 改訂版を再現</span>
+    <p style="font-size:13px;margin:10px 0 0;color:var(--gray);">
+      正シート49席 ／ 補助シート11席（<b>補助席は使用しません</b>）。図の上が車両前方です。
+    </p>
+    <div class="seatchart">
+      <div class="sc-topbar"><span>🚪 乗降口</span><span>🧑‍✈️ 運転席</span></div>
+    <div class="seat-grid">
+      <div class="sg-num">1</div>
+      <div class="sg his">HIS<br>判家</div>
+      <div class="sg his">HIS<br>判家</div>
+      <div class="sg aux">×</div>
+      <div class="sg">佐藤</div>
+      <div class="sg">佐藤</div>
+      <div class="sg-num">2</div>
+      <div class="sg me">加藤</div>
+      <div class="sg me">加藤</div>
+      <div class="sg aux">×</div>
+      <div class="sg">佐藤</div>
+      <div class="sg">佐藤</div>
+      <div class="sg-num">3</div>
+      <div class="sg me">加藤</div>
+      <div class="sg me">加藤</div>
+      <div class="sg aux">×</div>
+      <div class="sg">立道</div>
+      <div class="sg">立道</div>
+      <div class="sg-num">4</div>
+      <div class="sg">三崎</div>
+      <div class="sg">三崎</div>
+      <div class="sg aux">×</div>
+      <div class="sg chg">湯浅</div>
+      <div class="sg chg">湯浅</div>
+      <div class="sg-num">5</div>
+      <div class="sg">三崎</div>
+      <div class="sg">三崎</div>
+      <div class="sg aux">×</div>
+      <div class="sg chg">前原</div>
+      <div class="sg chg">前原</div>
+      <div class="sg-num">6</div>
+      <div class="sg">今枝</div>
+      <div class="sg">今枝</div>
+      <div class="sg aux">×</div>
+      <div class="sg">前原</div>
+      <div class="sg">前原</div>
+      <div class="sg-num">7</div>
+      <div class="sg">石田</div>
+      <div class="sg">石田</div>
+      <div class="sg aux">×</div>
+      <div class="sg chg">太田</div>
+      <div class="sg chg">太田</div>
+      <div class="sg-num">8</div>
+      <div class="sg">石田</div>
+      <div class="sg">石田</div>
+      <div class="sg aux">×</div>
+      <div class="sg chg">太田</div>
+      <div class="sg chg">太田</div>
+      <div class="sg-num">9</div>
+      <div class="sg">大岡</div>
+      <div class="sg">大岡</div>
+      <div class="sg aux">×</div>
+      <div class="sg">高木</div>
+      <div class="sg">高木</div>
+      <div class="sg-num">10</div>
+      <div class="sg">大岡</div>
+      <div class="sg">大岡</div>
+      <div class="sg aux">×</div>
+      <div class="sg">大岡</div>
+      <div class="sg">大岡</div>
+      <div class="sg-num">11</div>
+      <div class="sg">松田</div>
+      <div class="sg">松田</div>
+      <div class="sg aux">×</div>
+      <div class="sg">松田</div>
+      <div class="sg">松田</div>
+      <div class="sg-num">12</div>
+      <div class="sg">松田</div>
+      <div class="sg">松田</div>
+      <div class="sg">松田</div>
+      <div class="sg">松田</div>
+      <div class="sg">松田</div>
+    </div>
+      <div class="sc-tags">
+        <span class="sc-tag"><i class="sc-sw" style="background:#fff2cc;border-color:#f0c419;"></i>加藤家（我が家）</span>
+        <span class="sc-tag"><i class="sc-sw" style="background:#e6f4fa;border-color:#b9dcee;"></i>HIS添乗（判家様）</span>
+        <span class="sc-tag"><i class="sc-sw" style="background:#fff5f5;border-color:#ff6b6b;"></i>しおりから変更された席</span>
+        <span class="sc-tag"><i class="sc-sw" style="background:#eef1f4;border-style:dashed;"></i>補助席（使用しない）</span>
+      </div>
+    </div>
+    <div class="notes">
+      <b>🔄 しおり版からの変更点（運転席側のみ）</b>
+      <ul style="margin:4px 0 0;padding-left:18px;font-size:12.5px;">
+        <li><b>4列目</b>：立道様 → <b>湯浅様</b>（立道様は3列目の1列のみに）</li>
+        <li><b>5列目</b>：湯浅様 → <b>前原様</b></li>
+        <li><b>7・8列目</b>：前原様・高木様 → <b>太田様</b>（しおりでは2号車だった太田様が1号車へ）</li>
+        <li><b>9列目</b>：高木様は1列のみに</li>
+      </ul>
+      <span style="color:var(--gray);font-size:12.5px;">※ 乗降口側（1〜12列目の左2席ずつ）は改訂前後で変更なし。加藤家は<b>2列目・3列目の乗降口側4席</b>のままです。</span>
+    </div>
+  </div>
+
+  <div class="official">
+    <span class="official-badge">🚌 1日目バス 2号車（Bプラン）— しおり掲載版</span>
+    <p style="font-size:13px;margin:10px 0 0;color:var(--gray);">
+      加藤家は乗りませんが、同行の皆さんの配置として掲載。空欄は空席です。
+    </p>
+    <div class="seatchart">
+      <div class="sc-topbar"><span>🚪 乗降口</span><span>🧑‍✈️ 運転席</span></div>
+    <div class="seat-grid">
+      <div class="sg-num">1</div>
+      <div class="sg his">HIS<br>秋山</div>
+      <div class="sg his">HIS<br>秋山</div>
+      <div class="sg aisle"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg-num">2</div>
+      <div class="sg">小林</div>
+      <div class="sg">小林</div>
+      <div class="sg aisle"></div>
+      <div class="sg">小林</div>
+      <div class="sg">小林</div>
+      <div class="sg-num">3</div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg aisle"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg-num">4</div>
+      <div class="sg">平野</div>
+      <div class="sg">平野</div>
+      <div class="sg aisle"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg-num">5</div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg aisle"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg-num">6</div>
+      <div class="sg">池川</div>
+      <div class="sg">池川</div>
+      <div class="sg aisle"></div>
+      <div class="sg">池川</div>
+      <div class="sg vac"></div>
+      <div class="sg-num">7</div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg aisle"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg-num">8</div>
+      <div class="sg">中村</div>
+      <div class="sg">中村</div>
+      <div class="sg aisle"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg-num">9</div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg aisle"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg-num">10</div>
+      <div class="sg">太田</div>
+      <div class="sg">太田</div>
+      <div class="sg aisle"></div>
+      <div class="sg">太田</div>
+      <div class="sg">太田</div>
+      <div class="sg-num">11</div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg aisle"></div>
+      <div class="sg">太田</div>
+      <div class="sg">太田</div>
+      <div class="sg-num">12</div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+      <div class="sg vac"></div>
+    </div>
+    </div>
+    <div class="notes">
+      <b>⚠️ 注意</b>：改訂版で<b>太田様が1号車へ移動</b>しているため、この図の10〜11列目（太田様）は変更になる可能性があります。
+      2号車の改訂版は配布されていないため、<b>しおり時点の図</b>を参考として掲載しています。
+    </div>
+  </div>
+
+  <div class="official">
+    <span class="official-badge">🚌 3日目バス（8/24・ホテル→国際通り→那覇空港）</span>
+    <p style="font-size:13px;margin:10px 0 12px;color:var(--gray);">
+      3日目は号車わけのみの指定で、座席指定はありません。
+    </p>
+    <div class="bus-split">
+      <div class="bus-col">
+        <div class="bus-col-h">1号車</div>
+        <div class="bus-col-b">佐藤様 ／ 高木様 ／ 平野様 ／ 池川様 ／ 石田様 ／ 中村様 ／ 湯浅様 ／ 松田様</div>
+      </div>
+      <div class="bus-col is-me">
+        <div class="bus-col-h">2号車 <span>← 加藤家はこちら</span></div>
+        <div class="bus-col-b"><b>加藤様（我が家）</b> ／ 立道様 ／ 大岡様 ／ 今枝様 ／ 前原様 ／ 小林様 ／ 太田様 ／ 三崎様</div>
+      </div>
+    </div>
+    <div class="notes">
+      <b>💡</b> <b>1日目は1号車 → 3日目は2号車</b>と入れ替わります。乗り間違えやすいので当日ご注意を。
+    </div>
+  </div>
+
+  <div class="street-map">
+    <div class="street-map-title">🍽️ 1日目 昼食：ロワジールホテル那覇「フォンテーヌ」会場レイアウト（11:30〜12:30）</div>
+    <div class="plan-svg-wrap">
+      <svg viewBox="0 0 700 290" role="img" aria-label="ロワジールホテル フォンテーヌ 会場レイアウト" style="font-family:inherit;">
+        <style>
+          .ltb   { fill:#e0cfa0; stroke:#2b2b2b; stroke-width:2.5; }
+          .ltb-me{ fill:#f0c419; stroke:#8a6100; stroke-width:3.5; }
+          .lch   { fill:#ffffff; stroke:#2b2b2b; stroke-width:2; }
+          .ltl   { font-size:21px; font-weight:700; fill:#123; text-anchor:middle; }
+          .ltl-me{ font-size:21px; font-weight:700; fill:#5c4200; text-anchor:middle; }
+          .lbar  { fill:#fdf1d6; stroke:#c8b48a; stroke-width:2; }
+          .lbl   { font-size:13px; font-weight:700; fill:#7a663c; text-anchor:middle; }
+        </style>
+        <rect width="700" height="290" fill="#ffffff"/>
+        <!-- 料理台 -->
+        <rect class="lbar" x="34" y="26" width="264" height="22"/><text class="lbl" x="166" y="41">温製料理台</text>
+        <rect class="lbar" x="298" y="26" width="196" height="22"/><text class="lbl" x="396" y="41">サラダ＆デザート</text>
+        <rect class="lbar" x="494" y="6" width="22" height="42"/><text class="lbl" x="505" y="22" transform="rotate(90 505 22)">デザート</text>
+        <!-- ドリンクバー -->
+        <rect class="lbar" x="646" y="70" width="22" height="160"/><text class="lbl" x="657" y="150" transform="rotate(90 657 150)">ドリンクバー</text>
+        <!-- 右上 A / B -->
+        <rect class="lch" x="566" y="12" width="14" height="12"/><rect class="lch" x="596" y="12" width="14" height="12"/>
+        <rect class="ltb" x="562" y="24" width="52" height="40"/><text class="ltl" x="588" y="51">A</text>
+        <rect class="lch" x="566" y="64" width="14" height="12"/><rect class="lch" x="596" y="64" width="14" height="12"/>
+        <rect class="lch" x="566" y="86" width="14" height="12"/><rect class="lch" x="596" y="86" width="14" height="12"/>
+        <rect class="ltb" x="562" y="98" width="52" height="40"/><text class="ltl" x="588" y="125">B</text>
+        <rect class="lch" x="566" y="138" width="14" height="12"/><rect class="lch" x="596" y="138" width="14" height="12"/>
+        <!-- 中央列（左から J I H G F E D C） -->
+        <g>
+          <rect class="lch" x="42" y="104" width="16" height="13"/><rect class="lch" x="74" y="104" width="16" height="13"/>
+          <rect class="ltb" x="38" y="117" width="56" height="44"/><text class="ltl" x="66" y="146">J</text>
+          <rect class="lch" x="42" y="161" width="16" height="13"/><rect class="lch" x="74" y="161" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="112" y="104" width="16" height="13"/><rect class="lch" x="144" y="104" width="16" height="13"/>
+          <rect class="ltb" x="108" y="117" width="56" height="44"/><text class="ltl" x="136" y="146">I</text>
+          <rect class="lch" x="112" y="161" width="16" height="13"/><rect class="lch" x="144" y="161" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="182" y="104" width="16" height="13"/><rect class="lch" x="214" y="104" width="16" height="13"/>
+          <rect class="ltb-me" x="178" y="117" width="56" height="44"/><text class="ltl-me" x="206" y="146">H</text>
+          <rect class="lch" x="182" y="161" width="16" height="13"/><rect class="lch" x="214" y="161" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="258" y="104" width="16" height="13"/>
+          <rect class="ltb" x="248" y="117" width="38" height="44"/><text class="ltl" x="267" y="146">G</text>
+          <rect class="lch" x="258" y="161" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="304" y="104" width="16" height="13"/><rect class="lch" x="336" y="104" width="16" height="13"/>
+          <rect class="ltb" x="300" y="117" width="56" height="44"/><text class="ltl" x="328" y="146">F</text>
+          <rect class="lch" x="304" y="161" width="16" height="13"/><rect class="lch" x="336" y="161" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="374" y="104" width="16" height="13"/><rect class="lch" x="406" y="104" width="16" height="13"/>
+          <rect class="ltb" x="370" y="117" width="56" height="44"/><text class="ltl" x="398" y="146">E</text>
+          <rect class="lch" x="374" y="161" width="16" height="13"/><rect class="lch" x="406" y="161" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="450" y="104" width="16" height="13"/>
+          <rect class="ltb" x="440" y="117" width="38" height="44"/><text class="ltl" x="459" y="146">D</text>
+          <rect class="lch" x="450" y="161" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="512" y="104" width="16" height="13"/>
+          <rect class="ltb" x="502" y="117" width="38" height="44"/><text class="ltl" x="521" y="146">C</text>
+          <rect class="lch" x="512" y="161" width="16" height="13"/>
+        </g>
+        <!-- 下列（左から O N M L K） -->
+        <g>
+          <rect class="lch" x="60" y="196" width="16" height="13"/><rect class="lch" x="90" y="196" width="16" height="13"/><rect class="lch" x="120" y="196" width="16" height="13"/>
+          <rect class="ltb" x="54" y="209" width="92" height="44"/><text class="ltl" x="100" y="238">O</text>
+          <rect class="lch" x="60" y="253" width="16" height="13"/><rect class="lch" x="90" y="253" width="16" height="13"/><rect class="lch" x="120" y="253" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="186" y="196" width="16" height="13"/><rect class="lch" x="216" y="196" width="16" height="13"/><rect class="lch" x="246" y="196" width="16" height="13"/>
+          <rect class="ltb" x="180" y="209" width="92" height="44"/><text class="ltl" x="226" y="238">N</text>
+          <rect class="lch" x="186" y="253" width="16" height="13"/><rect class="lch" x="216" y="253" width="16" height="13"/><rect class="lch" x="246" y="253" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="316" y="196" width="16" height="13"/><rect class="lch" x="348" y="196" width="16" height="13"/>
+          <rect class="ltb" x="312" y="209" width="56" height="44"/><text class="ltl" x="340" y="238">M</text>
+          <rect class="lch" x="316" y="253" width="16" height="13"/><rect class="lch" x="348" y="253" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="414" y="196" width="16" height="13"/>
+          <rect class="ltb" x="404" y="209" width="38" height="44"/><text class="ltl" x="423" y="238">L</text>
+          <rect class="lch" x="414" y="253" width="16" height="13"/>
+        </g>
+        <g>
+          <rect class="lch" x="486" y="196" width="16" height="13"/>
+          <rect class="ltb" x="476" y="209" width="38" height="44"/><text class="ltl" x="495" y="238">K</text>
+          <rect class="lch" x="486" y="253" width="16" height="13"/>
+        </g>
+      </svg>
+    </div>
+      <div class="tbl-legend">
+        <div><b>A</b><span>石田様</span></div>
+        <div><b>B</b><span>大岡様</span></div>
+        <div><b>C</b><span>高木様</span></div>
+        <div><b>D</b><span>立道様</span></div>
+        <div><b>E</b><span>前原様</span></div>
+        <div><b>F</b><span>池川様</span></div>
+        <div><b>G</b><span>今枝様・湯浅様</span></div>
+        <div class="me"><b>H</b><span>加藤様（我が家）</span></div>
+        <div><b>I</b><span>三崎様</span></div>
+        <div><b>J</b><span>佐藤様</span></div>
+        <div><b>K</b><span>平野様</span></div>
+        <div><b>L</b><span>中村様</span></div>
+        <div><b>M</b><span>小林様</span></div>
+        <div><b>N</b><span>松田様</span></div>
+        <div><b>O</b><span>太田様</span></div>
+      </div>
+    <div class="notes" style="margin-top:12px;">
+      <b>加藤家は H卓</b>（中央列の左から3番目）。<b>温製料理台・サラダ＆デザート</b>は会場の奥、<b>ドリンクバー</b>は右手にあります。
+      <span style="color:var(--gray);">中央列は左から J・I・H・G・F・E・D・C、手前列は左から O・N・M・L・K の並びです。</span>
+    </div>
+  </div>
+
+  <div class="street-map">
+    <div class="street-map-title">🔥 1日目 夕食：ホテル内「ヤンバルクッチーナ」BBQ テラス席レイアウト（18:00〜）</div>
+    <div class="plan-svg-wrap">
+      <svg viewBox="0 0 720 265" role="img" aria-label="ヤンバルクッチーナ テラス席レイアウト" style="font-family:inherit;">
+        <style>
+          .dtb   { fill:#f9a3a3; stroke:#1a1a1a; stroke-width:2.5; }
+          .dtb-me{ fill:#f0c419; stroke:#8a6100; stroke-width:3.5; }
+          .dch   { fill:#ffffff; stroke:#1a1a1a; stroke-width:2; }
+          .dtl   { font-size:18px; font-weight:700; fill:#3a1010; text-anchor:middle; }
+          .dtl-me{ font-size:18px; font-weight:700; fill:#5c4200; text-anchor:middle; }
+          .dlc   { fill:#ffffff; stroke:#123a6b; stroke-width:2.5; }
+          .dll   { font-size:15px; font-weight:700; fill:#123a6b; text-anchor:middle; }
+          .dgrp  { fill:none; stroke:#123a6b; stroke-width:3; stroke-dasharray:9 6; }
+          .dent  { font-size:14px; font-weight:700; fill:#33484f; text-anchor:middle; }
+        </style>
+        <rect width="720" height="265" rx="6" fill="#d9f4f7"/>
+        <!-- キッチン室 -->
+        <rect class="dch" x="216" y="60" width="70" height="44"/><text class="dent" x="251" y="120">キッチン室</text>
+        <!-- G卓グループ（118+119） -->
+        <rect class="dgrp" x="352" y="34" width="140" height="96" rx="12"/>
+        <circle class="dlc" cx="422" cy="36" r="13"/><text class="dll" x="422" y="41">G</text>
+        <!-- L卓グループ（109+110） -->
+        <rect class="dgrp" x="518" y="154" width="140" height="96" rx="12"/>
+        <circle class="dlc" cx="588" cy="248" r="13"/><text class="dll" x="588" y="253">L</text>
+        <!-- 小テーブル -->
+        <rect class="dtb" x="466" y="188" width="40" height="34"/>
+        <!-- テラス入口 -->
+        <line x1="230" y1="252" x2="350" y2="252" stroke="#33484f" stroke-width="3"/>
+        <text class="dent" x="290" y="246">テラス入口</text>
+        <g>
+          <rect class="dch" x="25" y="46" width="17" height="14"/><rect class="dch" x="72" y="46" width="17" height="14"/>
+          <rect class="dtb" x="34" y="60" width="46" height="44"/><text class="dtl" x="57" y="88">114</text>
+          <rect class="dch" x="25" y="104" width="17" height="14"/><rect class="dch" x="72" y="104" width="17" height="14"/>
+          <circle class="dlc" cx="57" cy="36" r="13"/><text class="dll" x="57" y="41">A</text>
+        </g>
+        <g>
+          <rect class="dch" x="91" y="46" width="17" height="14"/><rect class="dch" x="138" y="46" width="17" height="14"/>
+          <rect class="dtb" x="100" y="60" width="46" height="44"/><text class="dtl" x="123" y="88">115</text>
+          <rect class="dch" x="91" y="104" width="17" height="14"/><rect class="dch" x="138" y="104" width="17" height="14"/>
+          <circle class="dlc" cx="123" cy="36" r="13"/><text class="dll" x="123" y="41">B</text>
+        </g>
+        <g>
+          <rect class="dch" x="157" y="46" width="17" height="14"/><rect class="dch" x="204" y="46" width="17" height="14"/>
+          <rect class="dtb" x="166" y="60" width="46" height="44"/><text class="dtl" x="189" y="88">116</text>
+          <rect class="dch" x="157" y="104" width="17" height="14"/><rect class="dch" x="204" y="104" width="17" height="14"/>
+          <circle class="dlc" cx="189" cy="36" r="13"/><text class="dll" x="189" y="41">C</text>
+        </g>
+        <g>
+          <rect class="dch" x="291" y="46" width="17" height="14"/><rect class="dch" x="338" y="46" width="17" height="14"/>
+          <rect class="dtb-me" x="300" y="60" width="46" height="44"/><text class="dtl-me" x="323" y="88">117</text>
+          <rect class="dch" x="291" y="104" width="17" height="14"/><rect class="dch" x="338" y="104" width="17" height="14"/>
+          <circle class="dlc" cx="323" cy="36" r="13"/><text class="dll" x="323" y="41">F</text>
+        </g>
+        <g>
+          <rect class="dch" x="357" y="46" width="17" height="14"/><rect class="dch" x="404" y="46" width="17" height="14"/>
+          <rect class="dtb" x="366" y="60" width="46" height="44"/><text class="dtl" x="389" y="88">118</text>
+          <rect class="dch" x="357" y="104" width="17" height="14"/><rect class="dch" x="404" y="104" width="17" height="14"/>
+          
+        </g>
+        <g>
+          <rect class="dch" x="423" y="46" width="17" height="14"/><rect class="dch" x="470" y="46" width="17" height="14"/>
+          <rect class="dtb" x="432" y="60" width="46" height="44"/><text class="dtl" x="455" y="88">119</text>
+          <rect class="dch" x="423" y="104" width="17" height="14"/><rect class="dch" x="470" y="104" width="17" height="14"/>
+          
+        </g>
+        <g>
+          <rect class="dch" x="489" y="46" width="17" height="14"/><rect class="dch" x="536" y="46" width="17" height="14"/>
+          <rect class="dtb" x="498" y="60" width="46" height="44"/><text class="dtl" x="521" y="88">120</text>
+          <rect class="dch" x="489" y="104" width="17" height="14"/><rect class="dch" x="536" y="104" width="17" height="14"/>
+          <circle class="dlc" cx="521" cy="36" r="13"/><text class="dll" x="521" y="41">H</text>
+        </g>
+        <g>
+          <rect class="dch" x="555" y="46" width="17" height="14"/><rect class="dch" x="602" y="46" width="17" height="14"/>
+          <rect class="dtb" x="564" y="60" width="46" height="44"/><text class="dtl" x="587" y="88">121</text>
+          <rect class="dch" x="555" y="104" width="17" height="14"/><rect class="dch" x="602" y="104" width="17" height="14"/>
+          <circle class="dlc" cx="587" cy="36" r="13"/><text class="dll" x="587" y="41">I</text>
+        </g>
+        <g>
+          <rect class="dch" x="621" y="46" width="17" height="14"/><rect class="dch" x="668" y="46" width="17" height="14"/>
+          <rect class="dtb" x="630" y="60" width="46" height="44"/><text class="dtl" x="653" y="88">122</text>
+          <rect class="dch" x="621" y="104" width="17" height="14"/><rect class="dch" x="668" y="104" width="17" height="14"/>
+          <circle class="dlc" cx="653" cy="36" r="13"/><text class="dll" x="653" y="41">J</text>
+        </g>
+        <g>
+          <rect class="dch" x="61" y="166" width="17" height="14"/><rect class="dch" x="108" y="166" width="17" height="14"/>
+          <rect class="dtb" x="70" y="180" width="46" height="44"/><text class="dtl" x="93" y="208">106</text>
+          <rect class="dch" x="61" y="224" width="17" height="14"/><rect class="dch" x="108" y="224" width="17" height="14"/>
+          <circle class="dlc" cx="93" cy="248" r="13"/><text class="dll" x="93" y="253">D</text>
+        </g>
+        <g>
+          <rect class="dch" x="127" y="166" width="17" height="14"/><rect class="dch" x="174" y="166" width="17" height="14"/>
+          <rect class="dtb" x="136" y="180" width="46" height="44"/><text class="dtl" x="159" y="208">107</text>
+          <rect class="dch" x="127" y="224" width="17" height="14"/><rect class="dch" x="174" y="224" width="17" height="14"/>
+          <circle class="dlc" cx="159" cy="248" r="13"/><text class="dll" x="159" y="253">E</text>
+        </g>
+        <g>
+          <rect class="dch" x="391" y="166" width="17" height="14"/><rect class="dch" x="438" y="166" width="17" height="14"/>
+          <rect class="dtb" x="400" y="180" width="46" height="44"/><text class="dtl" x="423" y="208">108</text>
+          <rect class="dch" x="391" y="224" width="17" height="14"/><rect class="dch" x="438" y="224" width="17" height="14"/>
+          <circle class="dlc" cx="423" cy="248" r="13"/><text class="dll" x="423" y="253">K</text>
+        </g>
+        <g>
+          <rect class="dch" x="523" y="166" width="17" height="14"/><rect class="dch" x="570" y="166" width="17" height="14"/>
+          <rect class="dtb" x="532" y="180" width="46" height="44"/><text class="dtl" x="555" y="208">109</text>
+          <rect class="dch" x="523" y="224" width="17" height="14"/><rect class="dch" x="570" y="224" width="17" height="14"/>
+        </g>
+        <g>
+          <rect class="dch" x="589" y="166" width="17" height="14"/><rect class="dch" x="636" y="166" width="17" height="14"/>
+          <rect class="dtb" x="598" y="180" width="46" height="44"/><text class="dtl" x="621" y="208">110</text>
+          <rect class="dch" x="589" y="224" width="17" height="14"/><rect class="dch" x="636" y="224" width="17" height="14"/>
+        </g>
+      </svg>
+    </div>
+      <div class="tbl-legend">
+        <div><b>A</b><span>池川様</span></div>
+        <div><b>B</b><span>三崎様</span></div>
+        <div><b>C</b><span>中村様・高木様</span></div>
+        <div><b>D</b><span>平野様・立道様</span></div>
+        <div><b>E</b><span>小林様</span></div>
+        <div class="me"><b>F</b><span>加藤様（我が家）</span></div>
+        <div><b>G</b><span>太田様・今枝様・湯浅様</span></div>
+        <div><b>H</b><span>石田様</span></div>
+        <div><b>I</b><span>大岡様</span></div>
+        <div><b>J</b><span>前原様</span></div>
+        <div><b>K</b><span>佐藤様</span></div>
+        <div><b>L</b><span>松田様</span></div>
+      </div>
+    <div class="notes" style="margin-top:12px;">
+      <b>加藤家は F卓＝117番テーブル</b>（奥側の列・キッチン室のすぐ右隣）。
+      <span style="color:var(--gray);">G卓は118+119番、L卓は109+110番の2卓続きです。手前列は左から106(D)・107(E)、テラス入口をはさんで108(K)・109/110(L)。</span><br>
+      <b>📸 17:45 にビーチで集合写真</b>があるので、その足でテラスへ向かう流れになります。
     </div>
   </div>
 
@@ -1582,6 +2179,11 @@
       <b>🔗 参考</b>: <a href="https://www.washita.co.jp/info/shop/honten/" target="_blank">わしたショップ 国際通り本店</a> ／ <a href="https://www.tabirai.net/localinfo/article/article-48400/" target="_blank">国際通り おすすめ土産店</a> ／ <a href="https://www.chinsuko-shop.com/" target="_blank">THE CHINSUKO</a><br>
       <b>💡 ヒント</b>: 時間が読めない場合は<b>⑥第一牧志公設市場〜市場本通り・平和通り一帯</b>も小さな土産物店が密集しており、④⑤のランチと合わせて一箇所で完結できて効率的です。
     </div>
+    <div class="notes" style="border-left-color:var(--sun);background:#fff8ee;">
+      <b>📦 手ぶら派の裏ワザ：お土産のネット注文（しおり掲載）</b><br>
+      HISのしおりに<b>お土産通販「三洋堂」</b>の案内が入っています。事前・当日にネットで注文して自宅へ配送できるので、<b>国際通りの2時間を土産探しに使わずに済む</b>のが最大のメリット。
+      <br><b>🔗</b> <a href="https://www.isanyodo.com" target="_blank" rel="noopener">www.isanyodo.com</a>　<span style="color:var(--gray);">（しおり記載の団体コード: 10002518）</span>
+    </div>
   </div>
 
   <!-- ========== BAGGAGE RULES (from HIS しおり) ========== -->
@@ -1766,7 +2368,8 @@
 
   <!-- ========== FOOTER ========== -->
   <footer>
-    Created 2026-05-15 ／ Updated 2026-08-05（HIS「旅のしおり – 0804」の内容を反映）<br>
+    Created 2026-05-15 ／ Updated 2026-08-19（HIS「旅のしおり – 0804」＋「Aプラン：バス座席表（改訂版）」を反映）<br>
+    原本: <a href="https://drive.google.com/file/d/11hyTE-xVKCI98RV3QJLamW4V9jBEGdGh/view?usp=sharing" target="_blank" rel="noopener" style="color:#fff;">旅のしおり</a> ／ <a href="https://drive.google.com/file/d/1LydViVV3cvIiY2vulZkoQCXwF5JHzORm/view?usp=sharing" target="_blank" rel="noopener" style="color:#fff;">Aプラン：バス座席表</a><br>
     宿泊: ザ・ビーチタワー沖縄 ｜ 航空: 全日空 NH303 / NH306 ｜ 2日目レンタカー: WAクラス(ノア等) 09:00〜18:00<br>
     <span style="font-size:11px;">※行程は航空会社・輸送会社および現地事情・天候により予告なく変更になる場合があります。記載の時刻は目安です。</span>
   </footer>
