@@ -989,6 +989,44 @@
       color: var(--ocean-dark);
     }
   }
+
+  /* ===== 天気・台風セクション ===== */
+  .wx-asof {
+    display: inline-block; background: #fff; border: 1px dashed var(--gray);
+    color: var(--gray); border-radius: 6px; padding: 2px 10px;
+    font-size: 12px; font-weight: 700; margin-bottom: 10px;
+  }
+  .wx-grid { display: flex; flex-wrap: wrap; gap: 14px; margin: 12px 0 4px; }
+  .wx-card {
+    flex: 1 1 260px; min-width: 0; background: #fff;
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .wx-card-h { background: #f5f9fc; color: var(--ocean-dark); font-weight: 700; font-size: 13.5px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .wx-row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-bottom: 1px dashed var(--border); font-size: 13px; }
+  .wx-row:last-child { border-bottom: none; }
+  .wx-day { flex: none; width: 62px; font-weight: 700; color: var(--ocean-dark); font-size: 12.5px; }
+  .wx-cond { flex: 1 1 auto; min-width: 0; }
+  .wx-temp { flex: none; font-size: 12.5px; color: var(--gray); white-space: nowrap; }
+  .risk-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .risk-list li {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px dashed #e5c9a0; font-size: 13.5px;
+  }
+  .risk-list li:last-child { border-bottom: none; }
+  .risk-mark {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: #fff;
+  }
+  .rm-ok { background: var(--leaf); }
+  .rm-mid { background: #8bc34a; }
+  .rm-warn { background: var(--sun); }
+  .rm-bad { background: var(--coral); }
+  @media (max-width: 640px) {
+    .wx-card { flex: 1 1 100%; }
+    .wx-row { font-size: 12.5px; padding: 8px 10px; gap: 8px; }
+    .wx-day { width: 56px; }
+  }
 </style>
 </head>
 <body>
@@ -1014,6 +1052,7 @@
     <div class="toc-title">📑 目次 <span>タップで各セクションへジャンプ</span></div>
     <ol class="toc-list">
       <li><a href="#meetup">🎫 出発当日の集合案内</a></li>
+      <li><a href="#weather">🌦️ 天気・台風18号の状況</a></li>
       <li><a href="#overview">📋 旅程概要</a></li>
       <li><a href="#map">🗺️ 全体マップ（沖縄本島）</a></li>
       <li><a href="#hotel">🏨 宿泊先: ザ・ビーチタワー沖縄</a></li>
@@ -1077,6 +1116,62 @@
       <tr><th>注意</th><td>高さ2.1m・幅2.2m以下の普通車のみ／<b>利用開始日(8/22)以外は入場不可</b>・当日24時までに入場しないと予約キャンセル</td></tr>
       <tr><th>問合せ</th><td>0569-38-7830（24時間・年中無休）</td></tr>
     </table>
+  </div>
+
+  <!-- ========== WEATHER / TYPHOON ========== -->
+  <h2 id="weather">🌦️ 天気・台風18号の状況</h2>
+  <div class="wx-asof">📅 2026年8月20日(木)時点の予報 ／ 進路・予報は変わります。必ず最新を確認してください</div>
+
+  <div class="alert">
+    <h3>🌀 台風18号（ソウデル）— 帰りの便は要チェック、ただし直撃予報ではない</h3>
+    <p style="font-size:13.5px;margin:0 0 10px;">
+      8/20朝の時点で<b>トラック諸島近海</b>にあり、<b>22日に「強い」・23日に「非常に強い」</b>勢力へ発達、
+      <b>24日に「日本の南」</b>まで進む見込みです。その先は沖縄方面へ向かう予測が増えていますが、
+      <b>進路のばらつきはまだ大きい</b>状態です。<br>
+      現時点で<b>「8/24に沖縄本島直撃」という予報ではありません</b>。本格的な影響は<b>25日以降</b>になる可能性が高めで、
+      日本気象協会も雨風が本格的に強まるのは「来週半ば頃」と見ています。
+    </p>
+    <ul class="risk-list">
+      <li><span class="risk-mark rm-ok">◎</span><span><b>8/22(土) 往路</b> — 台風18号による飛行機への影響は<b>かなり小さそう</b></span></li>
+      <li><span class="risk-mark rm-mid">○</span><span><b>8/23(日) 滞在</b> — <b>まだ大丈夫そう</b>。ただし沖縄自体は雨</span></li>
+      <li><span class="risk-mark rm-warn">△</span><span><b>8/24(月) 復路</b> — <b>要チェック</b>。台風本体はまだ離れている可能性が高いが、進路次第で風・波・便に影響が出始める</span></li>
+      <li><span class="risk-mark rm-bad">⚠</span><span><b>8/25〜27</b> — <b>現時点ではこちらの方が台風の影響リスクが高い</b>（＝帰った後）</span></li>
+    </ul>
+    <div class="notes" style="margin-top:12px;">
+      <b>✅ やること</b>：進路が少し西寄り・速めに変わるだけで24日の那覇→セントレア便に影響しうるため、
+      <b>今後48時間の進路更新が重要</b>です。<b>8/21(金)夜</b>と<b>8/23(日)夜</b>に必ず再確認を。<br>
+      <b>🔗</b>
+      <a href="https://www.jma.go.jp/bosai/typhoon/" target="_blank" rel="noopener">気象庁 台風情報</a> ／
+      <a href="https://weathernews.jp/onebox/typhoon/" target="_blank" rel="noopener">ウェザーニュース 台風情報</a> ／
+      <a href="https://www.ana.co.jp/fs/dom/jp/" target="_blank" rel="noopener">ANA 国内線運航状況</a><br>
+      欠航・遅延の連絡は<b>HIS担当（判家様 080-3738-3474 ／ 秋山様 070-1382-0750）</b>へ。
+    </div>
+  </div>
+
+  <div class="wx-grid">
+    <div class="wx-card">
+      <div class="wx-card-h">🌺 沖縄・那覇</div>
+      <div class="wx-row"><span class="wx-day">8/22(土)</span><span class="wx-cond"><b>激しいにわか雨</b></span><span class="wx-temp">30℃ / 27℃</span></div>
+      <div class="wx-row"><span class="wx-day">8/23(日)</span><span class="wx-cond"><b>雨・雷雨あり</b></span><span class="wx-temp">31℃ / 27℃</span></div>
+      <div class="wx-row"><span class="wx-day">8/24(月)</span><span class="wx-cond">おおむね晴れ</span><span class="wx-temp">31℃ / 26℃</span></div>
+    </div>
+    <div class="wx-card">
+      <div class="wx-card-h">🏠 三重・桑名（出発日の朝）</div>
+      <div class="wx-row"><span class="wx-day">8/22(土)</span><span class="wx-cond">晴れ時々曇り</span><span class="wx-temp"><b style="color:#b02a2a;">37℃</b> / 25℃</span></div>
+      <div class="wx-row"><span class="wx-day">8/23(日)</span><span class="wx-cond">おおむね曇り</span><span class="wx-temp">36℃ / 25℃</span></div>
+      <div class="wx-row"><span class="wx-day">8/24(月)</span><span class="wx-cond">雷雨の可能性</span><span class="wx-temp"><b style="color:#b02a2a;">37℃</b> / 25℃</span></div>
+    </div>
+  </div>
+
+  <div class="notes" style="margin-top:14px;">
+    <b>📌 この予報からの読みどころ</b>
+    <ul style="margin:6px 0 0;padding-left:18px;font-size:13px;">
+      <li><b>意外にも3日目(8/24)が一番良い天気</b>。国際通りの自由散策は問題なさそうですが、31℃なので暑さ対策は必要です。</li>
+      <li><b>22〜23日は台風18号とは別に、湿った空気の影響で雨が多い</b>予報。気象庁の週間予報でも<b>23日頃まで沖縄・奄美で警報級の大雨</b>の可能性が指摘されています。</li>
+      <li><b>2日目(8/23)は雨・雷雨予報</b> → <a href="#course-B" style="color:var(--ocean-dark);font-weight:700;">Bコース（涼しい屋内ホッピング）</a>が有力です。Aコース（海中道路・ビーチ）は当日朝の予報を見て最終判断を。</li>
+      <li><b>1日目(8/22)の夕方も雨の可能性</b> → <b>17:45のビーチ集合写真</b>と<b>18:00の屋外テラスBBQ</b>は変更・移動になる場合があります。羽織りものと雨具を手元に。</li>
+      <li><b>出発日の桑名は37℃</b>。早朝でも車内はすぐ暑くなるので、<b>自宅→セントレアの道中の飲み物</b>を積んでおくと安心です。</li>
+    </ul>
   </div>
 
   <!-- ========== OVERVIEW ========== -->
@@ -2262,15 +2357,25 @@
       <li><b>モバイルバッテリーは機内持込バッグへ</b></li>
       <li>子供の母子手帳（念のため）</li>
     </ul>
+    <h3>🚗 当日、自宅の車から持っていくもの</h3>
+    <ul>
+      <li><b>レンタカー用スマホ充電器</b>（シガーソケット／USBケーブル）<br>
+      <span style="color:var(--gray);font-size:12.5px;">2日目はナビ＋写真で電池が一気に減ります。スーツケースに入れず、<b>8/22の朝に自宅の車から抜いて手荷物へ</b>。積み忘れの筆頭です。</span></li>
+    </ul>
     <h3>必須</h3>
     <ul>
       <li>水着 ×4人分</li>
-      <li>ラッシュガード（特に子供）</li>
+      <li><b>ラッシュガード ×4人分</b>（日焼け・クラゲ対策。子供は特に必須）</li>
       <li>ビーチサンダル ×4</li>
       <li>バスタオル・大判タオル</li>
       <li>日焼け止め（ウォータープルーフ）</li>
-      <li>帽子・サングラス</li>
-      <li>虫よけスプレー</li>
+      <li><b>帽子 ×4人分</b>（つば広・あご紐つきが安心）</li>
+      <li>サングラス（大人分）</li>
+      <li><b>日傘 ×2</b>（<b>晴雨兼用</b>だと8/22の雨予報にも使えます）</li>
+      <li><b>虫よけスプレー</b><br>
+      <span style="color:var(--gray);font-size:12.5px;">1日目の夕食BBQは<b>屋外テラス席（117番）</b>。夕方は蚊が出るので必須です。</span></li>
+      <li><b>モバイルファン ×4</b>（充電式ハンディファン）<br>
+      <span style="color:var(--gray);font-size:12.5px;">リチウム電池内蔵なので<b>預入荷物ではなく機内持込バッグへ</b>入れるのが確実です。</span></li>
       <li>ジップロック（濡れ物用）</li>
       <li>チャイルドシート予約確認 ×2</li>
       <li>健康保険証コピー</li>
@@ -2282,7 +2387,7 @@
       <li>車内おやつ・飲み物クーラー</li>
       <li>酔い止め（次男・長距離対策）</li>
       <li>タブレット＋イヤホン（車内エンタメ）</li>
-      <li>冷却タオル・ハンディファン</li>
+      <li>冷却タオル・冷却シート</li>
       <li>絆創膏・常備薬</li>
       <li>ゴーグル ×2</li>
       <li>サンダル洗い用ナイロン袋</li>
@@ -2332,7 +2437,7 @@
 
   <!-- ========== FOOTER ========== -->
   <footer>
-    Created 2026-05-15 ／ Updated 2026-08-19（HIS「旅のしおり – 0804」＋「Aプラン：バス座席表（改訂版）」を反映）<br>
+    Created 2026-05-15 ／ Updated 2026-08-20（天気・台風18号の情報を追加／HIS「旅のしおり – 0804」＋「Aプラン：バス座席表（改訂版）」を反映）<br>
     原本: <a href="https://drive.google.com/file/d/11hyTE-xVKCI98RV3QJLamW4V9jBEGdGh/view?usp=sharing" target="_blank" rel="noopener" style="color:#fff;">旅のしおり</a> ／ <a href="https://drive.google.com/file/d/1LydViVV3cvIiY2vulZkoQCXwF5JHzORm/view?usp=sharing" target="_blank" rel="noopener" style="color:#fff;">Aプラン：バス座席表</a><br>
     宿泊: ザ・ビーチタワー沖縄 ｜ 航空: 全日空 NH303 / NH306 ｜ 2日目レンタカー: WAクラス(ノア等) 09:00〜18:00<br>
     <span style="font-size:11px;">※行程は航空会社・輸送会社および現地事情・天候により予告なく変更になる場合があります。記載の時刻は目安です。</span>
